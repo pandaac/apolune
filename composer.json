@@ -1,5 +1,6 @@
 {
 	"name": "apolune/account",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Christopher Eklund",
