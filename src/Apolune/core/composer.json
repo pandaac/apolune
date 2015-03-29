@@ -1,0 +1,19 @@
+{
+	"name": "pandaac/core",
+	"description": "Core functionality for pandaac.",
+	"authors": [
+		{
+			"name": "Christopher Eklund",
+			"email": "support@pandaac.net"
+		}
+	],
+	"require": {},
+	"autoload": {
+		"files": [
+			"src/helpers.php"
+		],
+		"psr-4": {
+			"pandaac\\Core\\": "src/"
+		}
+	}
+}
