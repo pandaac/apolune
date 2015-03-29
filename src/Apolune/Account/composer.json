@@ -1,0 +1,16 @@
+{
+	"name": "apolune/account",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Christopher Eklund",
+			"email": "support@pandaac.net"
+		}
+	],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"pandaac\\Account\\": "src/"
+		}
+	}
+}
