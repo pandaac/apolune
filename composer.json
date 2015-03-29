@@ -1,0 +1,14 @@
+{
+	"name": "pandaac/apolune",
+	"authors": [
+		{
+			"name": "Christopher Eklund",
+			"email": "support@pandaac.net"
+		}
+	],
+	"require": {},
+	"replace": {
+		"apolune/core": "self.version",
+		"apolune/account": "self.version"
+	}
+}
