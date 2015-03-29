@@ -13,6 +13,9 @@
 		"apolune/account": "self.version"
 	},
 	"autoload": {
+		"files": [
+			"src/Apolune/Core/src/helpers.php"
+		],
 		"psr-4": {
 			"Apolune\\Core\\": "src/Apolune/Core/src",
 			"Apolune\\Account\\": "src/Apolune/Account/src"
