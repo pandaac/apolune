@@ -1,7 +1,7 @@
-<?php namespace pandaac\Core\Providers;
+<?php namespace Apolune\pandaac\Core\Providers;
 
 use Exception;
-use pandaac\Core\Contracts\Theme as ThemeContract;
+use Apolune\pandaac\Core\Contracts\Theme as ThemeContract;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class PackageServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $commands = [
-		'package.publish' => 'pandaac\Core\Console\Commands\PackagePublisher',
+		'package.publish' => 'Apolune\pandaac\Core\Console\Commands\PackagePublisher',
 	];
 
 	/**

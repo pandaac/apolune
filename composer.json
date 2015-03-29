@@ -12,5 +12,10 @@
 		"apolune/core": "self.version",
 		"apolune/account": "self.version"
 	},
+	"autoload": {
+		"psr-4": {
+			"Apolune\\": "src/Apolune/"
+		}
+	},
 	"minimum-stability": "dev"
 }

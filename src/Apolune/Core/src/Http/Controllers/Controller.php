@@ -1,4 +1,4 @@
-<?php namespace pandaac\Core\Http\Controllers;
+<?php namespace Apolune\pandaac\Core\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;

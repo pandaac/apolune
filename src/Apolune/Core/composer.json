@@ -14,7 +14,7 @@
 			"src/helpers.php"
 		],
 		"psr-4": {
-			"pandaac\\Core\\": "src/"
+			"Apolune\\pandaac\\Core\\": "src/"
 		}
 	}
 }

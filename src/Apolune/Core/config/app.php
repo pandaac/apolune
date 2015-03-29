@@ -15,7 +15,7 @@ return [
 
 	'providers' => [
 
-		'pandaac\Account\Providers\PackageServiceProvider',
+		'Apolune\pandaac\Account\Providers\PackageServiceProvider',
 
 	],
 
