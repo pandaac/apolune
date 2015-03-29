@@ -11,5 +11,6 @@
 	"replace": {
 		"apolune/core": "self.version",
 		"apolune/account": "self.version"
-	}
+	},
+	"minimum-stability": "dev"
 }
