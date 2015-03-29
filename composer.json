@@ -1,6 +1,7 @@
 {
 	"name": "apolune/core",
 	"description": "Core functionality for pandaac.",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Christopher Eklund",
