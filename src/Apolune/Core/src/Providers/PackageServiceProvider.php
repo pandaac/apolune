@@ -1,7 +1,7 @@
-<?php namespace Apolune\pandaac\Core\Providers;
+<?php namespace Apolune\Core\Providers;
 
 use Exception;
-use Apolune\pandaac\Core\Contracts\Theme as ThemeContract;
+use Apolune\Core\Contracts\Theme as ThemeContract;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class PackageServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $commands = [
-		'package.publish' => 'Apolune\pandaac\Core\Console\Commands\PackagePublisher',
+		'package.publish' => 'Apolune\Core\Console\Commands\PackagePublisher',
 	];
 
 	/**
@@ -95,7 +95,7 @@ class PackageServiceProvider extends ServiceProvider {
 
 		if ( ! (($provider = new $class) instanceof ThemeContract))
 		{
-			throw new Exception("Service Provider in theme <${theme}> is not of type \pandaac\Core\Contracts\Theme.");
+			throw new Exception("Service Provider in theme <${theme}> is not of type \Apolune\Core\Contracts\Theme.");
 		}
 
 		$provider->register();

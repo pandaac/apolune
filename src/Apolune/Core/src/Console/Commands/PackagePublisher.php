@@ -1,7 +1,7 @@
-<?php namespace Apolune\pandaac\Core\Console\Commands;
+<?php namespace Apolune\Core\Console\Commands;
 
 use Exception;
-use Apolune\pandaac\Core\Providers\ServiceProvider;
+use Apolune\Core\Providers\ServiceProvider;
 
 use Illuminate\Console\Command;
 use League\Flysystem\MountManager;

@@ -1,4 +1,4 @@
-<?php namespace Apolune\pandaac\Core\Providers;
+<?php namespace Apolune\Core\Providers;
 
 use Illuminate\Support\ServiceProvider as BaseProvider;
 

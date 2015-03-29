@@ -1,4 +1,4 @@
-<?php namespace Apolune\pandaac\Core\Contracts;
+<?php namespace Apolune\Core\Contracts;
 
 interface Theme {
 	
