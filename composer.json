@@ -14,7 +14,8 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Apolune\\": "src/Apolune/"
+			"Apolune\\Core\\": "src/Apolune/Core/src",
+			"Apolune\\Account\\": "src/Apolune/Account/src"
 		}
 	},
 	"minimum-stability": "dev"
