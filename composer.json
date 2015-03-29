@@ -1,0 +1,15 @@
+{
+	"name": "pandaac/account",
+	"authors": [
+		{
+			"name": "Christopher Eklund",
+			"email": "eklundchristopher@gmail.com"
+		}
+	],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"pandaac\\Account\\": "src/"
+		}
+	}
+}
