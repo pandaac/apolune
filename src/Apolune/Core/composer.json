@@ -18,5 +18,6 @@
 		"psr-4": {
 			"Apolune\\Core\\": "src/"
 		}
-	}
+	},
+	"minimum-stability": "dev"
 }
