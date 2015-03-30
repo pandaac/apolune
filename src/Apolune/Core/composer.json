@@ -1,6 +1,6 @@
 {
 	"name": "apolune/core",
-	"description": "Core functionality for pandaac.",
+	"keywords": ["pandaac", "apolune", "apolune-package", "laravel"],
 	"license": "MIT",
 	"authors": [
 		{
