@@ -1,11 +1,11 @@
 <?php namespace Apolune\Core\Providers;
 
 use Exception;
-use Apolune\Core\Contracts\Theme as ThemeContract;
+use Apolune\Core\Providers\ThemeServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
 
-class PackageServiceProvider extends ServiceProvider {
+class CoreServiceProvider extends ServiceProvider {
 
 	/**
 	 * The Artisan commands provided by your application.
@@ -68,34 +68,19 @@ class PackageServiceProvider extends ServiceProvider {
 	 */
 	private function registerTheme($theme)
 	{
-		$this->app->register($theme);
+		$provider = $this->app->register($theme);
 
-		$path = base_path("themes/${theme}");
-
-		$this->app['view']->addNamespace('theme', "${path}/views");
-
-		$this->app['translator']->addNamespace('theme', "${path}/lang");
-
-		if ( ! is_file($providerPath = "${path}/ServiceProvider.php"))
+		if ( ! ($provider instanceof ThemeServiceProvider))
 		{
-			throw new Exception("Missing Service Provider in theme <${theme}>.");
+			throw new Exception('Theme Service Provider is not an instance of \Apolune\Core\Providers\ThemeServiceProvider');
 		}
 
-		if ( ! ($namespace = $this->getNamespaceFromFile($providerPath)))
+		if ( ! property_exists($provider, 'namespace'))
 		{
-			throw new Exception("Invalid namespace in Service Provider of theme <${theme}>.");
+			throw new Exception('Theme Service Provider must declare a namespace property.');
 		}
 
-		require_once $providerPath;
-
-		$class = "${namespace}\ServiceProvider";
-
-		if ( ! (($provider = new $class) instanceof ThemeContract))
-		{
-			throw new Exception("Service Provider in theme <${theme}> is not of type \Apolune\Core\Contracts\Theme.");
-		}
-
-		$provider->register();
+		$this->app->bind('Apolune\Core\Contracts\Theme', $provider);
 	}
 
 	/**
@@ -115,21 +100,6 @@ class PackageServiceProvider extends ServiceProvider {
 
 			$this->commands("command.pandaac.${name}");
 		}
-	}
-
-	/**
-	 * Get a PHP namespace from a file.
-	 *
-	 * @param  string  $file
-	 * @return string
-	 */
-	private function getNamespaceFromFile($file)
-	{
-		$contents = file_get_contents($file);
-
-		preg_match('/namespace\s+(.+?)\s?;/i', $contents, $matches);
-
-		return isset($matches[1]) ? $matches[1] : null;
 	}
 
 }

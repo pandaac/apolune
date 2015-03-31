@@ -13,11 +13,7 @@ return [
 	|
 	*/
 
-	'providers' => [
-
-		'Apolune\pandaac\Account\Providers\PackageServiceProvider',
-
-	],
+	'providers' => [],
 
 	/*
 	|--------------------------------------------------------------------------

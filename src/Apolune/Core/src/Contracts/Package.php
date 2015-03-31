@@ -1,6 +1,6 @@
 <?php namespace Apolune\Core\Contracts;
 
-interface Theme {
+interface Package {
 
 	/**
 	 * Bootstrap any application services.
