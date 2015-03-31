@@ -35,7 +35,7 @@ abstract class ServiceProvider extends BaseProvider {
 	{
 		parent::__construct($app);
 
-		$this->theme = hyphencase($app->config->get('pandaac.app.theme', 'default'));
+		$this->theme = $app->config->get('pandaac.app.theme', 'pandaac\Theme\ServiceProvider');
 	}
 
 	/**
@@ -76,11 +76,21 @@ abstract class ServiceProvider extends BaseProvider {
 		$this->app['translator']->addNamespace($namespace, $path);
 	}
 
+	/**
+	 * ...
+	 *
+	 * @return array
+	 */
 	public static function getViews()
 	{
 		return (array) static::$views;
 	}
 
+	/**
+	 * ...
+	 *
+	 * @return array
+	 */
 	public static function getTranslations()
 	{
 		return (array) static::$translations;

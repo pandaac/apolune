@@ -167,7 +167,7 @@ class PackagePublisher extends Command {
 	 */
 	protected function getThemes()
 	{
-		$default = hyphencase(config('pandaac.app.theme', 'default'));
+		$default = config('pandaac.app.theme', 'pandaac\Theme\ServiceProvider');
 
 		return $this->option('theme') ?: [$default];
 	}

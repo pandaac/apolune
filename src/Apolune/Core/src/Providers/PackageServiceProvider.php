@@ -28,7 +28,7 @@ class PackageServiceProvider extends ServiceProvider {
 		]);
 
 		$this->registerTheme(
-			hyphencase(config('pandaac.app.theme', 'default'))
+			config('pandaac.app.theme', 'pandaac\Theme\ServiceProvider')
 		);
 	}
 
@@ -68,12 +68,9 @@ class PackageServiceProvider extends ServiceProvider {
 	 */
 	private function registerTheme($theme)
 	{
-		$path = base_path("themes/${theme}");
+		$this->app->register($theme);
 
-		if ( ! is_dir($path))
-		{
-			throw new Exception("Invalid theme <${theme}> was specified. Are you sure the theme exists?");
-		}
+		$path = base_path("themes/${theme}");
 
 		$this->app['view']->addNamespace('theme', "${path}/views");
 
