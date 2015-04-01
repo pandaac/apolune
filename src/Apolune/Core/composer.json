@@ -1,6 +1,6 @@
 {
 	"name": "apolune/core",
-	"keywords": ["pandaac", "apolune", "apolune-package", "laravel"],
+	"keywords": ["pandaac", "apolune", "apolunecomponent", "laravel"],
 	"license": "MIT",
 	"authors": [
 		{
@@ -13,10 +13,10 @@
 	},
 	"autoload": {
 		"files": [
-			"src/helpers.php"
+			"helpers.php"
 		],
 		"psr-4": {
-			"Apolune\\Core\\": "src/"
+			"Apolune\\Core\\": ""
 		}
 	},
 	"minimum-stability": "dev"
