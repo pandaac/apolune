@@ -167,7 +167,7 @@ class PackagePublisher extends Command {
 	 */
 	protected function getThemes()
 	{
-		$default = config('pandaac.app.theme', 'pandaac\Theme\ServiceProvider');
+		$default = config('pandaac.theme', 'pandaac\Theme\ServiceProvider');
 
 		return $this->option('theme') ?: [$default];
 	}

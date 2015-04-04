@@ -23,12 +23,8 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->publishes([
-			__DIR__.'/../../config/app.php' => config_path('pandaac/app.php'),
-		]);
-
 		$this->registerTheme(
-			config('pandaac.app.theme', 'pandaac\Theme\ServiceProvider')
+			config('pandaac.theme', 'pandaac\Theme\ServiceProvider')
 		);
 	}
 
@@ -40,7 +36,7 @@ class CoreServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->registerProviders(
-			config('pandaac.app.providers', [])
+			config('pandaac.providers', [])
 		);
 
 		$this->registerCommands($this->commands);
