@@ -54,8 +54,6 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	private function registerProviders(array $providers)
 	{
-		$this->app->register('Apolune\Core\Providers\AuthServiceProvider');
-
 		foreach ($providers as $provider)
 		{
 			$this->app->register($provider);

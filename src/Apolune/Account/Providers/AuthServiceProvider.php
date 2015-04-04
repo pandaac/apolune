@@ -1,7 +1,7 @@
-<?php namespace Apolune\Core\Providers;
+<?php namespace Apolune\Account\Providers;
 
 use App\User;
-use Apolune\Core\Auth\EloquentUserProvider;
+use Apolune\Account\Auth\EloquentUserProvider;
 
 use Illuminate\Support\ServiceProvider;
 
