@@ -14,6 +14,7 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	protected $commands = [
 		'package.publish' => 'Apolune\Core\Console\Commands\PackagePublisher',
+		'fetch.creatures' => 'Apolune\Core\Console\Commands\FetchCreatureInfo',
 	];
 
 	/**
