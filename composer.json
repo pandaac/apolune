@@ -5,13 +5,18 @@
 	"authors": [
 		{
 			"name": "Christopher Eklund",
-			"email": "support@pandaac.net"
+			"email": "eklundchristopher@gmail.com"
+		},
+		{
+			"name": "Kristoffer Eklund",
+			"email": "kristoffereklund1@gmail.com"
 		}
 	],
 	"require": {},
 	"replace": {
 		"apolune/core": "self.version",
-		"apolune/account": "self.version"
+		"apolune/account": "self.version",
+		"apolune/library": "self.version"
 	},
 	"autoload": {
 		"files": [

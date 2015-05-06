@@ -1,5 +1,5 @@
 {
-	"name": "apolune/core",
+	"name": "apolune/library",
 	"keywords": ["pandaac", "apolune", "apolunecomponent", "laravel"],
 	"license": "MIT",
 	"authors": [
@@ -13,14 +13,12 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4.0"
+		"php": ">=5.4.0",
+		"apolune/core": "self.version"
 	},
 	"autoload": {
-		"files": [
-			"helpers.php"
-		],
 		"psr-4": {
-			"Apolune\\Core\\": ""
+			"Apolune\\Library\\": ""
 		}
 	},
 	"minimum-stability": "dev"
