@@ -14,7 +14,6 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	protected $commands = [
 		'package.publish' => 'Apolune\Core\Console\Commands\PackagePublisher',
-		'fetch.creatures' => 'Apolune\Core\Console\Commands\FetchCreatureInfo',
 	];
 
 	/**
@@ -25,7 +24,7 @@ class CoreServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->registerTheme(
-			config('pandaac.theme', 'pandaac\Theme\ServiceProvider')
+			config('pandaac.theme', 'pandaac\ThemeTibia\ServiceProvider')
 		);
 	}
 

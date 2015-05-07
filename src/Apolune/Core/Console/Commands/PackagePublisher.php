@@ -54,9 +54,11 @@ class PackagePublisher extends Command {
 	 */
 	public function fire()
 	{
-		list($views, $translations) = [ServiceProvider::getViews(), ServiceProvider::getTranslations()];
-
 		try {
+
+			$views = ServiceProvider::getViews();
+			$translations = ServiceProvider::getTranslations();
+			$assets = ServiceProvider::getAssets();
 
 			if ($this->option('translations'))
 			{
@@ -66,11 +68,17 @@ class PackagePublisher extends Command {
 			{
 				$this->transferViews($views);
 			}
+			else if ($this->option('assets'))
+			{
+				$this->transferAssets($assets);
+			}
 			else
 			{
 				$this->transferTranslations($translations);
 				$this->info('');
 				$this->transferViews($views);
+				$this->info('');
+				$this->transferAssets($assets);
 			}
 
 		} catch (Exception $e) {
@@ -133,6 +141,32 @@ class PackagePublisher extends Command {
 	}
 
 	/**
+	 * Publish assets.
+	 *
+	 * @param  string  $assets
+	 * @return void
+	 */
+	protected function transferAssets($assets)
+	{
+		list($packages, $themes) = [$this->getPackages($views), $this->getThemes()];
+
+		$this->info('Publishing assets...');
+		
+		foreach ($packages as $package => $from)
+		{
+			foreach ($themes as $theme)
+			{
+				if ($this->files->isDirectory($from))
+				{
+					$to = base_path("themes/${theme}/packages/${package}/views");
+
+					$this->publishDirectory($from, $to);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Get all of the targeted packages.
 	 *
 	 * @param  array  $packages
@@ -167,7 +201,7 @@ class PackagePublisher extends Command {
 	 */
 	protected function getThemes()
 	{
-		$default = config('pandaac.theme', 'pandaac\Theme\ServiceProvider');
+		$default = config('pandaac.theme', 'pandaac\ThemeTibia\ServiceProvider');
 
 		return $this->option('theme') ?: [$default];
 	}
@@ -237,6 +271,7 @@ class PackagePublisher extends Command {
 			['all', null, InputOption::VALUE_NONE, 'Transfer the resources from every pandaac specific package.'],
 			['translations', null, InputOption::VALUE_NONE, 'Transfer only the translations.'],
 			['views', null, InputOption::VALUE_NONE, 'Transfer only the views.'],
+			['assets', null, InputOption::VALUE_NONE, 'Transfer only the assets.'],
 			['theme', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'Transfer the resources to a specific theme.'],
 			['force', null, InputOption::VALUE_NONE, 'Force override existing resources.'],
 		];
