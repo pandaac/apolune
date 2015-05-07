@@ -1,5 +1,5 @@
 {
-	"name": "apolune/account",
+	"name": "apolune/contracts",
 	"keywords": ["pandaac", "apolune", "apolunecomponent", "laravel"],
 	"license": "MIT",
 	"authors": [
@@ -17,11 +17,8 @@
 		"apolune/core": "self.version"
 	},
 	"autoload": {
-		"files": [
-			"validation.php"
-		],
 		"psr-4": {
-			"Apolune\\Account\\": ""
+			"Apolune\\Contracts\\": ""
 		}
 	},
 	"minimum-stability": "dev"

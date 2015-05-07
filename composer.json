@@ -14,8 +14,9 @@
 	],
 	"require": {},
 	"replace": {
-		"apolune/core": "self.version",
 		"apolune/account": "self.version",
+		"apolune/contracts": "self.version",
+		"apolune/core": "self.version",
 		"apolune/library": "self.version"
 	},
 	"autoload": {
