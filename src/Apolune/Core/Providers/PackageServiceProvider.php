@@ -1,6 +1,6 @@
 <?php namespace Apolune\Core\Providers;
 
-use Apolune\Core\Contracts\Package;
+use Apolune\Contracts\Core\Package;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
