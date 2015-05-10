@@ -1,7 +1,5 @@
 <?php
 
-dd('tja');
-
 if ( ! function_exists('worlds'))
 {
 	/**
