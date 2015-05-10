@@ -1,7 +1,6 @@
 <?php namespace Apolune\Core\Providers;
 
 use Exception;
-use Apolune\Core\Providers\ThemeServiceProvider;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -12,9 +11,7 @@ class CoreServiceProvider extends ServiceProvider {
 	 *
 	 * @var array
 	 */
-	protected $commands = [
-		'package.publish' => 'Apolune\Core\Console\Commands\PackagePublisher',
-	];
+	protected $commands = [];
 
 	/**
 	 * Bootstrap any application services.
@@ -23,14 +20,14 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->registerTheme(
-			config('pandaac.theme', 'pandaac\ThemeTibia\ServiceProvider')
-		);
-
 		if (env('APP_HTTPS'))
 		{
 			$this->app['url']->forceSchema('https');
 		}
+
+		$this->registerTheme(
+			config('pandaac.theme')
+		);
 	}
 
 	/**
@@ -71,17 +68,10 @@ class CoreServiceProvider extends ServiceProvider {
 	{
 		$provider = $this->app->register($theme);
 
-		if ( ! ($provider instanceof ThemeServiceProvider))
-		{
-			throw new Exception('Theme Service Provider is not an instance of \Apolune\Core\Providers\ThemeServiceProvider');
-		}
-
 		if ( ! property_exists($provider, 'namespace'))
 		{
 			throw new Exception('Theme Service Provider must declare a namespace property.');
 		}
-
-		$this->app->bind('Apolune\Core\Contracts\Theme', $provider);
 	}
 
 	/**
