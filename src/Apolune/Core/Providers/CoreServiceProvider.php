@@ -27,14 +27,8 @@ class CoreServiceProvider extends ServiceProvider {
 			config('pandaac.theme', 'pandaac\ThemeTibia\ServiceProvider')
 		);
 
-		var_dump('Testing scheduler');
-
 		if (env('APP_HTTPS'))
 		{
-			$this->app['request']->setTrustedProxies([
-				$this->app['request']->getClientIp()
-			]);
-
 			$this->app['url']->forceSchema('https');
 		}
 	}
