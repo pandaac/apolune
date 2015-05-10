@@ -26,6 +26,11 @@ class CoreServiceProvider extends ServiceProvider {
 		$this->registerTheme(
 			config('pandaac.theme', 'pandaac\ThemeTibia\ServiceProvider')
 		);
+
+		if (env('APP_HTTPS'))
+		{
+			$this->app['url']->forceSchema('https');
+		}
 	}
 
 	/**
