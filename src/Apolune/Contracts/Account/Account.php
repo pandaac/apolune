@@ -10,7 +10,14 @@ interface Account extends Authenticatable, CanResetPassword {
 	 *
 	 * @return \Apolune\Contracts\Account\Traits\Account
 	 */
-	public function traits();
+	public function trait();
+
+	/**
+	 * Retrieve the account characters.
+	 *
+	 * @return \Apolune\Contracts\Account\Character
+	 */
+	public function characters();
 
 	/**
 	 * Retrieve the account name.
