@@ -23,7 +23,8 @@
 	"autoload": {
 		"files": [
 			"src/Apolune/Core/helpers.php",
-			"src/Apolune/Account/validation.php"
+			"src/Apolune/Account/validation.php",
+			"src/Apolune/Server/helpers.php"
 		],
 		"psr-4": {
 			"Apolune\\": "src/Apolune"
