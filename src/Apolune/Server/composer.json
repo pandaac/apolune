@@ -1,0 +1,25 @@
+{
+	"name": "apolune/server",
+	"keywords": ["pandaac", "apolune", "apolunecomponent", "laravel"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Christopher Eklund",
+			"email": "eklundchristopher@gmail.com"
+		},
+		{
+			"name": "Kristoffer Eklund",
+			"email": "kristoffereklund1@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"apolune/core": "self.version"
+	},
+	"autoload": {
+		"psr-4": {
+			"Apolune\\Server\\": ""
+		}
+	},
+	"minimum-stability": "dev"
+}

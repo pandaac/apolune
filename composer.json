@@ -17,11 +17,13 @@
 		"apolune/account": "self.version",
 		"apolune/contracts": "self.version",
 		"apolune/core": "self.version",
-		"apolune/library": "self.version"
+		"apolune/library": "self.version",
+		"apolune/server": "self.version"
 	},
 	"autoload": {
 		"files": [
-			"src/Apolune/Core/helpers.php"
+			"src/Apolune/Core/helpers.php",
+			"src/Apolune/Account/validation.php"
 		],
 		"psr-4": {
 			"Apolune\\": "src/Apolune"
