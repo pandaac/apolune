@@ -1,22 +1,6 @@
-<?php namespace Apolune\Account\Models\Traits;
+<?php namespace Apolune\Core\Traits;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Account extends Model {
-
-	/**
-	 * The table associated with the model.
-	 *
-	 * @var string
-	 */
-	protected $table = '__pandaac_accounts';
-
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = ['remember_token'];
+trait AuthenticatableTraits {
 
 	/**
 	 * Get the token value for the "remember me" session.
