@@ -13,7 +13,7 @@
 		}
 	],
 	"require": {
-		"cebe/markdown": "~1.1.0"
+		"michelf/php-markdown": "~1.5"
 	},
 	"replace": {
 		"apolune/account": "self.version",

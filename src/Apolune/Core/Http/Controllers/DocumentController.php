@@ -1,6 +1,6 @@
 <?php namespace Apolune\Core\Http\Controllers;
 
-use cebe\markdown\Markdown;
+use Michelf\Markdown;
 
 use Illuminate\Contracts\Foundation\Application;
 
@@ -35,7 +35,7 @@ class DocumentController extends Controller {
 			base_path('/resources/docs/terms.md')
 		);
 
-		$markdown = (new Markdown)->parse($document);
+		$markdown = Markdown::defaultTransform($document);
 
 		return view('theme::core.terms')->withDocument($markdown);
 	}
@@ -51,7 +51,7 @@ class DocumentController extends Controller {
 			base_path('/resources/docs/rules.md')
 		);
 
-		$markdown = (new Markdown)->parse($document);
+		$markdown = Markdown::defaultTransform($document);
 
 		return view('theme::core.rules')->withDocument($markdown);
 	}
@@ -67,7 +67,7 @@ class DocumentController extends Controller {
 			base_path('/resources/docs/privacy.md')
 		);
 
-		$markdown = (new Markdown)->parse($document);
+		$markdown = Markdown::defaultTransform($document);
 
 		return view('theme::core.privacy')->withDocument($markdown);
 	}

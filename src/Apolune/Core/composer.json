@@ -15,7 +15,7 @@
 	"require": {
 		"php": ">=5.4.0",
 		"apolune/contracts": "self.version",
-		"cebe/markdown": "~1.1.0"
+		"michelf/php-markdown": "~1.5"
 	},
 	"autoload": {
 		"files": [
