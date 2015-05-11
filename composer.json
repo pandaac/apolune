@@ -12,14 +12,15 @@
 			"email": "kristoffereklund1@gmail.com"
 		}
 	],
-	"require": {},
+	"require": {
+		"cebe/markdown": "~1.1.0"
+	},
 	"replace": {
 		"apolune/account": "self.version",
 		"apolune/contracts": "self.version",
 		"apolune/core": "self.version",
 		"apolune/library": "self.version",
-		"apolune/server": "self.version",
-		"cebe/markdown": "~1.1.0"
+		"apolune/server": "self.version"
 	},
 	"autoload": {
 		"files": [
