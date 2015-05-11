@@ -18,7 +18,8 @@
 		"apolune/contracts": "self.version",
 		"apolune/core": "self.version",
 		"apolune/library": "self.version",
-		"apolune/server": "self.version"
+		"apolune/server": "self.version",
+		"cebe/markdown": "~1.1.0"
 	},
 	"autoload": {
 		"files": [
