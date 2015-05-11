@@ -13,6 +13,24 @@ if ( ! function_exists('account'))
 	}
 }
 
+if ( ! function_exists('gender'))
+{
+	/**
+	 * Get a specific gender.
+	 *
+	 * @return \Apolune\Contracts\Server\Gender
+	 */
+	function gender($id)
+	{
+		$genders = genders();
+
+		return head(array_where($genders, function($key, $gender) use ($id)
+		{
+			return $gender->id() === $id;
+		}));
+	}
+}
+
 if ( ! function_exists('genders'))
 {
 	/**
@@ -56,6 +74,24 @@ if ( ! function_exists('theme_path'))
 	}
 }
 
+if ( ! function_exists('vocation'))
+{
+	/**
+	 * Get a specific vocation.
+	 *
+	 * @return \Apolune\Contracts\Server\Vocation
+	 */
+	function vocation($id)
+	{
+		$vocations = vocations();
+
+		return head(array_where($vocations, function($key, $vocation) use ($id)
+		{
+			return $vocation->id() === $id;
+		}));
+	}
+}
+
 if ( ! function_exists('vocations'))
 {
 	/**
@@ -69,6 +105,24 @@ if ( ! function_exists('vocations'))
 		$factory = app()->make('Apolune\Contracts\Server\Factory');
 
 		return $factory->vocations($starter);
+	}
+}
+
+if ( ! function_exists('world'))
+{
+	/**
+	 * Get a specific world.
+	 *
+	 * @return \Apolune\Contracts\Server\World
+	 */
+	function world($id)
+	{
+		$worlds = worlds();
+
+		return head(array_where($worlds, function($key, $world) use ($id)
+		{
+			return $world->id() === $id;
+		}));
 	}
 }
 

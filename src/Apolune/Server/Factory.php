@@ -1,8 +1,5 @@
 <?php namespace Apolune\Server;
 
-use Apolune\Server\Services\World;
-use Apolune\Server\Services\Gender;
-use Apolune\Server\Services\Vocation;
 use Apolune\Contracts\Server\Factory as FactoryContract;
 
 use Illuminate\Contracts\Foundation\Application;
@@ -17,6 +14,13 @@ class Factory implements FactoryContract {
 	protected $data;
 
 	/**
+	 * Holds the application instance.
+	 *
+	 * @var \Illuminate\Contracts\Foundation\Application
+	 */
+	protected $app;
+
+	/**
 	 * Create a new Factory instance.
 	 *
 	 * @param  \Illuminate\Contracts\Foundation\Application  $app
@@ -25,6 +29,7 @@ class Factory implements FactoryContract {
 	 */
 	public function __construct(Application $app, $file)
 	{
+		$this->app = $app;
 		$this->data = json_decode($app['files']->get($file));
 	}
 
@@ -39,7 +44,7 @@ class Factory implements FactoryContract {
 
 		array_walk($genders, function(&$gender)
 		{
-			$gender = new Gender((array) $gender);
+			$gender = $this->app->make('Apolune\Contracts\Server\Gender', [(array) $gender]);
 		});
 
 		return collect($genders);
@@ -57,7 +62,7 @@ class Factory implements FactoryContract {
 
 		array_walk($vocations, function(&$vocation)
 		{
-			$vocation = new Vocation((array) $vocation);
+			$vocation = $this->app->make('Apolune\Contracts\Server\Vocation', [(array) $vocation]);
 		});
 
 		return collect($vocations)->reject(function($vocation) use ($starter)
@@ -77,7 +82,7 @@ class Factory implements FactoryContract {
 
 		array_walk($worlds, function(&$world)
 		{
-			$world = new World((array) $world);
+			$world = $this->app->make('Apolune\Contracts\Server\World', [(array) $world]);
 		});
 
 		return collect($worlds);
