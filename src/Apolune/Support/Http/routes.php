@@ -1,6 +1,6 @@
 <?php
 
-$router->group(['prefix' => '/'], function($router)
+$router->group(['prefix' => '/support'], function($router)
 {
 	$router->get('/terms', 'DocumentController@terms');
 	$router->get('/rules', 'DocumentController@rules');

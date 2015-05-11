@@ -37,8 +37,6 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->register('Apolune\Core\Providers\RouteServiceProvider');
-
 		$this->registerProviders(
 			config('pandaac.providers', [])
 		);

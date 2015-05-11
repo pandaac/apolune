@@ -1,6 +1,7 @@
-<?php namespace Apolune\Core\Http\Controllers;
+<?php namespace Apolune\Support\Http\Controllers;
 
 use Michelf\Markdown;
+use Apolune\Core\Http\Controllers\Controller;
 
 use Illuminate\Contracts\Foundation\Application;
 
@@ -37,7 +38,7 @@ class DocumentController extends Controller {
 
 		$markdown = Markdown::defaultTransform($document);
 
-		return view('theme::core.terms')->withDocument($markdown);
+		return view('theme::support.terms')->withDocument($markdown);
 	}
 
 	/**
@@ -53,7 +54,7 @@ class DocumentController extends Controller {
 
 		$markdown = Markdown::defaultTransform($document);
 
-		return view('theme::core.rules')->withDocument($markdown);
+		return view('theme::support.rules')->withDocument($markdown);
 	}
 
 	/**
@@ -69,7 +70,7 @@ class DocumentController extends Controller {
 
 		$markdown = Markdown::defaultTransform($document);
 
-		return view('theme::core.privacy')->withDocument($markdown);
+		return view('theme::support.privacy')->withDocument($markdown);
 	}
 
 }

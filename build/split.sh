@@ -4,4 +4,5 @@ git subsplit publish --heads="master" src/Apolune/Contracts:git@github.com:apolu
 git subsplit publish --heads="master" src/Apolune/Core:git@github.com:apolune/core.git
 git subsplit publish --heads="master" src/Apolune/Library:git@github.com:apolune/library.git
 git subsplit publish --heads="master" src/Apolune/Server:git@github.com:apolune/server.git
+git subsplit publish --heads="master" src/Apolune/Support:git@github.com:apolune/support.git
 rm -rf .subsplit/
