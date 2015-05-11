@@ -13,6 +13,21 @@ if ( ! function_exists('account'))
 	}
 }
 
+if ( ! function_exists('genders'))
+{
+	/**
+	 * Get all of the server genders.
+	 *
+	 * @return \Illuminate\Support\Collection
+	 */
+	function genders()
+	{
+		$factory = app()->make('Apolune\Contracts\Server\Factory');
+
+		return $factory->genders();
+	}
+}
+
 if ( ! function_exists('hyphencase'))
 {
 	/**
@@ -38,5 +53,36 @@ if ( ! function_exists('theme_path'))
 	function theme_path($path = '')
 	{
 		return base_path('/themes'.($path ? '/'.$path : $path));
+	}
+}
+
+if ( ! function_exists('vocations'))
+{
+	/**
+	 * Get all of the server vocations.
+	 *
+	 * @param  boolean  $starter  null
+	 * @return \Illuminate\Support\Collection
+	 */
+	function vocations($starter = null)
+	{
+		$factory = app()->make('Apolune\Contracts\Server\Factory');
+
+		return $factory->vocations($starter);
+	}
+}
+
+if ( ! function_exists('worlds'))
+{
+	/**
+	 * Get all of the server worlds.
+	 *
+	 * @return \Illuminate\Support\Collection
+	 */
+	function worlds()
+	{
+		$factory = app()->make('Apolune\Contracts\Server\Factory');
+
+		return $factory->worlds();
 	}
 }
