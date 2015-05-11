@@ -12,7 +12,7 @@
 			"email": "kristoffereklund1@gmail.com"
 		}
 	],
-	"require": {,
+	"require": {
 		"michelf/php-markdown": "~1.5"
 	},
 	"replace": {
