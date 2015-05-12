@@ -23,7 +23,7 @@ class SupportServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->register('Apolune\Support\Providers\RouteServiceProvider');
+		//
 	}
 
 }

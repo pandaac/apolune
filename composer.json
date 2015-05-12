@@ -25,6 +25,7 @@
 	},
 	"autoload": {
 		"files": [
+			"src/helpers.php",
 			"src/Apolune/Core/helpers.php",
 			"src/Apolune/Account/validation.php"
 		],
