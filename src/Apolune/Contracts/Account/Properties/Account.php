@@ -1,4 +1,4 @@
-<?php namespace Apolune\Contracts\Account\Traits;
+<?php namespace Apolune\Contracts\Account\Properties;
 
 interface Account {
 

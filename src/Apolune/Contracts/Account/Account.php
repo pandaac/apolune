@@ -6,11 +6,11 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPassword;
 interface Account extends Authenticatable, CanResetPassword {
 
 	/**
-	 * Retrieve the account traits.
+	 * Retrieve the account properties.
 	 *
-	 * @return \Apolune\Contracts\Account\Traits\Account
+	 * @return \Apolune\Contracts\Account\Properties\Account
 	 */
-	public function trait();
+	public function properties();
 
 	/**
 	 * Retrieve the account characters.
