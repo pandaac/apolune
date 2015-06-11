@@ -35,6 +35,18 @@ class Factory implements FactoryContract
     }
 
     /**
+     * Get all of the countries.
+     *
+     * @return array
+     */
+    public function countries()
+    {
+        $countries = $this->data->countries;
+
+        return collect($countries);
+    }
+
+    /**
      * Get all of the genders.
      *
      * @return array

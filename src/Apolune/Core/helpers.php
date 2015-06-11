@@ -12,10 +12,42 @@ if (! function_exists('account')) {
     }
 }
 
+if (! function_exists('countries')) {
+    /**
+     * Get all of the countries.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    function countries()
+    {
+        $factory = app()->make('Apolune\Contracts\Server\Factory');
+
+        return $factory->countries();
+    }
+}
+
+if (! function_exists('country')) {
+    /**
+     * Get a specific country.
+     *
+     * @param  string  $code
+     * @return string
+     */
+    function country($code)
+    {
+        $countries = countries();
+
+        return head(array_where($countries, function ($key, $country) use ($code) {
+            return strtoupper($key) === strtoupper($code);
+        }));
+    }
+}
+
 if (! function_exists('gender')) {
     /**
      * Get a specific gender.
      *
+     * @param  integer  $id
      * @return \Apolune\Contracts\Server\Gender
      */
     function gender($id)
@@ -72,6 +104,7 @@ if (! function_exists('vocation')) {
     /**
      * Get a specific vocation.
      *
+     * @param  integer  $id
      * @return \Apolune\Contracts\Server\Vocation
      */
     function vocation($id)
@@ -103,6 +136,7 @@ if (! function_exists('world')) {
     /**
      * Get a specific world.
      *
+     * @param  integer  $id
      * @return \Apolune\Contracts\Server\World
      */
     function world($id)
