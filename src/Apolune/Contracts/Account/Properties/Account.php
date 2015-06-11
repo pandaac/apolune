@@ -1,22 +1,23 @@
-<?php namespace Apolune\Contracts\Account\Properties;
+<?php
 
-interface Account {
+namespace Apolune\Contracts\Account\Properties;
 
-	/**
-	 * Get the token value for the "remember me" session.
-	 *
-	 * @param  string  $column
-	 * @return string
-	 */
-	public function getRememberToken($column);
+interface Account
+{
+    /**
+     * Get the token value for the "remember me" session.
+     *
+     * @param  string  $column
+     * @return string
+     */
+    public function getRememberToken($column);
 
-	/**
-	 * Set the token value for the "remember me" session.
-	 *
-	 * @param  string  $column
-	 * @param  string  $value
-	 * @return void
-	 */
-	public function setRememberToken($column, $value);
-
+    /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string  $column
+     * @param  string  $value
+     * @return void
+     */
+    public function setRememberToken($column, $value);
 }

@@ -1,12 +1,13 @@
-<?php namespace Apolune\Contracts\Account;
+<?php
 
-interface Character {
+namespace Apolune\Contracts\Account;
 
-	/**
-	 * Retrieve the associated account.
-	 *
-	 * @return \Apolune\Contracts\Account\Account
-	 */
-	public function account();
-
+interface Character
+{
+    /**
+     * Retrieve the associated account.
+     *
+     * @return \Apolune\Contracts\Account\Account
+     */
+    public function account();
 }

@@ -1,37 +1,37 @@
 {
-	"name": "pandaac/apolune",
-	"keywords": ["pandaac", "apolune", "tibia", "opentibia"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Christopher Eklund",
-			"email": "eklundchristopher@gmail.com"
-		},
-		{
-			"name": "Kristoffer Eklund",
-			"email": "kristoffereklund1@gmail.com"
-		}
-	],
-	"require": {
-		"michelf/php-markdown": "~1.5"
-	},
-	"replace": {
-		"apolune/account": "self.version",
-		"apolune/contracts": "self.version",
-		"apolune/core": "self.version",
-		"apolune/library": "self.version",
-		"apolune/server": "self.version",
-		"apolune/support": "self.version"
-	},
-	"autoload": {
-		"files": [
-			"src/helpers.php",
-			"src/Apolune/Core/helpers.php",
-			"src/Apolune/Account/validation.php"
-		],
-		"psr-4": {
-			"Apolune\\": "src/Apolune"
-		}
-	},
-	"minimum-stability": "dev"
+    "name": "pandaac/apolune",
+    "keywords": ["pandaac", "apolune", "tibia", "opentibia"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christopher Eklund",
+            "email": "eklundchristopher@gmail.com"
+        },
+        {
+            "name": "Kristoffer Eklund",
+            "email": "kristoffereklund1@gmail.com"
+        }
+    ],
+    "require": {
+        "michelf/php-markdown": "~1.5"
+    },
+    "replace": {
+        "apolune/account": "self.version",
+        "apolune/contracts": "self.version",
+        "apolune/core": "self.version",
+        "apolune/library": "self.version",
+        "apolune/server": "self.version",
+        "apolune/support": "self.version"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php",
+            "src/Apolune/Core/helpers.php",
+            "src/Apolune/Account/validation.php"
+        ],
+        "psr-4": {
+            "Apolune\\": "src/Apolune"
+        }
+    },
+    "minimum-stability": "dev"
 }

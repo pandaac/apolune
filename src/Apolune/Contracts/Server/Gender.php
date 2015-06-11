@@ -1,27 +1,28 @@
-<?php namespace Apolune\Contracts\Server;
+<?php
 
-interface Gender {
+namespace Apolune\Contracts\Server;
 
-	/**
-	 * Create a new gender instance.
-	 *
-	 * @param  array  $gender
-	 * @return void
-	 */
-	public function __construct(array $gender);
+interface Gender
+{
+    /**
+     * Create a new gender instance.
+     *
+     * @param  array  $gender
+     * @return void
+     */
+    public function __construct(array $gender);
 
-	/**
-	 * Get the gender id.
-	 *
-	 * @return integer
-	 */
-	public function id();
+    /**
+     * Get the gender id.
+     *
+     * @return integer
+     */
+    public function id();
 
-	/**
-	 * Get the gender name.
-	 *
-	 * @return string
-	 */
-	public function name();
-
+    /**
+     * Get the gender name.
+     *
+     * @return string
+     */
+    public function name();
 }
