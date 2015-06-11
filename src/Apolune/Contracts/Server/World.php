@@ -32,4 +32,11 @@ interface World
      * @return string
      */
     public function type();
+
+    /**
+     * Get the world flag.
+     *
+     * @return string
+     */
+    public function flag();
 }

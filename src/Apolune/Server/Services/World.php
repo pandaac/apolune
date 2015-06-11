@@ -68,4 +68,18 @@ class World implements WorldContract
 
         return $this->types[$type];
     }
+
+    /**
+     * Get the world flag.
+     *
+     * @return string
+     */
+    public function flag()
+    {
+        if (! isset($this->data['flag'])) {
+            return null;
+        }
+
+        return $this->data['flag'];
+    }
 }
