@@ -108,7 +108,9 @@ class Factory implements FactoryContract
             $creature = $this->app->make('Apolune\Contracts\Server\Creature', [(array) $creature]);
         });
 
-        return collect($creatures)->filter(function ($item) {
+        return collect($creatures)->sortBy('name')->sort(function($a, $b) {
+            return $a->name() > $b->name();
+        })->filter(function ($item) {
             return ! $item->hidden();
         });
     }
