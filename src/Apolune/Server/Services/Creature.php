@@ -53,5 +53,4 @@ class Creature implements CreatureContract
     {
         return $this->data['hidden'];
     }
-
 }

@@ -32,5 +32,4 @@ interface Creature
      * @return string
      */
     public function hidden();
-    
 }

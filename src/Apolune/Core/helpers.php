@@ -43,6 +43,20 @@ if (! function_exists('country')) {
     }
 }
 
+if (! function_exists('creatures')) {
+    /**
+     * Get all of the creatures.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    function creatures()
+    {
+        $factory = app()->make('Apolune\Contracts\Server\Factory');
+
+        return $factory->creatures();
+    }
+}
+
 if (! function_exists('gender')) {
     /**
      * Get a specific gender.
