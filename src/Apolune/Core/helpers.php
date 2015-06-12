@@ -55,7 +55,7 @@ if (! function_exists('gender')) {
         $genders = genders();
 
         return head(array_where($genders, function ($key, $gender) use ($id) {
-            return $gender->id() === $id;
+            return $gender->id() === (int) $id;
         }));
     }
 }
@@ -105,14 +105,15 @@ if (! function_exists('vocation')) {
      * Get a specific vocation.
      *
      * @param  integer  $id
+     * @param  boolean  $starter  null
      * @return \Apolune\Contracts\Server\Vocation
      */
-    function vocation($id)
+    function vocation($id, $starter = null)
     {
-        $vocations = vocations();
+        $vocations = vocations($starter);
 
         return head(array_where($vocations, function ($key, $vocation) use ($id) {
-            return $vocation->id() === $id;
+            return $vocation->id() === (int) $id;
         }));
     }
 }
@@ -144,7 +145,7 @@ if (! function_exists('world')) {
         $worlds = worlds();
 
         return head(array_where($worlds, function ($key, $world) use ($id) {
-            return $world->id() === $id;
+            return $world->id() === (int) $id;
         }));
     }
 }

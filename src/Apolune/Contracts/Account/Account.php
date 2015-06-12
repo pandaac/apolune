@@ -15,11 +15,18 @@ interface Account extends Authenticatable, CanResetPassword
     public function properties();
 
     /**
-     * Retrieve the account characters.
+     * Retrieve the account players.
      *
-     * @return \Apolune\Contracts\Account\Character
+     * @return \Apolune\Contracts\Account\Player
      */
-    public function characters();
+    public function players();
+
+    /**
+     * Retrieve the account id.
+     *
+     * @return integer
+     */
+    public function id();
 
     /**
      * Retrieve the account name.
