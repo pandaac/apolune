@@ -96,4 +96,20 @@ class Factory implements FactoryContract
 
         return collect($worlds);
     }
+
+    /**
+     * Get all creatures.
+     */
+    public function creatures()
+    {
+        $creatures = $this->data->creatures;
+
+        array_walk($creatures, function (&$creature) {
+            $creature = $this->app->make('Apolune\Contracts\Server\Creature', [(array) $creature]);
+        });
+
+        return collect($creatures)->filter(function ($item) {
+            return ! $item->hidden();
+        });
+    }
 }

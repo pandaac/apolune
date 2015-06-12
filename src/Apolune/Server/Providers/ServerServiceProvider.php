@@ -31,5 +31,6 @@ class ServerServiceProvider extends ServiceProvider
         $this->app->bind('Apolune\Contracts\Server\Gender', 'Apolune\Server\Services\Gender');
         $this->app->bind('Apolune\Contracts\Server\Vocation', 'Apolune\Server\Services\Vocation');
         $this->app->bind('Apolune\Contracts\Server\World', 'Apolune\Server\Services\World');
+        $this->app->bind('Apolune\Contracts\Server\Creature', 'Apolune\Server\Services\Creature');
     }
 }

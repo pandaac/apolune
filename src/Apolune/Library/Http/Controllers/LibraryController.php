@@ -14,6 +14,8 @@ class LibraryController extends Controller
      */
     public function getCreatures()
     {
-        return view('theme::library.creatures');
+    	$creatures = app()->make('Apolune\Contracts\Server\Factory')->creatures();
+  
+        return view('theme::library.creatures')->withCreatures($creatures);
     }
 }

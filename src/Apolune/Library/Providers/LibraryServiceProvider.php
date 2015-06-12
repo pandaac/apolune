@@ -25,4 +25,14 @@ class LibraryServiceProvider extends ServiceProvider
     {
         //
     }
+
+    /**
+     * Bind the required contracts.
+     *
+     * @return void
+     */
+    private function bindContracts()
+    {
+        $this->app->bind('Apolune\Contracts\Server\Library', 'Apolune\Server\Services\Library');
+    }
 }
