@@ -26,7 +26,7 @@ class CoreServiceProvider extends ServiceProvider
         }
 
         $this->registerTheme(
-            config('pandaac.theme')
+            config('pandaac.config.theme')
         );
     }
 
@@ -38,7 +38,7 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerProviders(
-            config('pandaac.providers', [])
+            config('pandaac.config.providers', [])
         );
 
         $this->registerCommands($this->commands);
