@@ -2,7 +2,7 @@
 
 namespace Apolune\Core\Traits;
 
-trait AuthenticatableTraits
+trait AuthenticatableProperties
 {
     /**
      * Get the token value for the "remember me" session.

@@ -4,6 +4,7 @@ namespace Apolune\Core\Providers;
 
 use Exception;
 use Illuminate\Support\ServiceProvider;
+use Apolune\Core\Handlers\MigrationHandler;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -12,7 +13,9 @@ class CoreServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $commands = [];
+    protected $commands = [
+        'Apolune\Core\Console\Commands\Migrate',
+    ];
 
     /**
      * Bootstrap any application services.
@@ -37,6 +40,10 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('migrations', function ($app) {
+            return new MigrationHandler($app, collect());
+        });
+
         $this->registerProviders(
             config('pandaac.config.providers', [])
         );
