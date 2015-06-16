@@ -20,9 +20,7 @@ if (! function_exists('countries')) {
      */
     function countries()
     {
-        $factory = app()->make('Apolune\Contracts\Server\Factory');
-
-        return $factory->countries();
+        return server()->countries();
     }
 }
 
@@ -51,9 +49,7 @@ if (! function_exists('creatures')) {
      */
     function creatures()
     {
-        $factory = app()->make('Apolune\Contracts\Server\Factory');
-
-        return $factory->creatures();
+        return server()->creatures();
     }
 }
 
@@ -82,9 +78,7 @@ if (! function_exists('genders')) {
      */
     function genders()
     {
-        $factory = app()->make('Apolune\Contracts\Server\Factory');
-
-        return $factory->genders();
+        return server()->genders();
     }
 }
 
@@ -111,6 +105,18 @@ if (! function_exists('theme_path')) {
     function theme_path($path = '')
     {
         return base_path('/themes'.($path ? '/'.$path : $path));
+    }
+}
+
+if (! function_exists('server')) {
+    /**
+     * Get the server factory.
+     *
+     * @return \Apolune\Contracts\Server\Factory
+     */
+    function server()
+    {
+        return app('Apolune\Contracts\Server\Factory');
     }
 }
 
@@ -141,9 +147,7 @@ if (! function_exists('vocations')) {
      */
     function vocations($starter = null)
     {
-        $factory = app()->make('Apolune\Contracts\Server\Factory');
-
-        return $factory->vocations($starter);
+        return server()->vocations($starter);
     }
 }
 
@@ -172,8 +176,6 @@ if (! function_exists('worlds')) {
      */
     function worlds()
     {
-        $factory = app()->make('Apolune\Contracts\Server\Factory');
-
-        return $factory->worlds();
+        return server()->worlds();
     }
 }

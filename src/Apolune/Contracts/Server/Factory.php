@@ -16,9 +16,30 @@ interface Factory
     public function __construct(Application $app, $file);
 
     /**
+     * Get the server name.
+     *
+     * @return string
+     */
+    public function name();
+
+    /**
+     * Get all of the countries.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function countries();
+
+    /**
+     * Get all creatures.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function creatures();
+
+    /**
      * Get all of the genders.
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function genders();
 
@@ -26,14 +47,14 @@ interface Factory
      * Get all of the vocations.
      *
      * @param  boolean  $starter  null
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function vocations($starter = null);
 
     /**
      * Get all of the worlds.
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function worlds();
 }

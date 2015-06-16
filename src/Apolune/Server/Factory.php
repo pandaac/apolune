@@ -35,21 +35,49 @@ class Factory implements FactoryContract
     }
 
     /**
+     * Get the server name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->data->name;
+    }
+
+    /**
      * Get all of the countries.
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function countries()
     {
-        $countries = $this->data->countries;
+        return collect($this->data->countries);
+    }
 
-        return collect($countries);
+    /**
+     * Get all creatures.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function creatures()
+    {
+        $creatures = $this->data->creatures;
+
+        array_walk($creatures, function (&$creature) {
+            $creature = $this->app->make('Apolune\Contracts\Server\Creature', [(array) $creature]);
+        });
+
+        return collect($creatures)->sortBy('name')->sort(function ($a, $b) {
+            return $a->name() > $b->name();
+        })->filter(function ($item) {
+            return ! $item->hidden();
+        });
     }
 
     /**
      * Get all of the genders.
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function genders()
     {
@@ -66,7 +94,7 @@ class Factory implements FactoryContract
      * Get all of the vocations.
      *
      * @param  boolean  $starter  null
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function vocations($starter = null)
     {
@@ -84,7 +112,7 @@ class Factory implements FactoryContract
     /**
      * Get all of the worlds.
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function worlds()
     {
@@ -95,25 +123,5 @@ class Factory implements FactoryContract
         });
 
         return collect($worlds);
-    }
-
-    /**
-     * Get all creatures.
-     *
-     * @return array
-     */
-    public function creatures()
-    {
-        $creatures = $this->data->creatures;
-
-        array_walk($creatures, function (&$creature) {
-            $creature = $this->app->make('Apolune\Contracts\Server\Creature', [(array) $creature]);
-        });
-
-        return collect($creatures)->sortBy('name')->sort(function ($a, $b) {
-            return $a->name() > $b->name();
-        })->filter(function ($item) {
-            return ! $item->hidden();
-        });
     }
 }
