@@ -19,12 +19,30 @@ class LibraryController extends Controller
     }
 
     /**
-     * Show all the maps page
+     * Show all the maps page.
      *
      * @return \Illuminate\Http\Response
      */
     public function getMaps()
     {
-        return view('theme::library.maps.all');
+        return view('theme::library.maps');
+    }
+
+    /**
+     * Show a specific map page.
+     *
+     * @param  string  $area
+     * @return \Illuminate\Http\Response
+     */
+    public function getMap($area)
+    {
+        $area = str_replace([' ', '-', '_'], null, strtolower($area));
+
+        if ( ! app('view')->exists($path = "theme::library.map.${area}"))
+        {
+            return redirect('/library/maps');
+        }
+
+        return view($path, compact('area'));
     }
 }
