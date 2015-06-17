@@ -53,6 +53,21 @@ if (! function_exists('creatures')) {
     }
 }
 
+if (! function_exists('experience')) {
+    /**
+     * Calculate the experience needed for a specific level.
+     *
+     * @param  integer  $level
+     * @return \Illuminate\Support\Collection
+     */
+    function experience($level)
+    {
+        $formula = config('pandaac.formulae.experience');
+
+        return $formula($level);
+    }
+}
+
 if (! function_exists('gender')) {
     /**
      * Get a specific gender.
