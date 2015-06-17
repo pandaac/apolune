@@ -23,6 +23,7 @@ class ApoluneServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register('Apolune\About\Providers\AboutServiceProvider');
         $this->app->register('Apolune\Account\Providers\AccountServiceProvider');
         $this->app->register('Apolune\Library\Providers\LibraryServiceProvider');
         $this->app->register('Apolune\News\Providers\NewsServiceProvider');

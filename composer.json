@@ -17,10 +17,12 @@
         "michelf/php-markdown": "~1.5"
     },
     "replace": {
+        "apolune/about": "self.version",
         "apolune/account": "self.version",
         "apolune/contracts": "self.version",
         "apolune/core": "self.version",
         "apolune/library": "self.version",
+        "apolune/news": "self.version",
         "apolune/server": "self.version",
         "apolune/support": "self.version"
     },
