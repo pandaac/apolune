@@ -4,15 +4,15 @@ namespace Apolune\Library\Http\Controllers;
 
 use Apolune\Core\Http\Controllers\Controller;
 
-class ExperienceController extends Controller
+class SpellController extends Controller
 {
     /**
-     * Show the experience table.
+     * Show the spells.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('theme::library.experience');
+        return view('theme::library.spells');
     }
 }
