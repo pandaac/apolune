@@ -1,5 +1,9 @@
 <?php
 
 $router->group(['prefix' => '/about', 'namespace' => 'Apolune\About\Http\Controllers'], function ($router) {
-	$router->get('/', 'AboutController@server');
+    $router->get('/screenshots', 'ScreenshotController@index');
+
+    $router->get('/server', 'AboutController@server');
+    $router->get('/features', 'AboutController@features');
+	$router->get('/premium', 'AboutController@premium');
 });

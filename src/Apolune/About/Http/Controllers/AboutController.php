@@ -15,4 +15,24 @@ class AboutController extends Controller
     {
         return view('theme::about.server');
     }
+
+    /**
+     * Show the game features page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function features()
+    {
+        return view('theme::about.features');
+    }
+
+    /**
+     * Show the premium features page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function premium()
+    {
+        return view('theme::about.premium');
+    }
 }
