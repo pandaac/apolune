@@ -27,6 +27,16 @@ class DocumentController extends Controller
     }
 
     /**
+     * Show the legal documents page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('theme::support.legal');
+    }
+
+    /**
      * Show the terms page.
      *
      * @return \Illuminate\Http\Response

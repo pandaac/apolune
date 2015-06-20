@@ -4,15 +4,15 @@ namespace Apolune\News\Http\Controllers;
 
 use Apolune\Core\Http\Controllers\Controller;
 
-class NewsController extends Controller
+class ArchiveController extends Controller
 {
     /**
-     * Show the news page.
+     * Show the news archive page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getNews()
+    public function index()
     {
-        return view('theme::news.latest');
+        return view('theme::news.archive');
     }
 }
