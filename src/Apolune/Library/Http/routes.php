@@ -1,17 +1,53 @@
 <?php
 
-$router->group(['prefix' => '/library', 'namespace' => 'Apolune\Library\Http\Controllers'], function ($router) {
-    $router->get('/creatures', 'CreatureController@index');
+$router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () {
 
-    $router->get('/experience', 'LibraryController@experience');
-    $router->get('/genesis', 'LibraryController@genesis');
+    /*
+    |--------------------------------------------------------------------------
+    | CreatureController
+    |--------------------------------------------------------------------------
+    |
+    | The following routes belong to the aforementioned controller.
+    |
+    */
+   
+    get('/library/creatures', 'CreatureController@index');
 
-    $router->get('/maps', 'MapController@index');
-    $router->get('/maps/{area}', 'MapController@show');
+    /*
+    |--------------------------------------------------------------------------
+    | GenericController
+    |--------------------------------------------------------------------------
+    |
+    | The following routes belong to the aforementioned controller.
+    |
+    */
 
-    $router->get('/spells', 'SpellController@index');
+    get('/library/achievements', 'GenericController@achievements');
+    get('/library/experience', 'GenericController@experience');
+    get('/library/genesis', 'GenericController@genesis');
+    get('/library/quests', 'GenericController@quests');
 
-    $router->get('/achievements', 'AchievementController@index');
+    /*
+    |--------------------------------------------------------------------------
+    | MapController
+    |--------------------------------------------------------------------------
+    |
+    | The following routes belong to the aforementioned controller.
+    |
+    */
 
-    $router->get('/quests', 'QuestController@index');
+    get('/library/maps', 'MapController@index');
+    get('/library/maps/{area}', 'MapController@show');
+
+    /*
+    |--------------------------------------------------------------------------
+    | SpellController
+    |--------------------------------------------------------------------------
+    |
+    | The following routes belong to the aforementioned controller.
+    |
+    */
+    
+    get('/library/spells', 'SpellController@index');
+
 });

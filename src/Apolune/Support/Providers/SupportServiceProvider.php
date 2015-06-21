@@ -2,7 +2,6 @@
 
 namespace Apolune\Support\Providers;
 
-use Exception;
 use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider

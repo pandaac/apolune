@@ -1,7 +1,17 @@
 <?php
 
-$router->group(['prefix' => '/', 'namespace' => 'Apolune\News\Http\Controllers'], function ($router) {
-    $router->get('/', 'LatestController@index');
+$router->group(['namespace' => 'Apolune\News\Http\Controllers'], function () {
 
-	$router->get('/archive', 'ArchiveController@index');
+    /*
+    |--------------------------------------------------------------------------
+    | NewsController
+    |--------------------------------------------------------------------------
+    |
+    | The following routes belong to the aforementioned controller.
+    |
+    */
+   
+    get('/', 'NewsController@index');
+    get('/archive', 'NewsController@archive');
+
 });

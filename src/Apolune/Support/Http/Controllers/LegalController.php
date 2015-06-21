@@ -6,7 +6,7 @@ use Michelf\Markdown;
 use Apolune\Core\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 
-class DocumentController extends Controller
+class LegalController extends Controller
 {
     /**
      * The Application implementation.
@@ -37,19 +37,19 @@ class DocumentController extends Controller
     }
 
     /**
-     * Show the terms page.
+     * Show the privacy page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function terms()
+    public function privacy()
     {
         $document = $this->app['files']->get(
-            base_path('/resources/docs/terms.md')
+            base_path('/resources/docs/privacy.md')
         );
 
         $markdown = Markdown::defaultTransform($document);
 
-        return view('theme::support.terms')->withDocument($markdown);
+        return view('theme::support.privacy')->withDocument($markdown);
     }
 
     /**
@@ -69,18 +69,18 @@ class DocumentController extends Controller
     }
 
     /**
-     * Show the privacy page.
+     * Show the terms page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function privacy()
+    public function terms()
     {
         $document = $this->app['files']->get(
-            base_path('/resources/docs/privacy.md')
+            base_path('/resources/docs/terms.md')
         );
 
         $markdown = Markdown::defaultTransform($document);
 
-        return view('theme::support.privacy')->withDocument($markdown);
+        return view('theme::support.terms')->withDocument($markdown);
     }
 }
