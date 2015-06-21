@@ -29,11 +29,19 @@ class GenericController extends Controller
     /**
      * Show the genesis page.
      *
+     * @param  integer  $page  1
      * @return \Illuminate\Http\Response
      */
-    public function genesis()
+    public function genesis($page = 1)
     {
-        return view('theme::library.genesis');
+        $page = (int) $page;
+
+        if ( ! app('view')->exists($path = "theme::library.genesis.${page}"))
+        {
+            return redirect('/library/genesis');
+        }
+
+        return view($path);
     }
 
     /**

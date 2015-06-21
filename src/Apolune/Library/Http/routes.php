@@ -24,7 +24,7 @@ $router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () 
 
     get('/library/achievements', 'GenericController@achievements');
     get('/library/experience', 'GenericController@experience');
-    get('/library/genesis', 'GenericController@genesis');
+    get('/library/genesis/{page?}', 'GenericController@genesis');
     get('/library/quests', 'GenericController@quests');
 
     /*
