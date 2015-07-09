@@ -1,8 +1,8 @@
 <?php
 
-namespace Apolune\Contracts\Account\Properties;
+namespace Apolune\Contracts\Account;
 
-interface Account
+interface AccountProperties
 {
     /**
      * Get the token value for the "remember me" session.
