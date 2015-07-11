@@ -64,7 +64,7 @@ class Factory implements FactoryContract
         $creatures = $this->data->creatures;
 
         array_walk($creatures, function (&$creature) {
-            $creature = $this->app->make('Apolune\Contracts\Server\Creature', [(array) $creature]);
+            $creature = $this->app->make('server.creature', [(array) $creature]);
         });
 
         return collect($creatures)->sortBy('name')->sort(function ($a, $b) {
@@ -84,7 +84,7 @@ class Factory implements FactoryContract
         $genders = $this->data->genders;
 
         array_walk($genders, function (&$gender) {
-            $gender = $this->app->make('Apolune\Contracts\Server\Gender', [(array) $gender]);
+            $gender = $this->app->make('server.gender', [(array) $gender]);
         });
 
         return collect($genders);
@@ -101,7 +101,7 @@ class Factory implements FactoryContract
         $vocations = $this->data->vocations;
 
         array_walk($vocations, function (&$vocation) {
-            $vocation = $this->app->make('Apolune\Contracts\Server\Vocation', [(array) $vocation]);
+            $vocation = $this->app->make('server.vocation', [(array) $vocation]);
         });
 
         return collect($vocations)->reject(function ($vocation) use ($starter) {
@@ -119,7 +119,7 @@ class Factory implements FactoryContract
         $worlds = $this->data->worlds;
 
         array_walk($worlds, function (&$world) {
-            $world = $this->app->make('Apolune\Contracts\Server\World', [(array) $world]);
+            $world = $this->app->make('server.world', [(array) $world]);
         });
 
         return collect($worlds);

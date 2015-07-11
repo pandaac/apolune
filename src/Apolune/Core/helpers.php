@@ -131,7 +131,7 @@ if (! function_exists('server')) {
      */
     function server()
     {
-        return app('Apolune\Contracts\Server\Factory');
+        return app('server');
     }
 }
 
