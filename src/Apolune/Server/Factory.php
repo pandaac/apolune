@@ -3,9 +3,9 @@
 namespace Apolune\Server;
 
 use Illuminate\Contracts\Foundation\Application;
-use Apolune\Contracts\Server\Factory as FactoryContract;
+use Apolune\Contracts\Server\Factory as Contract;
 
-class Factory implements FactoryContract
+class Factory implements Contract
 {
     /**
      * Holds the server data.

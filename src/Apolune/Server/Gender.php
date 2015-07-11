@@ -1,10 +1,10 @@
 <?php
 
-namespace Apolune\Server\Services;
+namespace Apolune\Server;
 
-use Apolune\Contracts\Server\Gender as GenderContract;
+use Apolune\Contracts\Server\Gender as Contract;
 
-class Gender implements GenderContract
+class Gender implements Contract
 {
     /**
      * Holds the original data.

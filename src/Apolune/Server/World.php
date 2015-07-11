@@ -1,10 +1,10 @@
 <?php
 
-namespace Apolune\Server\Services;
+namespace Apolune\Server;
 
-use Apolune\Contracts\Server\World as WorldContract;
+use Apolune\Contracts\Server\World as Contract;
 
-class World implements WorldContract
+class World implements Contract
 {
     /**
      * Holds the original data.

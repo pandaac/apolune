@@ -1,10 +1,10 @@
 <?php
 
-namespace Apolune\Server\Services;
+namespace Apolune\Server;
 
-use Apolune\Contracts\Server\Vocation as VocationContract;
+use Apolune\Contracts\Server\Vocation as Contract;
 
-class Vocation implements VocationContract
+class Vocation implements Contract
 {
     /**
      * Holds the original data.

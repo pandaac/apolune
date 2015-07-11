@@ -1,10 +1,10 @@
 <?php
 
-namespace Apolune\Server\Services;
+namespace Apolune\Server;
 
-use Apolune\Contracts\Server\Creature as CreatureContract;
+use Apolune\Contracts\Server\Creature as Contract;
 
-class Creature implements CreatureContract
+class Creature implements Contract
 {
     /**
      * Holds the original data.

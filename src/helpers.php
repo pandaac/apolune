@@ -9,6 +9,8 @@ if (! function_exists('apolune_path')) {
      */
     function apolune_path($path = null)
     {
-        return __DIR__.'/Apolune/'.($path ? '/'.$path : $path);
+        $path = ($path ? '/'.$path : $path);
+        
+        return realpath(sprintf("%s/Apolune/%s", __DIR__, $path));
     }
 }

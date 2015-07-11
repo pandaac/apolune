@@ -7,6 +7,20 @@ use Illuminate\Support\ServiceProvider;
 class ApoluneServiceProvider extends ServiceProvider
 {
     /**
+     * Holds all of the service providers we want to register.
+     *
+     * @var array
+     */
+    protected $providers = [
+        About\Providers\AboutServiceProvider::class,
+        Account\Providers\AccountServiceProvider::class,
+        Library\Providers\LibraryServiceProvider::class,
+        News\Providers\NewsServiceProvider::class,
+        Server\Providers\ServerServiceProvider::class,
+        Support\Providers\SupportServiceProvider::class,
+    ];
+
+    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -23,11 +37,8 @@ class ApoluneServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register('Apolune\About\Providers\AboutServiceProvider');
-        $this->app->register('Apolune\Account\Providers\AccountServiceProvider');
-        $this->app->register('Apolune\Library\Providers\LibraryServiceProvider');
-        $this->app->register('Apolune\News\Providers\NewsServiceProvider');
-        $this->app->register('Apolune\Server\Providers\ServerServiceProvider');
-        $this->app->register('Apolune\Support\Providers\SupportServiceProvider');
+        foreach ($this->providers as $provider) {
+            $this->app->register($provider);
+        }
     }
 }

@@ -8,15 +8,15 @@ use Illuminate\Support\ServiceProvider;
 class ServerServiceProvider extends ServiceProvider
 {
     /**
-     * Define all the model bindings.
+     * Holds all of the contracts we want to bind.
      *
      * @var array
      */
     protected $bindings = [
-        'server.creature'  => ['Apolune\Contracts\Server\Creature', 'Apolune\Server\Services\Creature'],
-        'server.gender'    => ['Apolune\Contracts\Server\Gender', 'Apolune\Server\Services\Gender'],
-        'server.vocation'  => ['Apolune\Contracts\Server\Vocation', 'Apolune\Server\Services\Vocation'],
-        'server.world'     => ['Apolune\Contracts\Server\World', 'Apolune\Server\Services\World'],
+        'server.creature'  => ['Apolune\Contracts\Server\Creature', 'Apolune\Server\Creature'],
+        'server.gender'    => ['Apolune\Contracts\Server\Gender', 'Apolune\Server\Gender'],
+        'server.vocation'  => ['Apolune\Contracts\Server\Vocation', 'Apolune\Server\Vocation'],
+        'server.world'     => ['Apolune\Contracts\Server\World', 'Apolune\Server\World'],
     ];
 
     /**
@@ -40,8 +40,7 @@ class ServerServiceProvider extends ServiceProvider
             return new Factory($app, base_path('dummydata.json'));
         });
 
-        foreach ($this->bindings as $alias => $binding)
-        {
+        foreach ($this->bindings as $alias => $binding) {
             list($abstract, $concrete) = $binding;
             
             $this->app->bind([$alias => $abstract], $concrete);
