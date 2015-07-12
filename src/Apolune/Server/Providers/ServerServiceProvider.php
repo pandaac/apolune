@@ -2,21 +2,29 @@
 
 namespace Apolune\Server\Providers;
 
-use Apolune\Server\Factory;
-use Illuminate\Support\ServiceProvider;
+use Apolune\Server;
+use Apolune\Contracts\Server as Contracts;
+use Apolune\Core\Providers\AggregateServiceProvider;
 
-class ServerServiceProvider extends ServiceProvider
+class ServerServiceProvider extends AggregateServiceProvider
 {
+    /**
+     * The provider class names.
+     *
+     * @var array
+     */
+    protected $providers = [];
+
     /**
      * Holds all of the contracts we want to bind.
      *
      * @var array
      */
     protected $bindings = [
-        'server.creature'  => ['Apolune\Contracts\Server\Creature', 'Apolune\Server\Creature'],
-        'server.gender'    => ['Apolune\Contracts\Server\Gender', 'Apolune\Server\Gender'],
-        'server.vocation'  => ['Apolune\Contracts\Server\Vocation', 'Apolune\Server\Vocation'],
-        'server.world'     => ['Apolune\Contracts\Server\World', 'Apolune\Server\World'],
+        'server.creature'  => [Contracts\Creature::class => Server\Creature::class],
+        'server.gender'    => [Contracts\Gender::class => Server\Gender::class],
+        'server.vocation'  => [Contracts\Vocation::class => Server\Vocation::class],
+        'server.world'     => [Contracts\World::class => Server\World::class],
     ];
 
     /**
@@ -36,14 +44,10 @@ class ServerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(['server' => 'Apolune\Contracts\Server\Factory'], function ($app) {
-            return new Factory($app, base_path('dummydata.json'));
-        });
+        parent::register();
 
-        foreach ($this->bindings as $alias => $binding) {
-            list($abstract, $concrete) = $binding;
-            
-            $this->app->bind([$alias => $abstract], $concrete);
-        }
+        $this->app->singleton(['server' => Contracts\Factory::class], function ($app) {
+            return new Server\Factory($app, base_path('dummydata.json'));
+        });
     }
 }

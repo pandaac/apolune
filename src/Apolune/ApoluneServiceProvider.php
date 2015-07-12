@@ -2,9 +2,9 @@
 
 namespace Apolune;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\AggregateServiceProvider;
 
-class ApoluneServiceProvider extends ServiceProvider
+class ApoluneServiceProvider extends AggregateServiceProvider
 {
     /**
      * Holds all of the service providers we want to register.
@@ -28,17 +28,5 @@ class ApoluneServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-    }
-    
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        foreach ($this->providers as $provider) {
-            $this->app->register($provider);
-        }
     }
 }

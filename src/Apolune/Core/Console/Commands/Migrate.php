@@ -2,61 +2,60 @@
 
 namespace Apolune\Core\Console\Commands;
 
-use Illuminate\Console\Command;
-use Apolune\Core\Handlers\MigrationHandler;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Console\Migrations\MigrateCommand;
 
-class Migrate extends Command
+class Migrate extends MigrateCommand
 {
-    /**
-     * Holds the application implementation.
-     *
-     * @var \Illuminate\Contracts\Foundation\Application
-     */
-    protected $app;
-
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'migrate:pandaac';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Run all the pandaac migrations';
-
-    /**
-     * Create a new command instance.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @return void
-     */
-    public function __construct(Application $app)
-    {
-        parent::__construct();
-
-        $this->app = $app;
-    }
-
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function fire()
     {
-        $migrator = $this->app['migrations'];
+        if (!$this->confirmToProceed()) {
+            return;
+        }
 
-        $migrator->locations()->each(function ($item) {
-            $path = str_replace(base_path(), null, $item);
+        $this->prepareDatabase();
 
-            $this->call('migrate', [
-                '--path' => $path,
-            ]);
-        });
+        // The pretend option can be used for "simulating" the migration and grabbing
+        // the SQL queries that would fire if the migration were to be run against
+        // a database for real, which is helpful for double checking migrations.
+        $pretend = $this->input->getOption('pretend');
+
+        // Next, we will check to see if a path option has been defined. If it has
+        // we will use the path relative to the root of this installation folder
+        // so that migrations may be run for any path within the applications.
+        if (!is_null($path = $this->input->getOption('path'))) {
+            $path = $this->laravel->basePath().'/'.$path;
+        } elseif ($locations = app('migration.handler')->locations() and ! $locations->isEmpty()) {
+            $path = $locations;
+        } else {
+            $path = $this->getMigrationPath();
+        }
+
+        if (! ($path instanceof Collection)) {
+            $this->migrator->run($path, $pretend);
+        } else {
+            $path->each(function ($location) use ($pretend) {
+                $this->migrator->run($location, $pretend);
+            });
+        }
+
+        // Once the migrator has run we will grab the note output and send it out to
+        // the console screen, since the migrator itself functions without having
+        // any instances of the OutputInterface contract passed into the class.
+        foreach ($this->migrator->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
+
+        // Finally, if the "seed" option has been given, we will re-run the database
+        // seed task to re-populate the database, which is convenient when adding
+        // a migration and a seed at the same time, as it is only this command.
+        if ($this->input->getOption('seed')) {
+            $this->call('db:seed', ['--force' => true]);
+        }
     }
 }
