@@ -2,7 +2,7 @@
 
 namespace Apolune\News\Providers;
 
-use Apolune\Core\Providers\AggregateServiceProvider;
+use Apolune\Core\AggregateServiceProvider;
 
 class NewsServiceProvider extends AggregateServiceProvider
 {

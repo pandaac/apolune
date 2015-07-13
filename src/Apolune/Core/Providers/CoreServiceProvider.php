@@ -3,6 +3,7 @@
 namespace Apolune\Core\Providers;
 
 use Exception;
+use Apolune\Core\AggregateServiceProvider;
 
 class CoreServiceProvider extends AggregateServiceProvider
 {

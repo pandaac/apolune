@@ -4,7 +4,7 @@ namespace Apolune\Server\Providers;
 
 use Apolune\Server;
 use Apolune\Contracts\Server as Contracts;
-use Apolune\Core\Providers\AggregateServiceProvider;
+use Apolune\Core\AggregateServiceProvider;
 
 class ServerServiceProvider extends AggregateServiceProvider
 {

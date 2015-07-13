@@ -2,7 +2,7 @@
 
 namespace Apolune\About\Providers;
 
-use Apolune\Core\Providers\AggregateServiceProvider;
+use Apolune\Core\AggregateServiceProvider;
 
 class AboutServiceProvider extends AggregateServiceProvider
 {

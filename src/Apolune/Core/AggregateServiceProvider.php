@@ -1,13 +1,13 @@
 <?php
 
-namespace Apolune\Core\Providers;
+namespace Apolune\Core;
 
 use Illuminate\Support\AggregateServiceProvider as ServiceProvider;
 
-class AggregateServiceProvider extends ServiceProvider
+abstract class AggregateServiceProvider extends ServiceProvider
 {
     /**
-     * Holds all of the contracts we want to bind.
+     * The binding class names & alias.
      *
      * @var array
      */
