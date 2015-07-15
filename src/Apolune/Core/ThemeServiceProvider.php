@@ -38,6 +38,16 @@ abstract class ThemeServiceProvider extends AggregateServiceProvider
     }
 
     /**
+     * Get the theme namespace.
+     *
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    /**
      * Register a view file namespace.
      *
      * @param  string  $path

@@ -3,6 +3,7 @@
 namespace Apolune\Core\Providers;
 
 use Exception;
+use Apolune\Core\ThemeServiceProvider;
 use Apolune\Core\AggregateServiceProvider;
 
 class CoreServiceProvider extends AggregateServiceProvider
@@ -54,8 +55,18 @@ class CoreServiceProvider extends AggregateServiceProvider
         
         $theme = $this->app->register(config('pandaac.config.theme'));
         
+        if (! ($theme instanceof ThemeServiceProvider)) {
+            throw new Exception('Theme Service Provider must extend \Apolune\Core\ThemeServiceProvider.');
+        }
+
         if (! property_exists($theme, 'namespace')) {
             throw new Exception('Theme Service Provider must declare a namespace property.');
         }
+
+        if (! preg_match('/^\b([a-z-]+)\b\/\b([a-z-]+)\b$/i', $theme->getNamespace())) {
+            throw new Exception('Theme Service Provider namespace must follow the vendor/package convention (e.g. pandaac/theme-tibia).');
+        }
+
+        $this->app->instance('theme.namespace', $theme->getNamespace());
     }
 }
