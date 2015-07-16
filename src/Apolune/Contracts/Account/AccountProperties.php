@@ -20,4 +20,47 @@ interface AccountProperties
      * @return void
      */
     public function setRememberToken($column, $value);
+
+    /**
+     * Retrieve the pending email address.
+     *
+     * @return string
+     */
+    public function email();
+
+    /**
+     * Retrieve the email verification code.
+     *
+     * @return string
+     */
+    public function emailCode();
+
+
+    /**
+     * Retrieve the pending email address date.
+     *
+     * @return \Carbon\Carbon
+     */
+    public function emailDate();
+
+    /**
+     * Retrieve the amount of email confirmation requests.
+     *
+     * @return integer
+     */
+    public function emailRequests();
+
+    /**
+     * Set a new email verification code.
+     *
+     * @return void
+     */
+    public function setEmailCode();
+
+    /**
+     * Retrieve the deleted value.
+     *
+     * @return integer
+     */
+    public function softDeleted();
 }

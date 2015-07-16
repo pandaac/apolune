@@ -71,23 +71,23 @@ interface Account extends Authenticatable, CanResetPassword
     public function creation();
 
     /**
-     * Check if the account is currently awaiting an email change.
+     * Check if the account has been confirmed.
      *
      * @return boolean
      */
-    public function isAwaitingEmailChange();
+    public function isConfirmed();
 
     /**
-     * Get the requested email address.
+     * Check if the account has been deleted.
      *
-     * @return string
+     * @return boolean
      */
-    public function emailChange();
+    public function isDeleted();
 
     /**
-     * Get the date of when the requested email address change goes through.
+     * Check if the account has a pending email address.
      *
-     * @return string
+     * @return boolean
      */
-    public function emailChangeDate();
+    public function hasPendingEmail();
 }
