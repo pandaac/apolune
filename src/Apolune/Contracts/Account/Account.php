@@ -15,6 +15,13 @@ interface Account extends Authenticatable, CanResetPassword
     public function properties();
 
     /**
+     * Retrieve the account registration.
+     *
+     * @return \Apolune\Contracts\Account\AccountRegistration
+     */
+    public function registration();
+
+    /**
      * Retrieve the account players.
      *
      * @return \Apolune\Contracts\Account\Player
@@ -76,6 +83,13 @@ interface Account extends Authenticatable, CanResetPassword
      * @return boolean
      */
     public function isConfirmed();
+
+    /**
+     * Check if the account has been registered.
+     *
+     * @return boolean
+     */
+    public function isRegistered();
 
     /**
      * Check if the account has been deleted.
