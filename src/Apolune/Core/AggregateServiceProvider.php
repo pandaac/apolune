@@ -22,10 +22,48 @@ abstract class AggregateServiceProvider extends ServiceProvider
     {
         $this->instances = [];
 
+        $this->registerMiddleware();
+        $this->registerProviders();
+        $this->registerBindings();
+    }
+
+    /**
+     * Register middleware.
+     *
+     * @return void
+     */
+    protected function registerMiddleware()
+    {
+        if (! isset($this->middleware)) return;
+
+        foreach ($this->middleware as $key => $middleware) {
+            $this->app['router']->middleware($key, $middleware);
+        }
+    }
+
+    /**
+     * Register providers.
+     *
+     * @return void
+     */
+    protected function registerProviders()
+    {
+        if (! isset($this->providers)) return;
+
         foreach ($this->providers as $provider) {
             $this->instances[] = $this->app->register($provider);
         }
-        
+    }
+
+    /**
+     * Register bindings.
+     *
+     * @return void
+     */
+    protected function registerBindings()
+    {
+        if (! isset($this->bindings)) return;
+
         foreach ($this->bindings as $alias => $binding) {
             list($abstract, $concrete) = [key($binding), current($binding)];
             
