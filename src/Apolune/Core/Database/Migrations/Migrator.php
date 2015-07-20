@@ -15,12 +15,22 @@ class Migrator extends BaseMigrator
      */
     public function getMigrationFiles($path)
     {
-        $files = $this->files->glob($path.'/*_*.php');
+        $files = array_map(function ($file) {
+            return str_replace('.php', '', basename($file));
+        }, $this->files->glob($path.'/*_*.php'));
 
         $locations = app('migration.handler')->locations();
 
         foreach ($locations as $location) {
-            $files = array_merge($files, $this->files->glob($location.'/*_*.php'));
+            list($directory, $namespace) = $location;
+
+            $migrations = $this->files->glob($directory.'/*_*.php');
+            
+            array_walk($migrations, function (&$migration) use ($namespace) {
+                $migration = $namespace.'\\'.str_replace('.php', '', basename($migration));
+            });
+
+            $files = array_merge($files, $migrations);
         }
 
         // Once we have the array of files in the directory we will just remove the
@@ -29,11 +39,6 @@ class Migrator extends BaseMigrator
         if ($files === false) {
             return [];
         }
-
-        $files = array_map(function ($file) {
-            return str_replace('.php', '', basename($file));
-
-        }, $files);
 
         // Once we have all of the formatted file names we will sort them and since
         // they all start with a timestamp this should give us the migrations in
@@ -67,7 +72,9 @@ class Migrator extends BaseMigrator
      */
     public function resolve($file)
     {
-        $class = Str::studly(implode('_', array_slice(explode('_', $file), 4)));
+        list($file, $namespace) = $this->parseFileName($file);
+
+        $class = $namespace.Str::studly(implode('_', array_slice(explode('_', $file), 4)));
 
         if (class_exists($class)) {
             return new $class;
@@ -76,11 +83,33 @@ class Migrator extends BaseMigrator
         $locations = app('migration.handler')->locations();
 
         foreach ($locations as $location) {
-            $this->files->requireOnce($location.'/'.$file.'.php');
+            list($migration, $namespace) = $location;
+
+            $this->files->requireOnce($migration.'/'.$file.'.php');
 
             if (class_exists($class)) {
                 return new $class;
             }
         }
+    }
+
+    /**
+     * Parse a file name.
+     *
+     * @param  string  $file
+     * @return array
+     */
+    protected function parseFileName($file)
+    {
+        $delimiter = strrpos($file, '\\');
+
+        if ($delimiter !== false) {
+            return [
+                trim(substr($file, $delimiter), '\\'),
+                trim(substr($file, 0, $delimiter), '\\').'\\',
+            ];
+        }
+
+        return [$file, null];
     }
 }

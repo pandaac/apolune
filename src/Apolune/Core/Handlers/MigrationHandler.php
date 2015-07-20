@@ -2,6 +2,7 @@
 
 namespace Apolune\Core\Handlers;
 
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -22,6 +23,20 @@ class MigrationHandler
     protected $locations;
 
     /**
+     * Holds the location temporarily.
+     *
+     * @var string
+     */
+    protected $migrate;
+
+    /**
+     * Holds the namespace temporarily.
+     *
+     * @var string
+     */
+    protected $using;
+
+    /**
      * Create a new instance object.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
@@ -34,16 +49,43 @@ class MigrationHandler
     }
 
     /**
-     * Register a migration location.
+     * Set the migration path.
      *
      * @param  string  $path
      * @return void
      */
-    public function register($path)
+    public function migrate($path)
     {
-        $path = realpath($path);
+        $this->migrate = realpath($path);
 
-        $this->locations->push($path);
+        return $this;
+    }
+
+    /**
+     * Set the migration namespace.
+     *
+     * @param  string  $namespace
+     * @return void
+     */
+    public function using($namespace)
+    {
+        $this->using = $namespace;
+
+        return $this;
+    }
+
+    /**
+     * Register the location.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        if (empty($this->migrate)) {
+            throw new Exception;
+        }
+
+        $this->locations->push([$this->migrate, $this->using ?: null]);
     }
 
     /**
