@@ -19,7 +19,7 @@ class SeedHandler
      *
      * @var \Illuminate\Support\Collection
      */
-    protected $seeders;
+    protected static $seeders;
 
     /**
      * Create a new instance object.
@@ -30,7 +30,8 @@ class SeedHandler
     public function __construct(Application $app, Collection $seeders)
     {
         $this->app = $app;
-        $this->seeders = $seeders;
+
+        static::$seeders = $seeders;
     }
 
     /**
@@ -41,7 +42,7 @@ class SeedHandler
      */
     public function register($seeder)
     {
-        $this->seeders->push($seeder);
+        static::$seeders->push($seeder);
     }
 
     /**
@@ -51,6 +52,6 @@ class SeedHandler
      */
     public function seeders()
     {
-        return $this->seeders;
+        return static::$seeders;
     }
 }
