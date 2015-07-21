@@ -55,7 +55,7 @@ class MigrationHandler
      */
     public function migrate($path)
     {
-        $this->migrate = realpath($path);
+        $this->migrate = $path;
 
         return $this;
     }
