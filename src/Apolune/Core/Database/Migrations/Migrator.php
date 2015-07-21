@@ -15,30 +15,26 @@ class Migrator extends BaseMigrator
      */
     public function getMigrationFiles($path)
     {
-        $files = array_map(function ($file) {
-            return str_replace('.php', '', basename($file));
-        }, $this->files->glob($path.'/*_*.php'));
+        $files = collect()->push([null, $this->files->glob($path.'/*_*.php')]);
 
-        $locations = app('migration.handler')->locations();
+        $this->locations()->each(function ($location) use (&$files) {
+            list($path, $namespace) = $location;
 
-        foreach ($locations as $location) {
-            list($directory, $namespace) = $location;
+            $files->push([$namespace, $this->files->glob($path.'/*_*.php')]);
+        });
 
-            $migrations = $this->files->glob($directory.'/*_*.php');
-            
-            array_walk($migrations, function (&$migration) use ($namespace) {
-                $migration = $namespace.'\\'.str_replace('.php', '', basename($migration));
-            });
+        // Once we have all of the files gathered in a multi dimensional array, we loop
+        // through them and re-format their names to include an optional namespace,
+        // and we strip the file down to its basename (excluding the extension).
+        $files = $files->map(function ($group) {
+            list($namespace, $files) = $group;
 
-            $files = array_merge($files, $migrations);
-        }
+            return array_map(function ($file) use ($namespace) {
+                return ($namespace ? $namespace.'\\' : null).str_replace('.php', null, basename($file)); }
+            , $files);
+        });
 
-        // Once we have the array of files in the directory we will just remove the
-        // extension and take the basename of the file which is all we need when
-        // finding the migrations that haven't been run against the databases.
-        if ($files === false) {
-            return [];
-        }
+        $files = $files->flatten()->toArray();
 
         // Once we have all of the formatted file names we will sort them and since
         // they all start with a timestamp this should give us the migrations in
@@ -57,11 +53,19 @@ class Migrator extends BaseMigrator
      */
     public function requireFiles($path, array $files)
     {
-        foreach ($files as $file) {
-            if ($this->files->isFile($path.'/'.$file.'.php')) {
-                $this->files->requireOnce($path.'/'.$file.'.php');
+        $locations = $this->locations()->push([$path, null]);
+
+        $locations->each(function ($location) use ($files) {
+            $path = head($location);
+        
+            foreach ($files as $file) {
+                $file = head($this->parseFileName($file));
+
+                if ($this->files->isFile($path.'/'.$file.'.php')) {
+                    $this->files->requireOnce($path.'/'.$file.'.php');
+                }
             }
-        }
+        });
     }
 
     /**
@@ -74,23 +78,13 @@ class Migrator extends BaseMigrator
     {
         list($file, $namespace) = $this->parseFileName($file);
 
-        $class = $namespace.Str::studly(implode('_', array_slice(explode('_', $file), 4)));
+        $class = sprintf('%s%s', $namespace, Str::studly(implode('_', array_slice(explode('_', $file), 4))));
 
-        if (class_exists($class)) {
-            return new $class;
+        if (! class_exists($class)) {
+            $this->requireFiles(null, [$file]);
         }
-
-        $locations = app('migration.handler')->locations();
-
-        foreach ($locations as $location) {
-            list($migration, $namespace) = $location;
-
-            $this->files->requireOnce($migration.'/'.$file.'.php');
-
-            if (class_exists($class)) {
-                return new $class;
-            }
-        }
+        
+        return new $class;
     }
 
     /**
@@ -111,5 +105,15 @@ class Migrator extends BaseMigrator
         }
 
         return [$file, null];
+    }
+
+    /**
+     * Retrieve the migration locations.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function locations()
+    {
+        return app('migration.handler')->locations();
     }
 }

@@ -97,4 +97,17 @@ class MigrationHandler
     {
         return $this->locations;
     }
+
+    /**
+     * Get all of the registered locations within a namespace.
+     *
+     * @param  string  $namespace
+     * @return \Illuminate\Support\Collection
+     */
+    public function findByNamespace($namespace)
+    {
+        return $this->locations()->filter(function ($location) use ($namespace) {
+            return str_contains(trim($location[1], '\\'), trim($namespace, '\\'));
+        });
+    }
 }
