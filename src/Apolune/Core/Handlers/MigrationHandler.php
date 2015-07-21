@@ -2,7 +2,6 @@
 
 namespace Apolune\Core\Handlers;
 
-use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -82,7 +81,7 @@ class MigrationHandler
     public function register()
     {
         if (empty($this->migrate)) {
-            throw new Exception;
+            return false;
         }
 
         $this->locations->push([$this->migrate, $this->using ?: null]);
