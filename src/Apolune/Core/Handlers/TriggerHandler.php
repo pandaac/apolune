@@ -1,8 +1,9 @@
 <?php
 
-namespace Apolune\Core\Database;
+namespace Apolune\Core\Handlers;
 
 use Closure;
+use Apolune\Core\Database\Trigger;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Query\Grammars\Grammar;
 

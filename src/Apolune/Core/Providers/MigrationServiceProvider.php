@@ -2,6 +2,7 @@
 
 namespace Apolune\Core\Providers;
 
+use Apolune\Core\Handlers\SeedHandler;
 use Apolune\Core\Handlers\MigrationHandler;
 use Apolune\Core\Database\Migrations\Migrator;
 use Illuminate\Database\MigrationServiceProvider as ServiceProvider;
@@ -17,6 +18,10 @@ class MigrationServiceProvider extends ServiceProvider
     {
         $this->app->singleton('migration.handler', function ($app) {
             return new MigrationHandler($app, collect());
+        });
+
+        $this->app->singleton('seed.handler', function ($app) {
+            return new SeedHandler($app, collect());
         });
 
         parent::register();

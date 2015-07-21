@@ -15,6 +15,7 @@ class CoreServiceProvider extends AggregateServiceProvider
      */
     protected $providers = [
         MigrationServiceProvider::class,
+        SeedServiceProvider::class,
     ];
 
     /**

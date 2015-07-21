@@ -16,6 +16,6 @@ class Trigger extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Apolune\Core\Database\TriggerHandler';
+        return 'Apolune\Core\Handlers\TriggerHandler';
     }
 }
