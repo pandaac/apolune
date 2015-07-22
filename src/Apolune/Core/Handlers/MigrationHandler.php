@@ -19,7 +19,7 @@ class MigrationHandler
      *
      * @var \Illuminate\Support\Collection
      */
-    protected static $locations;
+    protected $locations;
 
     /**
      * Holds the location temporarily.
@@ -44,8 +44,7 @@ class MigrationHandler
     public function __construct(Application $app, Collection $locations)
     {
         $this->app = $app;
-        
-        static::$locations = $locations;
+        $this->locations = $locations;
     }
 
     /**
@@ -85,7 +84,7 @@ class MigrationHandler
             return false;
         }
 
-        static::$locations->push([$this->migrate, $this->using ?: null]);
+        $this->locations->push([$this->migrate, $this->using ?: null]);
     }
 
     /**
@@ -95,7 +94,7 @@ class MigrationHandler
      */
     public function locations()
     {
-        return static::$locations;
+        return $this->locations;
     }
 
     /**
