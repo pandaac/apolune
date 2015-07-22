@@ -51,16 +51,9 @@ interface AccountProperties
     public function emailRequests();
 
     /**
-     * Set a new email verification code.
-     *
-     * @return void
-     */
-    public function setEmailCode();
-
-    /**
      * Retrieve the deleted value.
      *
-     * @return integer
+     * @return \Carbon\Carbon|null
      */
-    public function softDeleted();
+    public function deletion();
 }
