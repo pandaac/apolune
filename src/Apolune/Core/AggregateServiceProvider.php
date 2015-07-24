@@ -7,6 +7,20 @@ use Illuminate\Support\AggregateServiceProvider as ServiceProvider;
 abstract class AggregateServiceProvider extends ServiceProvider
 {
     /**
+     * The application's route middleware.
+     *
+     * @var array
+     */
+    protected $middleware = [];
+
+    /**
+     * The provider class names.
+     *
+     * @var array
+     */
+    protected $providers = [];
+
+    /**
      * The binding class names & alias.
      *
      * @var array
