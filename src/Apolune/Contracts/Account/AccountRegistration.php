@@ -26,6 +26,13 @@ interface AccountRegistration
     public function country();
 
     /**
+     * Retrieve the country code.
+     *
+     * @return string
+     */
+    public function countryCode();
+
+    /**
      * Retrieve the birthday.
      *
      * @return \Carbon\Carbon
