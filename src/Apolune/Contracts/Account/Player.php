@@ -12,6 +12,13 @@ interface Player
     public function account();
 
     /**
+     * Retrieve the player properties.
+     *
+     * @return \Apolune\Contracts\Account\PlayerProperties
+     */
+    public function properties();
+
+    /**
      * Retrieve the player ID.
      *
      * @return integer
@@ -367,4 +374,18 @@ interface Player
      * @return \Apolune\Contracts\Server\World
      */
     public function world();
+
+    /**
+     * Check if the player has been hidden.
+     *
+     * @return boolean
+     */
+    public function isHidden();
+
+    /**
+     * Check if the player has been deleted.
+     *
+     * @return boolean
+     */
+    public function isDeleted();
 }
