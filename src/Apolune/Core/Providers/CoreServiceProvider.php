@@ -14,6 +14,7 @@ class CoreServiceProvider extends AggregateServiceProvider
      * @var array
      */
     protected $providers = [
+        RouteServiceProvider::class,
         MigrationServiceProvider::class,
         SeedServiceProvider::class,
     ];
