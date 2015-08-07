@@ -110,6 +110,20 @@ if (! function_exists('hyphencase')) {
     }
 }
 
+if (! function_exists('month')) {
+    /**
+     * Return the human-readable format of a month.
+     *
+     * @param  integer  $month
+     * @param  string  $format  F
+     * @return string
+     */
+    function month($month, $format = 'F')
+    {
+        return (new Carbon\Carbon)->month($month)->format($format);
+    }
+}
+
 if (! function_exists('theme_path')) {
     /**
      * Get the path to the themes folder.
