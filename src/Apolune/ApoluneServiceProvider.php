@@ -14,10 +14,17 @@ class ApoluneServiceProvider extends AggregateServiceProvider
     protected $providers = [
         About\Providers\AboutServiceProvider::class,
         Account\Providers\AccountServiceProvider::class,
+        Guilds\Providers\GuildsServiceProvider::class,
+        Highscore\Providers\HighscoreServiceProvider::class,
+        Houses\Providers\HousesServiceProvider::class,
         Library\Providers\LibraryServiceProvider::class,
         News\Providers\NewsServiceProvider::class,
+        Polls\Providers\PollsServiceProvider::class,
+        Profile\Providers\ProfileServiceProvider::class,
         Server\Providers\ServerServiceProvider::class,
+        Statistics\Providers\StatisticsServiceProvider::class,
         Support\Providers\SupportServiceProvider::class,
+        Worlds\Providers\WorldsServiceProvider::class,
     ];
 
     /**

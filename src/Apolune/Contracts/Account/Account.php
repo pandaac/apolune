@@ -73,7 +73,7 @@ interface Account extends Authenticatable, CanResetPassword
     /**
      * Retrieve the account creation date.
      *
-     * @return integer
+     * @return \Carbon\Carbon
      */
     public function creation();
 

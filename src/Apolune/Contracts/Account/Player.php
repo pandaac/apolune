@@ -189,7 +189,7 @@ interface Player
     /**
      * Retrieve the player last login.
      *
-     * @return integer
+     * @return \Carbon\Carbon
      */
     public function lastLogin();
 
@@ -217,7 +217,7 @@ interface Player
     /**
      * Retrieve the player last logout.
      *
-     * @return integer
+     * @return \Carbon\Carbon
      */
     public function lastLogout();
 
@@ -388,4 +388,11 @@ interface Player
      * @return boolean
      */
     public function isDeleted();
+
+    /**
+     * Retrieve a URL friendly slug.
+     *
+     * @return string
+     */
+    public function slug();
 }
