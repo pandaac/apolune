@@ -7,6 +7,13 @@ use Illuminate\Support\AggregateServiceProvider as ServiceProvider;
 abstract class AggregateServiceProvider extends ServiceProvider
 {
     /**
+     * Holds the Exceptions Handler implementation.
+     *
+     * @var App\Exceptions\Handler
+     */
+    protected $exceptions;
+
+    /**
      * The application's route middleware.
      *
      * @var array
@@ -26,6 +33,18 @@ abstract class AggregateServiceProvider extends ServiceProvider
      * @var array
      */
     protected $bindings = [];
+
+    /**
+     * Create a new service provider instance.
+     *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return void
+     */
+    public function __construct($app)
+    {
+        $this->app = $app;
+        $this->exceptions = $app['App\Exceptions\Handler'];
+    }
 
     /**
      * Register the service provider.
