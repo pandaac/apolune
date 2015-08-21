@@ -1,0 +1,29 @@
+{
+    "name": "apolune/statistics",
+    "keywords": ["pandaac", "apolune", "apolunecomponent", "tibia", "opentibia"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christopher Eklund",
+            "email": "eklundchristopher@gmail.com",
+            "homepage": "https://otland.net/members/chris.13882/",
+            "role": "Head Developer"
+        },
+        {
+            "name": "Kristoffer Eklund",
+            "email": "kristoffereklund1@gmail.com",
+            "homepage": "https://otland.net/members/cornex.10032/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "apolune/core": "self.version"
+    },
+    "autoload": {
+        "psr-4": {
+            "Apolune\\Statistics\\": ""
+        }
+    },
+    "minimum-stability": "dev"
+}

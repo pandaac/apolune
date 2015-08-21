@@ -25,10 +25,17 @@
         "apolune/account": "self.version",
         "apolune/contracts": "self.version",
         "apolune/core": "self.version",
+        "apolune/guilds": "self.version",
+        "apolune/highscore": "self.version",
+        "apolune/houses": "self.version",
         "apolune/library": "self.version",
         "apolune/news": "self.version",
+        "apolune/polls": "self.version",
+        "apolune/profile": "self.version",
         "apolune/server": "self.version",
-        "apolune/support": "self.version"
+        "apolune/statistics": "self.version",
+        "apolune/support": "self.version",
+        "apolune/worlds": "self.version"
     },
     "autoload": {
         "files": [
