@@ -4,7 +4,9 @@ namespace Apolune\Profile\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Apolune\Core\Http\Controllers\Controller;
+use Apolune\Profile\Http\Requests\FormRequest;
 use Apolune\Profile\Http\Requests\SearchRequest;
+use Illuminate\Http\Exception\HttpResponseException;
 
 class SearchController extends Controller
 {
@@ -13,7 +15,7 @@ class SearchController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function form()
+    public function form(FormRequest $request)
     {
         return view('theme::profile.search.form');
     }
@@ -26,6 +28,8 @@ class SearchController extends Controller
      */
     public function search(SearchRequest $request)
     {
+        $request->flash();
+
         $player = strtolower(Str::slug($request->get('name')));
 
         return redirect(url('/characters', $player));
