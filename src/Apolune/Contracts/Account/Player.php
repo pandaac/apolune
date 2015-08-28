@@ -19,11 +19,11 @@ interface Player
     public function properties();
 
     /**
-     * Retrieve the player online.
+     * Retrieve the player online relationship.
      *
      * @return \Apolune\Contracts\Account\PlayerOnline
      */
-    public function isOnline();
+    public function playerOnline();
     
     /**
      * Scope a query to only include online players.
@@ -390,6 +390,13 @@ interface Player
      * @return \Apolune\Contracts\Server\World
      */
     public function world();
+
+    /**
+     * Check if a player is online or not.
+     *
+     * @return boolean
+     */
+    public function isOnline();
 
     /**
      * Check if the player has been hidden.
