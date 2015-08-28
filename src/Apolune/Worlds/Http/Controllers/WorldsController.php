@@ -3,6 +3,7 @@
 namespace Apolune\Worlds\Http\Controllers;
 
 use Apolune\Core\Http\Controllers\Controller;
+use Apolune\Worlds\Http\Requests\SelectRequest;
 
 class WorldsController extends Controller
 {
@@ -38,6 +39,19 @@ class WorldsController extends Controller
     }
 
     /**
+     * Select a specific world.
+     *
+     * @param  \Apolune\Worlds\Http\Requests\SelectRequest  $request
+     * @return \Illuminate\Http\Redirect
+     */
+    public function select(SelectRequest $request)
+    {
+        $request->flash();
+
+        return redirect(url('/worlds', $request->get('world')));
+    }
+
+    /**
      * Display a specific world.
      *
      * @param  string  $slug  null
@@ -49,7 +63,7 @@ class WorldsController extends Controller
 
         list($sort, $order) = $this->getSortable();
 
-        $players = app('player')->online()->get()->sortBy(
+        $players = app('player')->fromWorld($world)->online()->get()->sortBy(
             $sort, SORT_REGULAR, $order === 'DESC'
         );
 

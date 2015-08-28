@@ -20,6 +20,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "~5.1",
         "filp/whoops": "~1.0",
+        "doctrine/dbal": "~2.5",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "apolune/contracts": "self.version"
     },
