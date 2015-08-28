@@ -56,6 +56,16 @@ class World implements Contract
     }
 
     /**
+     * Get the world slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return $this->data['slug'];
+    }
+
+    /**
      * Get the world type.
      *
      * @return string

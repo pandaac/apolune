@@ -149,6 +149,37 @@ if (! function_exists('server')) {
     }
 }
 
+if (! function_exists('town')) {
+    /**
+     * Get a specific town.
+     *
+     * @param  integer  $id
+     * @param  boolean  $starter  null
+     * @return \Apolune\Contracts\Server\Town
+     */
+    function town($id, $starter = null)
+    {
+        $towns = towns($starter);
+
+        return head(array_where($towns, function ($key, $town) use ($id) {
+            return $town->id() === (int) $id;
+        }));
+    }
+}
+
+if (! function_exists('towns')) {
+    /**
+     * Get all of the server towns.
+     *
+     * @param  boolean  $starter  null
+     * @return \Illuminate\Support\Collection
+     */
+    function towns($starter = null)
+    {
+        return server()->towns($starter);
+    }
+}
+
 if (! function_exists('vocation')) {
     /**
      * Get a specific vocation.
@@ -193,6 +224,23 @@ if (! function_exists('world')) {
 
         return head(array_where($worlds, function ($key, $world) use ($id) {
             return $world->id() === (int) $id;
+        }));
+    }
+}
+
+if (! function_exists('world_by_slug')) {
+    /**
+     * Get a specific world by its slug.
+     *
+     * @param  string  $slug
+     * @return \Apolune\Contracts\Server\World
+     */
+    function world_by_slug($slug)
+    {
+        $worlds = worlds();
+
+        return head(array_where($worlds, function ($key, $world) use ($slug) {
+            return strtolower($world->slug()) === strtolower($slug);
         }));
     }
 }

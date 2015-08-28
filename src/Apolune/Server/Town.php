@@ -2,9 +2,9 @@
 
 namespace Apolune\Server;
 
-use Apolune\Contracts\Server\Vocation as Contract;
+use Apolune\Contracts\Server\Town as Contract;
 
-class Vocation implements Contract
+class Town implements Contract
 {
     /**
      * Holds the original data.
@@ -14,18 +14,18 @@ class Vocation implements Contract
     protected $data;
 
     /**
-     * Create a new vocation instance.
+     * Create a new town instance.
      *
-     * @param  array  $vocations
+     * @param  array  $towns
      * @return void
      */
-    public function __construct(array $vocations)
+    public function __construct(array $towns)
     {
-        $this->data = $vocations;
+        $this->data = $towns;
     }
 
     /**
-     * Get the vocation id.
+     * Get the town id.
      *
      * @return integer
      */
@@ -35,7 +35,7 @@ class Vocation implements Contract
     }
 
     /**
-     * Get the vocation name.
+     * Get the town name.
      *
      * @return string
      */
@@ -45,7 +45,7 @@ class Vocation implements Contract
     }
 
     /**
-     * Check if the vocation is a starter.
+     * Check if the town is a starter town.
      *
      * @return boolean
      */

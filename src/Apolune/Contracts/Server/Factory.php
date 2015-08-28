@@ -44,6 +44,14 @@ interface Factory
     public function genders();
 
     /**
+     * Get all of the towns.
+     *
+     * @param  boolean  $starter  null
+     * @return \Illuminate\Support\Collection
+     */
+    public function towns($starter = null);
+
+    /**
      * Get all of the vocations.
      *
      * @param  boolean  $starter  null

@@ -91,6 +91,27 @@ class Factory implements Contract
     }
 
     /**
+     * Get all of the towns.
+     *
+     * @param  boolean  $starter  null
+     * @return \Illuminate\Support\Collection
+     */
+    public function towns($starter = null)
+    {
+        $towns = $this->data->towns;
+
+        array_walk($towns, function (&$town) {
+            $town = $this->app->make('server.town', [(array) $town]);
+        });
+
+        $collection = collect($towns)->reject(function ($town) use ($starter) {
+            return $starter and ! $town->isStarter();
+        });
+
+        return $collection->count() > 0 ? $collection : $collection->push(head($towns));
+    }
+
+    /**
      * Get all of the vocations.
      *
      * @param  boolean  $starter  null
@@ -104,9 +125,11 @@ class Factory implements Contract
             $vocation = $this->app->make('server.vocation', [(array) $vocation]);
         });
 
-        return collect($vocations)->reject(function ($vocation) use ($starter) {
+        $collection = collect($vocations)->reject(function ($vocation) use ($starter) {
             return $starter and ! $vocation->isStarter();
         });
+
+        return $collection->count() > 0 ? $collection : $collection->push(head($vocations));
     }
 
     /**

@@ -2,32 +2,32 @@
 
 namespace Apolune\Contracts\Server;
 
-interface Vocation
+interface Town
 {
     /**
-     * Create a new vocation instance.
+     * Create a new towns instance.
      *
-     * @param  array  $vocations
+     * @param  array  $towns
      * @return void
      */
-    public function __construct(array $vocations);
+    public function __construct(array $towns);
 
     /**
-     * Get the vocation id.
+     * Get the town id.
      *
      * @return integer
      */
     public function id();
 
     /**
-     * Get the vocation name.
+     * Get the town name.
      *
      * @return string
      */
     public function name();
 
     /**
-     * Check if the vocation is a starter.
+     * Check if the town is a starter town.
      *
      * @return boolean
      */

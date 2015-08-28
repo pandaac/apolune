@@ -25,6 +25,7 @@ class ServerServiceProvider extends AggregateServiceProvider
         'server.gender'    => [Contracts\Gender::class => Server\Gender::class],
         'server.vocation'  => [Contracts\Vocation::class => Server\Vocation::class],
         'server.world'     => [Contracts\World::class => Server\World::class],
+        'server.town'      => [Contracts\Town::class => Server\Town::class],
     ];
 
     /**
