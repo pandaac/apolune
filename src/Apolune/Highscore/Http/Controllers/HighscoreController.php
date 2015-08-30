@@ -78,7 +78,7 @@ class HighscoreController extends Controller
         $players = $this->getPlayers($world, $columns);
 
         if ($page > 1 and $page > $players->lastPage()) {
-            return redirect(url('/highscore', [$world ? $world->slug() : null, $sort]));
+            return redirect(url('/highscore', $world ? [$world->slug(), $sort] : $sort));
         }
 
         return view('theme::highscore.show', compact('world', 'players', 'sort'));

@@ -63,11 +63,13 @@ class WorldsController extends Controller
 
         list($sort, $order) = $this->getSortable();
 
-        $players = app('player')->fromWorld($world)->online()->get()->sortBy(
+        $groups = app('player')->fromWorld($world)->online()->get()->sortBy(
             $sort, SORT_REGULAR, $order === 'DESC'
-        );
+        )->groupBy(function ($player) {
+            return strtoupper(substr($player->name(), 0, 1));
+        });
 
-        return view('theme::worlds.show', compact('world', 'sort', 'order', 'players'));
+        return view('theme::worlds.show', compact('world', 'sort', 'order', 'groups'));
     }
 
     /**
