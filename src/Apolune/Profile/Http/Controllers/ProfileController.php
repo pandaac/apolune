@@ -18,10 +18,8 @@ class ProfileController extends Controller
         $player->load([
             'properties',
             'account',
-            'account.players' => function ($query) {
-                $query->leftJoin('__pandaac_players', 'players.id', '=', '__pandaac_players.player_id');
-                $query->where('hide', 0);
-            },
+            'account.players.properties' => function ($query) { $query->where('hide', 0); },
+            'account.players',
         ]);
 
         return view('theme::profile.show', compact('player'));

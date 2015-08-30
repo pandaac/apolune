@@ -17,13 +17,6 @@ interface Player
      * @return \Apolune\Contracts\Account\PlayerProperties
      */
     public function properties();
-
-    /**
-     * Retrieve the player online relationship.
-     *
-     * @return \Apolune\Contracts\Account\PlayerOnline
-     */
-    public function playerOnline();
     
      /**
      * Scope a query to only include online players.
@@ -32,6 +25,15 @@ interface Player
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeOnline($query);
+
+    /**
+     * Scope a query to only include online players.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  \Apolune\Contracts\Server\World  $world
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFromWorld($query, $world);
 
     /**
      * Retrieve the player ID.
