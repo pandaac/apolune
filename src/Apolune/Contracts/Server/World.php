@@ -46,4 +46,11 @@ interface World
      * @return string
      */
     public function flag();
+
+    /**
+     * Get all the players that are currently online on the given world.
+     *
+     * @return \Apolune\Contracts\Account\Player
+     */
+    public function players();
 }

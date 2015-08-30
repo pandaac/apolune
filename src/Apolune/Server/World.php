@@ -102,4 +102,14 @@ class World implements Contract
 
         return $this->data['flag'];
     }
+
+    /**
+     * Get all the players that are currently online on the given world.
+     *
+     * @return \Apolune\Contracts\Account\Player
+     */
+    public function players()
+    {
+        return app('player')->fromWorld($this)->online()->get();
+    }
 }

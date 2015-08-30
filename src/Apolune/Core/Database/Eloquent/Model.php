@@ -3,6 +3,7 @@
 namespace Apolune\Core\Database\Eloquent;
 
 use Illuminate\Support\Str;
+use Doctrine\DBAL\Schema\SchemaException;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -285,5 +286,25 @@ class Model extends Eloquent
             $query, $this, $name, $table, $foreignKey,
             $otherKey, $caller, $inverse
         );
+    }
+
+    /**
+     * Check if the current (or another) table has a specific column.
+     *
+     * @param  string  $column
+     * @param  string  $table  null
+     * @return boolean
+     */
+    public function hasColumn($column, $table = null)
+    {
+        try {
+            $table = $table ?: $this->getTable();
+
+            $this->getConnection()->getDoctrineColumn($table, $column);
+
+            return true;
+        } catch (SchemaException $e) {
+            return false;
+        }
     }
 }
