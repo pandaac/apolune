@@ -27,6 +27,22 @@ interface Player
     public function scopeOnline($query);
 
     /**
+     * Scope a query to only include visible players.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeVisible($query);
+    
+    /**
+     * Scope a query to only include hidden players.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeHidden($query);
+
+    /**
      * Scope a query to only include online players.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

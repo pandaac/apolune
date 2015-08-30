@@ -18,8 +18,10 @@ class ProfileController extends Controller
         $player->load([
             'properties',
             'account',
-            'account.players.properties' => function ($query) { $query->where('hide', 0); },
-            'account.players',
+            'account.players.properties',
+            'account.players' => function ($query) {
+                $query->visible();
+            },
         ]);
 
         return view('theme::profile.show', compact('player'));
