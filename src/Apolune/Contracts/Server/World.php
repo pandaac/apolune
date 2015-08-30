@@ -34,6 +34,13 @@ interface World
     public function type();
 
     /**
+     * Get the world type id.
+     *
+     * @return integer
+     */
+    public function typeId();
+
+    /**
      * Get the world flag.
      *
      * @return string

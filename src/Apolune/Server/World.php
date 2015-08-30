@@ -72,11 +72,21 @@ class World implements Contract
      */
     public function type()
     {
-        if (! isset($this->types[$type = $this->data['type']])) {
+        if (! isset($this->types[$type = $this->typeId()])) {
             return head($this->types);
         }
 
         return $this->types[$type];
+    }
+
+    /**
+     * Get the world type id.
+     *
+     * @return integer
+     */
+    public function typeId()
+    {
+        return $this->data['type'];
     }
 
     /**
