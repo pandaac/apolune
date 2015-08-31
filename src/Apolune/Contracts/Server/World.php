@@ -53,4 +53,11 @@ interface World
      * @return \Apolune\Contracts\Account\Player
      */
     public function players();
+
+    /**
+     * Check whether the server is online or offline.
+     *
+     * @return boolean
+     */
+    public function isOnline();
 }

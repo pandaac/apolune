@@ -112,4 +112,14 @@ class World implements Contract
     {
         return app('player')->fromWorld($this)->online()->get();
     }
+
+    /**
+     * Check whether the server is online or offline.
+     *
+     * @return boolean
+     */
+    public function isOnline()
+    {
+        return isset($this->data['online']) ? (boolean) $this->data['online'] : false;
+    }
 }
