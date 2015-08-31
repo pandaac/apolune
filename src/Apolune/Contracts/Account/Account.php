@@ -104,4 +104,19 @@ interface Account extends Authenticatable, CanResetPassword
      * @return boolean
      */
     public function hasPendingEmail();
+
+    /**
+     * Check if the account has a pending registration change.
+     *
+     * @return boolean
+     */
+    public function hasPendingRegistration();
+
+    /**
+     * Generate a recovery key.
+     *
+     * @param  boolean  $pretend  false
+     * @return string
+     */
+    public function generateRecoveryKey($pretend = false);
 }
