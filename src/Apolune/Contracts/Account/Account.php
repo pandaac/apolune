@@ -106,11 +106,25 @@ interface Account extends Authenticatable, CanResetPassword
     public function hasPendingEmail();
 
     /**
+     * Check if the user can accept the new email address.
+     *
+     * @return boolean
+     */
+    public function canAcceptPendingEmail();
+
+    /**
      * Check if the account has a pending registration change.
      *
      * @return boolean
      */
     public function hasPendingRegistration();
+
+    /**
+     * Check if the user can accept the new registration data.
+     *
+     * @return boolean
+     */
+    public function canAcceptPendingRegistration();
 
     /**
      * Generate a recovery key.

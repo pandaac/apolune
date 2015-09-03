@@ -62,7 +62,7 @@ if (! function_exists('experience')) {
      */
     function experience($level)
     {
-        $formula = config('pandaac.formulae.experience');
+        $formula = config('pandaac.apolune.core.formula-experience');
 
         return $formula($level);
     }

@@ -30,7 +30,7 @@ class CoreServiceProvider extends AggregateServiceProvider
     {
         $this->app = $app;
 
-        $providers = config('pandaac.config.providers', []);
+        $providers = config('pandaac.pandaac.providers', []);
 
         $this->providers = array_merge($this->providers, $providers);
     }
@@ -45,6 +45,10 @@ class CoreServiceProvider extends AggregateServiceProvider
         if (env('APP_HTTPS')) {
             $this->app['url']->forceSchema('https');
         }
+
+        $this->publishes([
+            __DIR__.'/../Resources/Config/core.php' => config_path('pandaac/apolune/core.php'),
+        ], 'config');
     }
 
     /**
@@ -56,7 +60,7 @@ class CoreServiceProvider extends AggregateServiceProvider
     {
         parent::register();
         
-        $theme = $this->app->register(config('pandaac.config.theme'));
+        $theme = $this->app->register(config('pandaac.pandaac.theme'));
         
         if (! ($theme instanceof ThemeServiceProvider)) {
             throw new Exception('Theme Service Provider must extend \Apolune\Core\ThemeServiceProvider.');
