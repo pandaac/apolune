@@ -13,7 +13,6 @@ class ProfileServiceProvider extends AggregateServiceProvider
      */
     protected $providers = [
         ExceptionsServiceProvider::class,
-        RouteServiceProvider::class,
     ];
     
     /**
