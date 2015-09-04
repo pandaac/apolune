@@ -11,9 +11,7 @@ class ProfileServiceProvider extends AggregateServiceProvider
      *
      * @var array
      */
-    protected $providers = [
-        ExceptionsServiceProvider::class,
-    ];
+    protected $providers = [];
     
     /**
      * Bootstrap any application services.

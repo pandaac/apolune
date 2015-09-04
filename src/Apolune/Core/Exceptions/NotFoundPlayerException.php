@@ -1,6 +1,6 @@
 <?php
 
-namespace Apolune\Profile\Exceptions;
+namespace Apolune\Core\Exceptions;
 
 use Exception;
 
