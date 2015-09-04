@@ -2,6 +2,7 @@
 
 namespace Apolune\Core\Providers;
 
+use Illuminate\Http\Response;
 use Apolune\Core\ServiceProvider;
 use Apolune\Core\Exceptions\NotFoundPlayerException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -25,8 +26,8 @@ class ExceptionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->exceptions->handle(NotFoundHttpException::class, function ($e) {
-            return redirect('/');
+        $this->exceptions->handle(NotFoundHttpException::class, function ($e, $handler) {
+            return new Response(view('theme::404'), 404);
         });
 
         $this->exceptions->handle(NotFoundPlayerException::class, function ($e) {
