@@ -2,6 +2,8 @@
 
 namespace Apolune\News\Providers;
 
+use Apolune\News;
+use Apolune\Contracts\News as Contracts;
 use Apolune\Core\AggregateServiceProvider;
 
 class NewsServiceProvider extends AggregateServiceProvider
@@ -11,7 +13,20 @@ class NewsServiceProvider extends AggregateServiceProvider
      *
      * @var array
      */
-    protected $providers = [];
+    protected $providers = [
+        MigrationServiceProvider::class,
+    ];
+
+    /**
+     * Holds all of the contracts we want to bind.
+     *
+     * @var array
+     */
+    protected $bindings = [
+        'news'          => [Contracts\News::class       => News\News::class],
+        'news.article'  => [Contracts\Article::class    => News\Article::class],
+        'news.ticker'   => [Contracts\Ticker::class     => News\Ticker::class],
+    ];
     
     /**
      * Bootstrap any application services.

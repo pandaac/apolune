@@ -13,7 +13,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('theme::news.latest');
+        $tickers = app('news.ticker')->all();
+        $article = app('news.article')->first();
+        $news    = app('news')->all();
+
+        return view('theme::news.latest', compact('tickers', 'article', 'news'));
     }
 
     /**
