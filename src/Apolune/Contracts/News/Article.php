@@ -12,6 +12,13 @@ interface Article
     public function id();
 
     /**
+     * Retrieve the article slug.
+     *
+     * @return string
+     */
+    public function slug();
+
+    /**
      * Retrieve the article title.
      *
      * @return string
@@ -40,6 +47,13 @@ interface Article
      * @return string
      */
     public function type();
+
+    /**
+     * Retrieve the article icon.
+     *
+     * @return string
+     */
+    public function icon();
 
     /**
      * Retrieve the article image.

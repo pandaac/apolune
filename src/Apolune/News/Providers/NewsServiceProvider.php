@@ -26,6 +26,7 @@ class NewsServiceProvider extends AggregateServiceProvider
         'news'          => [Contracts\News::class       => News\News::class],
         'news.article'  => [Contracts\Article::class    => News\Article::class],
         'news.ticker'   => [Contracts\Ticker::class     => News\Ticker::class],
+        'news.history'  => [Contracts\History::class    => News\History::class],
     ];
     
     /**

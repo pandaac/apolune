@@ -17,10 +17,12 @@ class CreatePandaacNewsTable extends Migration
     {
         Schema::create('__pandaac_news', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('type', ['news', 'article', 'ticker'])->default('news');
-            $table->enum('icon', [null, 'staff', 'community', 'development', 'support', 'technical'])->default('community');
+            $table->string('slug')->unique();
             $table->string('title');
             $table->text('content')->nullable()->default(null);
+            $table->string('excerpt', 600)->nullable()->default(null);
+            $table->enum('type', ['news', 'article', 'ticker'])->default('news');
+            $table->enum('icon', ['staff', 'community', 'development', 'support', 'technical'])->default('community');
             $table->string('image')->nullable()->default(null);
             $table->timestamps();
         });

@@ -12,6 +12,13 @@ interface Ticker
     public function id();
 
     /**
+     * Retrieve the ticker slug.
+     *
+     * @return string
+     */
+    public function slug();
+
+    /**
      * Retrieve the ticker content.
      *
      * @return string

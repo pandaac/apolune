@@ -1,5 +1,8 @@
 <?php
 
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+
 if (! function_exists('account')) {
     /**
      * Return the currently authenticated user.
@@ -110,6 +113,21 @@ if (! function_exists('hyphencase')) {
     }
 }
 
+if (! function_exists('limit')) {
+    /**
+     * Limit the number of characters in a string.
+     *
+     * @param  string  $value
+     * @param  integer  $limit  100
+     * @param  string  $end  ..
+     * @return string
+     */
+    function limit($value, $limit = 100, $end = '...')
+    {
+        return Str::limit($value, $limit, $end);
+    }
+}
+
 if (! function_exists('month')) {
     /**
      * Return the human-readable format of a month.
@@ -120,7 +138,7 @@ if (! function_exists('month')) {
      */
     function month($month, $format = 'F')
     {
-        return (new Carbon\Carbon)->month($month)->format($format);
+        return (new Carbon)->month($month)->format($format);
     }
 }
 

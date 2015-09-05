@@ -30,6 +30,16 @@ class Ticker extends Model implements Contract
     }
 
     /**
+     * Retrieve the ticker slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Retrieve the ticker content.
      *
      * @return string

@@ -1,17 +1,30 @@
 <?php
 
-$router->group(['namespace' => 'Apolune\News\Http\Controllers'], function () {
+$router->group(['namespace' => 'Apolune\News\Http\Controllers'], function ($router) {
 
     /*
     |--------------------------------------------------------------------------
-    | NewsController
+    | Latest News
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
+    |
+    */
+
+    $router->get('/',                   'LatestController@overview');
+    $router->get('/featured/{slug}',    'LatestController@show');
+
+    /*
+    |--------------------------------------------------------------------------
+    | News Archive
+    |--------------------------------------------------------------------------
+    |
+    | ...
     |
     */
    
-    get('/', 'NewsController@index');
-    get('/archive', 'NewsController@archive');
+    $router->get('/archive',        'ArchiveController@form');
+    $router->post('/archive',       'ArchiveController@results');
+    $router->get('/archive/{slug}', 'ArchiveController@show');
 
 });

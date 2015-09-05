@@ -30,6 +30,16 @@ class Article extends Model implements Contract
     }
 
     /**
+     * Retrieve the article slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Retrieve the article title.
      *
      * @return string
@@ -58,7 +68,11 @@ class Article extends Model implements Contract
      */
     public function excerpt($words = 100, $end = '...')
     {
-        return Str::words($this->content(), $words, $end);
+        if (! $this->excerpt) {
+            return Str::words($this->content(), $words, $end);
+        }
+
+        return $this->excerpt;
     }
 
     /**
@@ -69,6 +83,16 @@ class Article extends Model implements Contract
     public function type()
     {
         return $this->type;
+    }
+
+    /**
+     * Retrieve the article icon.
+     *
+     * @return string
+     */
+    public function icon()
+    {
+        return $this->icon;
     }
 
     /**

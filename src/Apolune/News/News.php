@@ -29,6 +29,16 @@ class News extends Model implements Contract
     }
 
     /**
+     * Retrieve the news slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Retrieve the news title.
      *
      * @return string

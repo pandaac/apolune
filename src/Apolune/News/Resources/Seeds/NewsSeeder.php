@@ -21,6 +21,7 @@ class NewsSeeder extends Seeder
 
         DB::table('__pandaac_news')->insert([
             [
+                'slug'          => 'demo-site-pandaac',
                 'title'         => 'This is a demo-site of pandaac',
                 'type'          => 'news',
                 'icon'          => 'community',
@@ -39,65 +40,75 @@ class NewsSeeder extends Seeder
                                     <p>
                                         To a bright future together!
                                     </p>',
+                'excerpt'       => null,
                 'image'         => null,
                 'created_at'    => '2015-07-30 12:00:00',
             ],
             [
-                'title'         => 'Tibia Coins and the Store',
+                'slug'          => 'premium-points-store',
+                'title'         => 'Premium Points and the Store',
                 'type'          => 'article',
-                'icon'          => null,
-                'content'       => 'This month, we would like to share some information about an important new feature which will be 
-                                    released in July: Tibia Coins, a special new currency. Along with it, the ingame Store will open 
+                'icon'          => 'community',
+                'content'       => '<p>
+                                        <span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl turpis, id pulvinar nunc lobortis a. Duis viverra ultricies lacus, nec finibus turpis elementum pellentesque. Suspendisse quis turpis massa. Mauris quis hendrerit urna, eget convallis nibh. Nullam eu sodales mauris. Vestibulum ut odio nec elit vulputate ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam pharetra massa vel libero aliquam, vel malesuada nulla interdum. Curabitur nunc risus, suscipit a varius nec, condimentum vitae leo. Vestibulum rutrum eget mi aliquam dapibus. Aliquam sodales ex vitae urna facilisis ornare.
+                                    </p>
+                                    <p>
+                                        Donec quis tellus nec nulla maximus efficitur. Maecenas ut tellus est. Vestibulum pellentesque risus non lectus efficitur laoreet. Sed pretium viverra justo, vitae convallis sapien iaculis vestibulum. Quisque quis ullamcorper ligula, a consectetur lorem. Sed lacinia interdum risus eu finibus. Etiam pulvinar, ante ac molestie sagittis, ipsum justo egestas lectus, quis sagittis enim elit eget massa. Praesent convallis eros eros, at faucibus justo luctus id. Fusce eros sem, tempus nec facilisis ac, faucibus nec nunc. In id ullamcorper erat, id ultricies erat. Praesent elit elit, elementum vel urna efficitur, commodo luctus nisi. Phasellus interdum at leo quis tincidunt. Maecenas sit amet laoreet tortor. Quisque nec nibh tincidunt, bibendum ante sed, molestie nibh. Sed ultricies efficitur dui, eu efficitur lorem iaculis ut.
+                                    </p>
+                                    <p>
+                                        Sed finibus id massa ut pretium. Sed laoreet ultrices elit, at cursus sem egestas et. Nam nec lacus in mi gravida laoreet quis posuere quam. Vivamus hendrerit, enim ut ultrices hendrerit, nisl mauris auctor velit, sed rhoncus erat metus ut diam. Pellentesque scelerisque convallis urna, vel posuere urna scelerisque maximus. Vivamus vel purus et libero lobortis bibendum. Donec vulputate diam sed aliquet elementum. Proin malesuada est ligula, id lacinia metus cursus a.
+                                    </p>
+                                    <p>
+                                        Quisque et eros eu neque consectetur egestas. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras et tempor justo. Sed consectetur diam turpis, non auctor velit scelerisque eu. Aenean sed porta nisl, vitae finibus ex. Donec ante elit, interdum vitae mollis id, pellentesque sed diam. Nullam iaculis imperdiet orci vel pharetra. Mauris eget dictum mi. Sed lobortis diam sit amet odio fermentum, et gravida eros dignissim.
+                                    </p>',
+                'excerpt'       => 'This month, we would like to share some information about an important new feature which will be 
+                                    released in July: Premium Points, a special new currency. Along with it, the ingame Store will open 
                                     its doors. Read on to find out more!',
                 'image'         => '/pandaac/theme-tibia/img/featuredthumb_3238.jpg',
                 'created_at'    => '2015-07-27 12:00:00',
             ],
             [
+                'slug'          => 'welcome-to-pandaac',
+                'type'          => 'ticker',
+                'icon'          => 'staff',
+                'title'         => 'Welcome to the demo site of pandaac! Please be aware that this site is constantly updated without any 
+                                    warning. Thank you for understanding!',
+                'content'       => null,
+                'excerpt'       => null,
+                'image'         => null,
+                'created_at'    => '2015-07-25 12:00:00',
+            ],
+            [
+                'slug'          => 'database-migrations-deployments',
+                'type'          => 'ticker',
+                'icon'          => 'development',
+                'title'         => 'Database migrations are refreshed whenever I deploy new code to this demo site. This will undo any
+                                    custom configurations you have made (e.g. deleted a character or verified your email).',
+                'content'       => null,
+                'excerpt'       => null,
+                'image'         => null,
+                'created_at'    => '2015-09-04 12:00:00',
+            ],
+            [
+                'slug'          => 'cleared-cache-deployments',
+                'type'          => 'ticker',
+                'icon'          => 'development',
+                'title'         => 'Cache is cleared every time a new deployment is made to this demo site. This is why the site sometimes
+                                    loads slowly/in sections the first time you visit the page inbetween deployments.',
+                'content'       => null,
+                'excerpt'       => null,
+                'image'         => null,
+                'created_at'    => '2015-09-04 12:00:00',
+            ],
+            [
+                'slug'          => 'news-archive',
                 'type'          => 'ticker',
                 'icon'          => 'technical',
-                'title'         => 'The server save on some game worlds took longer than usual today due to an unexpected technical issue. 
-                                    We are sorry for the inconvenience this may have caused you.',
+                'title'         => 'Today we implemented a working news system, along with the archive functionality.',
                 'content'       => null,
+                'excerpt'       => null,
                 'image'         => null,
-                'created_at'    => '2015-07-27 12:00:00',
-            ],
-            [
-                'type'          => 'ticker',
-                'icon'          => 'community',
-                'title'         => 'TibiaVenezuela.com has published a new article, yet again! This time, they take you on a journey back 
-                                    in time. Ready for some nostalgia? Head on over there to read the article which is available in Spanish!',
-                'content'       => null,
-                'image'         => null,
-                'created_at'    => '2015-07-28 12:00:00',
-            ],
-            [
-                'type'          => 'ticker',
-                'icon'          => 'support',
-                'title'         => 'A thorough check of the compensation handed out on July 15 revealed that 0.3% of all 400,000 accounts 
-                                    that were compensated in any way have not yet received their full compensation. These 0.3% have 
-                                    received their missing compensation today.',
-                'content'       => null,
-                'image'         => null,
-                'created_at'    => '2015-07-28 13:00:00',
-            ],
-            [
-                'type'          => 'ticker',
-                'icon'          => 'community',
-                'title'         => 'Due to lack of entries, the event board will be deleted on August 5. While you can still view this 
-                                    board until that date, you can no longer post there. Please use your world board or the gameplay board 
-                                    to advertise your ingame events from now on.',
-                'content'       => null,
-                'image'         => null,
-                'created_at'    => '2015-07-28 14:00:00',
-            ],
-            [
-                'type'          => 'ticker',
-                'icon'          => 'technical',
-                'title'         => 'With today\'s server save, unusable sudden death runes that were looted erroneously from several 
-                                    monsters after the update release have been removed from the game.',
-                'content'       => null,
-                'image'         => null,
-                'created_at'    => '2015-07-29 12:00:00',
+                'created_at'    => '2015-09-05 22:00:00',
             ],
         ]);
     }

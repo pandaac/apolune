@@ -12,6 +12,13 @@ interface News
     public function id();
 
     /**
+     * Retrieve the news slug.
+     *
+     * @return string
+     */
+    public function slug();
+
+    /**
      * Retrieve the news title.
      *
      * @return string
