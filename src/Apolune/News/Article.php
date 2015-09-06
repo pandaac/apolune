@@ -69,10 +69,10 @@ class Article extends Model implements Contract
     public function excerpt($words = 100, $end = '...')
     {
         if (! $this->excerpt) {
-            return Str::words($this->content(), $words, $end);
+            return Str::words(strip_tags($this->content()), $words, $end);
         }
 
-        return $this->excerpt;
+        return strip_tags($this->excerpt);
     }
 
     /**
