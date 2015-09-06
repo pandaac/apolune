@@ -23,8 +23,8 @@ $router->group(['namespace' => 'Apolune\News\Http\Controllers'], function ($rout
     |
     */
    
-    $router->get('/archive',        'ArchiveController@form');
-    $router->post('/archive',       'ArchiveController@results');
-    $router->get('/archive/{slug}', 'ArchiveController@show');
+    $router->get('/archive',                            'ArchiveController@form');
+    $router->post('/archive',                           'ArchiveController@results');
+    $router->match(['GET', 'POST'], '/archive/{slug}',  'ArchiveController@show');
 
 });
