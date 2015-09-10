@@ -21,6 +21,9 @@
         "apolune/core": "self.version"
     },
     "autoload": {
+        "files": [
+            "helpers.php"
+        ],
         "psr-4": {
             "Apolune\\Guilds\\": ""
         }

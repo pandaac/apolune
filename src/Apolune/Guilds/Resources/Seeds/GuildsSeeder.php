@@ -1,12 +1,13 @@
 <?php
 
-namespace Apolune\Account\Resources\Seeds;
+namespace Apolune\Guilds\Resources\Seeds;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class PlayerPropertiesSeeder extends Seeder
+class GuildsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +16,10 @@ class PlayerPropertiesSeeder extends Seeder
      */
     public function run()
     {
-        $players = app('player')->doesntHave('properties')->get();
+        $guilds = app('guild')->doesntHave('properties')->get();
 
-        foreach ($players as $player) {
-            $player->properties()->create([
+        foreach ($guilds as $guild) {
+            $guild->properties()->create([
                 'created_at' => Carbon::now(),
             ]);
         }

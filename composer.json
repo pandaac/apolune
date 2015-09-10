@@ -44,7 +44,8 @@
     "autoload": {
         "files": [
             "src/helpers.php",
-            "src/Apolune/Core/helpers.php"
+            "src/Apolune/Core/helpers.php",
+            "src/Apolune/Guilds/helpers.php"
         ],
         "psr-4": {
             "Apolune\\": "src/Apolune"

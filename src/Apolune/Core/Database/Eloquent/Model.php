@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Apolune\Core\Database\Eloquent\Relations\HasOneThrough;
 
 class Model extends Eloquent
 {
@@ -180,6 +181,28 @@ class Model extends Eloquent
         $localKey = $localKey ?: $this->getKeyName();
 
         return new HasManyThrough(app($related)->newQuery(), $this, $through, $firstKey, $secondKey, $localKey);
+    }
+
+    /**
+     * Define a has-one-through relationship.
+     *
+     * @param  string  $related
+     * @param  string  $through
+     * @param  string|null  $firstKey
+     * @param  string|null  $secondKey
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
+     */
+    public function hasOneThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null)
+    {
+        $through = app($through);
+
+        $firstKey = $firstKey ?: $this->getForeignKey();
+
+        $secondKey = $secondKey ?: $through->getForeignKey();
+
+        $localKey = $localKey ?: $this->getKeyName();
+
+        return new HasOneThrough(app($related)->newQuery(), $this, $through, $firstKey, $secondKey, $localKey);
     }
 
     /**

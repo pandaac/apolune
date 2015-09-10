@@ -43,7 +43,7 @@ interface Player
     public function scopeHidden($query);
 
     /**
-     * Scope a query to only include online players.
+     * Scope a query to only include players from a specific world.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Apolune\Contracts\Server\World  $world
