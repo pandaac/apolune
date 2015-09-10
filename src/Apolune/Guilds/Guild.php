@@ -2,6 +2,7 @@
 
 namespace Apolune\Guilds;
 
+use Illuminate\Support\Str;
 use Apolune\Core\Database\Eloquent\Model;
 use Apolune\Contracts\Guilds\Guild as Contract;
 use Apolune\Guilds\Traits\Scopes\Guild as GuildScopes;
@@ -29,6 +30,16 @@ class Guild extends Model implements Contract
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * Retrieve a URL friendly slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return Str::slug($this->name());
     }
 
     /**

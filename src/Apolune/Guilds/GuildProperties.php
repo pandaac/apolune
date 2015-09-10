@@ -2,6 +2,7 @@
 
 namespace Apolune\Guilds;
 
+use Carbon\Carbon;
 use Apolune\Core\Database\Eloquent\Model;
 use Apolune\Contracts\Guilds\GuildProperties as Contract;
 
@@ -22,5 +23,10 @@ class GuildProperties extends Model implements Contract
     public function description()
     {
         return $this->description;
+    }
+
+    public function createdAt()
+    {
+        return new Carbon($this->created_at);
     }
 }

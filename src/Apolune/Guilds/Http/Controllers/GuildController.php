@@ -17,7 +17,7 @@ class GuildController extends Controller
     {
         list($guild, $world) = $this->getGuild($world, $guild);
 
-        dd($guild, $world);
+        return view('theme::guilds.guild.show', compact('guild', 'world'));
     }
 
     /**
