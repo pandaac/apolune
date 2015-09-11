@@ -1,8 +1,8 @@
 <?php
 
-$multipleWorlds = worlds()->count() > 1;
+$router->group(['namespace' => 'Apolune\Guilds\Http\Controllers'], function ($router) {
 
-$router->group(['namespace' => 'Apolune\Guilds\Http\Controllers'], function ($router) use ($multipleWorlds) {
+    $multipleWorlds = true;#worlds()->count() > 1;
 
     /*
     |--------------------------------------------------------------------------

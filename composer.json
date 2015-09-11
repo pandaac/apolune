@@ -48,8 +48,8 @@
             "src/Apolune/Guilds/helpers.php"
         ],
         "psr-4": {
-            "Apolune\\": "src/Apolune",
-            "Apolune\\Resources\\": "src/Resources"
+            "Apolune\\Resources\\": "src/Resources",
+            "Apolune\\": "src/Apolune"
         }
     },
     "minimum-stability": "dev"
