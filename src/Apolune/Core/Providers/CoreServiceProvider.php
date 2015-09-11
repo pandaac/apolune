@@ -5,6 +5,7 @@ namespace Apolune\Core\Providers;
 use Exception;
 use Apolune\Core\ThemeServiceProvider;
 use Apolune\Core\AggregateServiceProvider;
+use Barryvdh\Debugbar\ServiceProvider as Debugbar;
 
 class CoreServiceProvider extends AggregateServiceProvider
 {
@@ -72,6 +73,10 @@ class CoreServiceProvider extends AggregateServiceProvider
 
         if (! preg_match('/^\b([a-z-]+)\b\/\b([a-z-]+)\b$/i', $theme->getNamespace())) {
             throw new Exception('Theme Service Provider namespace must follow the vendor/package convention (e.g. pandaac/theme-tibia).');
+        }
+
+        if (config('app.debug') and env('APP_DEBUGBAR') and class_exists($debugbar = Debugbar::class)) {
+            $this->app->register($debugbar);
         }
 
         $this->app->instance('theme.namespace', $theme->getNamespace());

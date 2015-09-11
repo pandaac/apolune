@@ -48,6 +48,10 @@ class OverviewController extends Controller
     {
         $world = world_by_slug($slug);
 
+        if (worlds()->count() > 1 and ! $world) {
+            return redirect('/guilds');
+        }
+
         list($guilds, $forming) = $this->getGuilds($world);
 
         return view('theme::guilds.overview.show', compact('world', 'guilds', 'forming'));

@@ -4,21 +4,18 @@ namespace Apolune\News;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Apolune\News\Traits\TickerItem;
 use Apolune\Core\Database\Eloquent\Model;
 use Apolune\Contracts\News\Ticker as Contract;
 
 class Ticker extends Model implements Contract
 {
-    use TickerItem;
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = '__pandaac_news';
-
+    
     /**
      * Retrieve the ticker ID.
      *
@@ -26,7 +23,7 @@ class Ticker extends Model implements Contract
      */
     public function id()
     {
-        return $this->id;
+        return $this->attributes['id'];
     }
 
     /**
@@ -36,7 +33,7 @@ class Ticker extends Model implements Contract
      */
     public function slug()
     {
-        return $this->slug;
+        return $this->attributes['slug'];
     }
 
     /**
@@ -46,7 +43,7 @@ class Ticker extends Model implements Contract
      */
     public function content()
     {
-        return $this->title;
+        return $this->attributes['title'];
     }
 
     /**
@@ -68,7 +65,7 @@ class Ticker extends Model implements Contract
      */
     public function type()
     {
-        return $this->type;
+        return $this->attributes['type'];
     }
 
     /**
@@ -78,7 +75,7 @@ class Ticker extends Model implements Contract
      */
     public function icon()
     {
-        return $this->icon;
+        return $this->attributes['icon'];
     }
 
     /**
@@ -88,6 +85,6 @@ class Ticker extends Model implements Contract
      */
     public function creation()
     {
-        return new Carbon($this->created_at);
+        return new Carbon($this->attributes['created_at']);
     }
 }

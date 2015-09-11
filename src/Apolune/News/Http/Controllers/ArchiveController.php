@@ -4,8 +4,8 @@ namespace Apolune\News\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Apolune\Core\Http\Controllers\Controller;
 use Apolune\News\Http\Requests\SearchRequest;
+use Apolune\Core\Http\Controllers\Controller;
 use Illuminate\Http\Exception\HttpResponseException;
 
 class ArchiveController extends Controller
@@ -57,7 +57,7 @@ class ArchiveController extends Controller
      */
     public function show($slug)
     {
-        $article = app('news.history')->where('slug', $slug)->firstOrFail();
+        $article = app('news')->where('slug', $slug)->firstOrFail();
 
         return view('theme::news/archive/show', compact('article'));
     }
@@ -91,7 +91,7 @@ class ArchiveController extends Controller
      */
     protected function getResults(Request $request, Carbon $from, Carbon $to)
     {
-        $history = app('news.history')
+        $history = app('news')
             ->where('created_at', '>=', $from->format('Y-m-d 00:00:00'))
             ->where('created_at', '<=', $to->format('Y-m-d 00:00:00'));
 
@@ -113,7 +113,7 @@ class ArchiveController extends Controller
      */
     protected function getFirstYear()
     {
-        $first = app('news.history')->orderBy('created_at', 'ASC')->first();
+        $first = app('news')->orderBy('created_at', 'ASC')->first();
 
         return $first ? $first->creation()->format('Y') : date('Y');
     }

@@ -33,7 +33,17 @@ class GuildRank extends Model implements Contract
      */
     public function members()
     {
-        return $this->hasMany('guild.member', 'rank_id');
+        return $this->hasManyThrough('player', 'guild.member', 'rank_id', 'id');
+    }
+
+    /**
+     * Retrieve the guild rank name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
     }
 
     /**

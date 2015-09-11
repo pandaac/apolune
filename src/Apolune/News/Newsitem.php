@@ -3,11 +3,10 @@
 namespace Apolune\News;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Apolune\Core\Database\Eloquent\Model;
-use Apolune\Contracts\News\Article as Contract;
+use Apolune\Contracts\News\Newsitem as Contract;
 
-class Article extends Model implements Contract
+class Newsitem extends Model implements Contract
 {
     /**
      * The table associated with the model.
@@ -17,7 +16,7 @@ class Article extends Model implements Contract
     protected $table = '__pandaac_news';
     
     /**
-     * Retrieve the article ID.
+     * Retrieve the news ID.
      *
      * @return integer
      */
@@ -27,7 +26,7 @@ class Article extends Model implements Contract
     }
 
     /**
-     * Retrieve the article slug.
+     * Retrieve the news slug.
      *
      * @return string
      */
@@ -37,7 +36,7 @@ class Article extends Model implements Contract
     }
 
     /**
-     * Retrieve the article title.
+     * Retrieve the news title.
      *
      * @return string
      */
@@ -47,7 +46,7 @@ class Article extends Model implements Contract
     }
 
     /**
-     * Retrieve the article content.
+     * Retrieve the news content.
      *
      * @return string
      */
@@ -57,23 +56,7 @@ class Article extends Model implements Contract
     }
 
     /**
-     * Retrieve the article excerpt.
-     *
-     * @param  integer  $words  100
-     * @param  string  $end  ...
-     * @return string
-     */
-    public function excerpt($words = 100, $end = '...')
-    {
-        if (! $this->attributes['excerpt']) {
-            return Str::words(strip_tags($this->content()), $words, $end);
-        }
-
-        return strip_tags($this->attributes['excerpt']);
-    }
-
-    /**
-     * Retrieve the article type.
+     * Retrieve the news type.
      *
      * @return string
      */
@@ -83,7 +66,7 @@ class Article extends Model implements Contract
     }
 
     /**
-     * Retrieve the article icon.
+     * Retrieve the news icon.
      *
      * @return string
      */
@@ -93,17 +76,7 @@ class Article extends Model implements Contract
     }
 
     /**
-     * Retrieve the article image.
-     *
-     * @return string
-     */
-    public function image()
-    {
-        return strpos($path = $this->attributes['image'], '/') === 0 ? asset($path) : $path;
-    }
-
-    /**
-     * Retrieve the article creation date.
+     * Retrieve the news creation date.
      *
      * @return \Carbon\Carbon
      */

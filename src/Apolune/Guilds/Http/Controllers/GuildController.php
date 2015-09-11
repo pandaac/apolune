@@ -17,7 +17,15 @@ class GuildController extends Controller
     {
         list($guild, $world) = $this->getGuild($world, $guild);
 
-        return view('theme::guilds.guild.show', compact('guild', 'world'));
+        if (! $guild) {
+            return redirect(url('/guilds', ($world ? $world->slug() : null)));
+        }
+
+        $guild->load('ranks', 'ranks.members');
+
+        list($sort, $order) = ['rank', 'DESC'];
+
+        return view('theme::guilds.guild.show', compact('guild', 'world', 'sort', 'order'));
     }
 
     /**
@@ -33,9 +41,11 @@ class GuildController extends Controller
             list($guild, $world) = [$world, null];
         }
 
+        $world = world_by_slug($world);
+
         return [
-            guild_by_slug($guild), 
-            world_by_slug($world),
+            guild_by_slug($guild, $world), 
+            $world,
         ];
     }
 }

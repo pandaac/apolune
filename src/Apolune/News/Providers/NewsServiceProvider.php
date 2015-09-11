@@ -23,10 +23,10 @@ class NewsServiceProvider extends AggregateServiceProvider
      * @var array
      */
     protected $bindings = [
-        'news'          => [Contracts\News::class       => News\News::class],
-        'news.article'  => [Contracts\Article::class    => News\Article::class],
-        'news.ticker'   => [Contracts\Ticker::class     => News\Ticker::class],
-        'news.history'  => [Contracts\History::class    => News\History::class],
+        'news'      => [Contracts\News::class       => News\News::class],
+        'newsitem'  => [Contracts\Newsitem::class   => News\Newsitem::class],
+        'article'   => [Contracts\Article::class    => News\Article::class],
+        'ticker'    => [Contracts\Ticker::class     => News\Ticker::class],
     ];
     
     /**

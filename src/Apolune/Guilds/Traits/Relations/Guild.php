@@ -25,6 +25,16 @@ trait Guild
     }
 
     /**
+     * Retrieve all of the guild ranks.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function ranks()
+    {
+        return $this->hasMany('guild.rank');
+    }
+
+    /**
      * Retrieve all of the guild members.
      *
      * @return \Illuminate\Support\Collection
@@ -41,8 +51,6 @@ trait Guild
      */
     public function leaders()
     {
-        $this->load('players');
-
         return $this->players->filter(function ($member) {
             return $member->isGuildLeader();
         });
@@ -55,8 +63,6 @@ trait Guild
      */
     public function viceLeaders()
     {
-        $this->load('players');
-
         return $this->players->filter(function ($member) {
             return $member->isGuildViceLeader();
         });
@@ -69,8 +75,6 @@ trait Guild
      */
     public function members()
     {
-        $this->load('players');
-
         return $this->players->filter(function ($member) {
             return ! $member->isGuildLeader() and ! $member->isGuildViceLeader();
         });

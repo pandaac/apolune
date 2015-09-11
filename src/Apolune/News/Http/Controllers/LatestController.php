@@ -13,24 +13,22 @@ class LatestController extends Controller
      */
     public function overview()
     {
-        $tickers = app('news.ticker')->take(5)->orderBy('created_at', 'DESC')->get();
+        $newsitems = app('news')->tickers(5)->articles(1)->newsitems(5)->orderBy('created_at', 'DESC')->get();
 
-        $article = app('news.article')->orderBy('created_at', 'DESC')->first();
+        list($articles, $news, $tickers) = $newsitems->groupBy('type')->sortBy('type')->values();
 
-        $news = app('news')->take(4)->orderBy('created_at', 'DESC')->get();
-
-        return view('theme::news.latest.overview', compact('tickers', 'article', 'news'));
+        return view('theme::news.latest.overview', compact('tickers', 'articles', 'news'));
     }
 
     /**
-     * Show a single newsitem.
+     * Show a single article.
      *
      * @param  string  $slug
      * @return \Illuminate\View\View
      */
     public function show($slug)
     {
-        $article = app('news.article')->where('slug', $slug)->firstOrFail();
+        $article = app('news')->article()->where('slug', $slug)->firstOrFail();
 
         return view('theme::news.latest.show', compact('article'));
     }

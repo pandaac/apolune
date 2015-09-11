@@ -3,14 +3,15 @@
 namespace Apolune\News;
 
 use Carbon\Carbon;
-use Apolune\News\Traits\NewsItem;
+use Apolune\Contracts\News\Ticker;
+use Apolune\Contracts\News\Article;
+use Apolune\Contracts\News\Newsitem;
 use Apolune\Core\Database\Eloquent\Model;
-use Apolune\Contracts\News\News as Contract;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
-class News extends Model implements Contract
+class News extends Model
 {
-    use NewsItem;
-
     /**
      * The table associated with the model.
      *
@@ -19,72 +20,114 @@ class News extends Model implements Contract
     protected $table = '__pandaac_news';
 
     /**
-     * Retrieve the news ID.
+     * Status of a combined query.
      *
-     * @return integer
+     * @var boolean
      */
-    public function id()
+    protected $combined = false;
+
+    /**
+     * Create a collection of models from plain arrays.
+     *
+     * @param  array  $items
+     * @param  string|null  $connection
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function hydrate(array $items, $connection = null)
     {
-        return $this->id;
+        $instances = [
+            'news'      => app(Newsitem::class)->setConnection($connection),
+            'article'   => app(Article::class)->setConnection($connection),
+            'ticker'    => app(Ticker::class)->setConnection($connection),
+        ];
+
+        $items = array_map(function ($item) use ($instances) {
+            $instance = isset($instances[$item->type]) ? $instances[$item->type] : head($instances);
+
+            return $instance->newFromBuilder($item);
+        }, $items);
+
+        return head($instances)->newCollection($items);
     }
 
     /**
-     * Retrieve the news slug.
+     * Scope a query to include newsitems.
      *
-     * @return string
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function slug()
+    public function scopeNewsitems(Builder $query, $quantity)
     {
-        return $this->slug;
+        $instance = ($combined = $this->combined) ? $query->getQuery()->newQuery()->from($this->getTable()) : $query;
+        $instance = $instance->where('type', 'news')->take($quantity);
+
+        $this->combined = true;
+
+        return $combined ? $query->unionAll($instance) : $instance;
     }
 
     /**
-     * Retrieve the news title.
+     * Scope a query to include articles.
      *
-     * @return string
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function title()
+    public function scopeArticles(Builder $query, $quantity)
     {
-        return $this->title;
+        $instance = ($combined = $this->combined) ? $query->getQuery()->newQuery()->from($this->getTable()) : $query;
+        $instance = $instance->where('type', 'article')->take($quantity);
+
+        $this->combined = true;
+
+        return $combined ? $query->unionAll($instance) : $instance;
     }
 
     /**
-     * Retrieve the news content.
+     * Scope a query to include tickers.
      *
-     * @return string
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function content()
+    public function scopeTickers(Builder $query, $quantity)
     {
-        return $this->content;
+        $instance = ($combined = $this->combined) ? $query->getQuery()->newQuery()->from($this->getTable()) : $query;
+        $instance = $instance->where('type', 'ticker')->take($quantity);
+
+        $this->combined = true;
+
+        return $combined ? $query->unionAll($instance) : $instance;
     }
 
     /**
-     * Retrieve the news type.
+     * Scope a query to only include newsitems.
      *
-     * @return string
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function type()
+    public function scopeNewsitem(Builder $query)
     {
-        return $this->type;
+        return $query->where('type', 'news');
     }
 
     /**
-     * Retrieve the news icon.
+     * Scope a query to only include articles.
      *
-     * @return string
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function icon()
+    public function scopeArticle(Builder $query)
     {
-        return $this->icon;
+        return $query->where('type', 'article');
     }
 
     /**
-     * Retrieve the news creation date.
+     * Scope a query to only include tickers.
      *
-     * @return \Carbon\Carbon
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function creation()
+    public function scopeTicker(Builder $query)
     {
-        return new Carbon($this->created_at);
+        return $query->where('type', 'ticker');
     }
 }
