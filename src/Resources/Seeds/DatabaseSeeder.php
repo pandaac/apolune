@@ -1,6 +1,6 @@
 <?php
 
-namespace Apolune\News\Resources\Seeds;
+namespace Apolune\Resources\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;

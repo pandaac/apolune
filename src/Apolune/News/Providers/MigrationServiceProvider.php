@@ -27,9 +27,5 @@ class MigrationServiceProvider extends ServiceProvider
             ->migrate(__DIR__.'/../Resources/Migrations')
             ->using('Apolune\News\Resources\Migrations')
             ->register();
-
-        $this->app['seed.handler']->register(
-            \Apolune\News\Resources\Seeds\DatabaseSeeder::class
-        );
     }
 }

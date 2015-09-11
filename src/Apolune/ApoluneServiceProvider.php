@@ -36,4 +36,16 @@ class ApoluneServiceProvider extends AggregateServiceProvider
     {
         //
     }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app['seed.handler']->register(
+            \Apolune\Resources\Seeds\DatabaseSeeder::class
+        );
+    }
 }

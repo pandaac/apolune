@@ -17,10 +17,8 @@ class ProfileController extends Controller
     {
         $player->load([
             'properties',
-            'account',
-            'account.players.properties',
             'account.players' => function ($query) {
-                $query->visible();
+                $query->with('properties', 'playerOnline')->visible();
             },
         ]);
 
