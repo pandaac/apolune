@@ -21,7 +21,7 @@ class GuildController extends Controller
             return redirect(url('/guilds', ($world ? $world->slug() : null)));
         }
 
-        $guild->load('ranks', 'ranks.members');
+        #$guild->load('ranks', 'ranks.members');
 
         list($sort, $order) = ['rank', 'DESC'];
 

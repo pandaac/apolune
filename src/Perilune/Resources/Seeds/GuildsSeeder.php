@@ -28,7 +28,7 @@ class GuildsSeeder extends Seeder
         $guild->creationdata    = time();
         $guild->save();
 
-        $players = app('player')->fromWorld($owner->world())->take(rand(1, 10))->get();
+        $players = app('player')->fromWorld($owner->world())->where('id', '!=', $owner->id())->take(rand(1, 10))->get();
 
         foreach ($players as $player) {
             $member = app('guild.member');
