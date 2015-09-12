@@ -1,6 +1,6 @@
 <?php
 
-namespace Apolune\Resources\Seeds;
+namespace Perilune\Resources\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;

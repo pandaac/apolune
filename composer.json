@@ -48,7 +48,7 @@
             "src/Apolune/Guilds/helpers.php"
         ],
         "psr-4": {
-            "Apolune\\Resources\\": "src/Resources",
+            "Perilune\\": "src/Perilune",
             "Apolune\\": "src/Apolune"
         }
     },
