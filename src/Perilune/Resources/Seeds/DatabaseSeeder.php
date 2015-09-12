@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(NewsSeeder::class);
+        $this->call(GuildsSeeder::class);
 
         Model::reguard();
     }

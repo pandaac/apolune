@@ -15,6 +15,13 @@ class GuildMember extends Model implements Contract
     protected $table = 'guild_membership';
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
      * The primary key for the model.
      *
      * @var string

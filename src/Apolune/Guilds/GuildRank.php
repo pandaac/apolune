@@ -15,6 +15,13 @@ class GuildRank extends Model implements Contract
     protected $table = 'guild_ranks';
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
      * Scope a query to only include leaders from a specific guild.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -34,6 +41,16 @@ class GuildRank extends Model implements Contract
     public function members()
     {
         return $this->hasManyThrough('player', 'guild.member', 'rank_id', 'id');
+    }
+
+    /**
+     * Retrieve the guild rank id.
+     *
+     * @return integer
+     */
+    public function id()
+    {
+        return $this->id;
     }
 
     /**

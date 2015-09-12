@@ -47,5 +47,7 @@ class ApoluneServiceProvider extends AggregateServiceProvider
         $this->app['seed.handler']->register(
             \Perilune\Resources\Seeds\DatabaseSeeder::class
         );
+
+        parent::register();
     }
 }

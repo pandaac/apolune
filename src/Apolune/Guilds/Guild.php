@@ -13,6 +13,13 @@ class Guild extends Model implements Contract
     use GuildScopes, GuildRelations;
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
      * Retrieve the guild ID.
      *
      * @return integer
