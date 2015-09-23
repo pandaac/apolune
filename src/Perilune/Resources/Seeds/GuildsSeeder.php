@@ -19,7 +19,9 @@ class GuildsSeeder extends Seeder
             return null;
         }
 
-        $owner = app('player')->orderByRaw('RAND()')->first();
+        if (! ($owner = app('player')->orderByRaw('RAND()')->first())) {
+            return null;
+        }
 
         $guild = app('guild');
         $guild->world_id        = $owner->world()->id();
