@@ -21,8 +21,6 @@ class GuildController extends Controller
             return redirect(url('/guilds', ($world ? $world->slug() : null)));
         }
 
-        #$guild->load('ranks', 'ranks.members');
-
         list($sort, $order) = ['rank', 'DESC'];
 
         return view('theme::guilds.guild.show', compact('guild', 'world', 'sort', 'order'));
@@ -42,10 +40,12 @@ class GuildController extends Controller
         }
 
         $world = world_by_slug($world);
+        $guild = guild_by_slug($guild, $world);
 
-        return [
-            guild_by_slug($guild, $world), 
-            $world,
-        ];
+        $guild->load('properties', 'players', 'ranks');
+        $guild->players->load('guild', 'guildrank');
+        $guild->ranks->load('members.playerOnline');
+
+        return [$guild, $world];
     }
 }

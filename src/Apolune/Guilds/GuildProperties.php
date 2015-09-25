@@ -25,6 +25,11 @@ class GuildProperties extends Model implements Contract
         return $this->description;
     }
 
+    /**
+     * Retrieve the guild's creation date.
+     *
+     * @return \Carbon\Carbon
+     */
     public function createdAt()
     {
         return new Carbon($this->created_at);

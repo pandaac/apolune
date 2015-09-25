@@ -40,16 +40,6 @@ class Guild extends Model implements Contract
     }
 
     /**
-     * Retrieve a URL friendly slug.
-     *
-     * @return string
-     */
-    public function slug()
-    {
-        return Str::slug($this->name());
-    }
-
-    /**
      * Retrieve the owner ID.
      *
      * @return integer
@@ -77,6 +67,16 @@ class Guild extends Model implements Contract
     public function motd()
     {
         return $this->motd;
+    }
+
+    /**
+     * Retrieve a URL friendly slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return Str::slug($this->name());
     }
 
     /**
