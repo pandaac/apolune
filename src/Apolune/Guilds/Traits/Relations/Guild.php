@@ -47,13 +47,22 @@ trait Guild
     /**
      * Retrieve all of the guild leaders.
      *
+     * @param  boolean  $owner  true
      * @return \Illuminate\Support\Collection
      */
-    public function leaders()
+    public function leaders($owner = true)
     {
-        return $this->players->filter(function ($member) {
+        $leaders = $this->players->filter(function ($member) {
             return $member->isGuildLeader();
         });
+
+        if ($owner) {
+            $this->load('owner');
+            $this->owner->load('guild', 'guildrank');
+            $leaders = $leaders->prepend($this->owner);
+        }
+
+        return $leaders;
     }
 
     /**

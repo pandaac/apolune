@@ -176,7 +176,7 @@ class HasOneThrough extends Relation
             $key = $model->getKey();
 
             if (isset($dictionary[$key])) {
-                $value = $this->related->newCollection($dictionary[$key]);
+                $value = $this->related->newCollection($dictionary[$key])->first();
 
                 $model->setRelation($relation, $value);
             }

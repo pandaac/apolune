@@ -66,6 +66,11 @@ class OverviewController extends Controller
     protected function getGuilds($world)
     {
         $guilds = app('guild')->fromWorld($world)->orderBy('name', 'ASC')->get();
+        $guilds->load('properties', 'players');
+
+        $guilds->each(function ($guild) {
+            $guild->players->load('guild', 'guildrank');
+        });
 
         $found = $guilds->filter(function ($guild) {
             return ! $guild->isForming();

@@ -4,9 +4,13 @@ namespace Apolune\Guilds;
 
 use Apolune\Core\Database\Eloquent\Model;
 use Apolune\Contracts\Guilds\GuildRank as Contract;
+use Apolune\Guilds\Traits\Scopes\GuildRank as GuildRankScopes;
+use Apolune\Guilds\Traits\Relations\GuildRank as GuildRankRelations;
 
 class GuildRank extends Model implements Contract
 {
+    use GuildRankRelations, GuildRankScopes;
+
     /**
      * The table associated with the model.
      *
@@ -22,28 +26,6 @@ class GuildRank extends Model implements Contract
     public $timestamps = false;
 
     /**
-     * Scope a query to only include leaders from a specific guild.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  \Apolune\Contracts\Guilds\Guild  $guild
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeLeaders($query)
-    {
-        return $query->where('level', 3);
-    }
-
-    /**
-     * Retrieve the guild members.
-     *
-     * @return \Apolune\Contracts\Guilds\GuildMember
-     */
-    public function members()
-    {
-        return $this->hasManyThrough('player', 'guild.member', 'rank_id', 'id');
-    }
-
-    /**
      * Retrieve the guild rank id.
      *
      * @return integer
@@ -51,6 +33,16 @@ class GuildRank extends Model implements Contract
     public function id()
     {
         return $this->id;
+    }
+
+    /**
+     * Retrieve the guild id.
+     *
+     * @return integer
+     */
+    public function guildId()
+    {
+        return $this->guild_id;
     }
 
     /**
