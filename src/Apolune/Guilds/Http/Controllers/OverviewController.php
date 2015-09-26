@@ -2,11 +2,35 @@
 
 namespace Apolune\Guilds\Http\Controllers;
 
+use Illuminate\Contracts\Auth\Guard;
 use Apolune\Core\Http\Controllers\Controller;
 use Apolune\Guilds\Http\Requests\Overview\SelectRequest;
+use Apolune\Guilds\Http\Requests\Overview\CreateRequest;
 
 class OverviewController extends Controller
 {
+    /**
+     * The Guard implementation.
+     *
+     * @var \Illuminate\Contracts\Auth\Guard
+     */
+    protected $auth;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \Illuminate\Contracts\Auth\Guard  $auth
+     * @return void
+     */
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+
+        $this->middleware('auth', [
+            'only' => ['create', 'store'],
+        ]);
+    }
+
     /**
      * Display a list of all available worlds.
      *
@@ -55,6 +79,34 @@ class OverviewController extends Controller
         list($guilds, $forming) = $this->getGuilds($world);
 
         return view('theme::guilds.overview.show', compact('world', 'guilds', 'forming'));
+    }
+
+    /**
+     * Display the create guild form.
+     *
+     * @param  string  $slug  null
+     * @return \Illuminate\View\View
+     */
+    public function create($slug = null)
+    {   
+        $world = world_by_slug($slug);
+
+        if ($worlds = worlds() and $worlds->count() > 1 and ! $world) {
+            return redirect('/guilds');
+        }
+
+        return view('theme::guilds.overview.create', compact('world', 'worlds'));
+    }
+
+    /**
+     * Create the new guild.
+     *
+     * @param  \Apolune\Guilds\Http\Requests\Overview\CreateRequest  $request
+     * @return \Illuminate\Http\Request
+     */
+    public function store(CreateRequest $request)
+    {
+        return redirect(url('/guilds', $request->get('world')));
     }
 
     /**

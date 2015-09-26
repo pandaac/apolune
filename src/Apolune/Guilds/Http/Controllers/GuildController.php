@@ -42,9 +42,11 @@ class GuildController extends Controller
         $world = world_by_slug($world);
         $guild = guild_by_slug($guild, $world);
 
-        $guild->load('properties', 'players', 'ranks');
-        $guild->players->load('guild', 'guildrank');
-        $guild->ranks->load('members.playerOnline');
+        if ($guild) {
+            $guild->load('properties', 'players', 'ranks');
+            $guild->players->load('guild', 'guildrank');
+            $guild->ranks->load('members.playerOnline');
+        }
 
         return [$guild, $world];
     }
