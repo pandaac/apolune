@@ -18,7 +18,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "apolune/core": "self.version"
+        "apolune/core": "self.version",
+        "apolune/worlds": "self.version"
     },
     "autoload": {
         "psr-4": {

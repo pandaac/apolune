@@ -3,6 +3,7 @@
 namespace Apolune\Core\Providers;
 
 use Illuminate\Routing\Router;
+use Apolune\Contracts\Server\World;
 use Apolune\Contracts\Account\Player;
 use Apolune\Contracts\Account\Account;
 use Apolune\Core\Exceptions\NotFoundPlayerException;
@@ -44,6 +45,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function registerModels(Router $router)
     {
         $router->model('account', Account::class);
+
         $router->model('player', Player::class, function ($value) {
             $value = str_replace('-', ' ', urldecode($value));
 
@@ -56,6 +58,10 @@ class RouteServiceProvider extends ServiceProvider
             }
 
             throw new NotFoundPlayerException;
+        });
+
+        $router->bind('world', function ($value) {
+            return world_by_slug($value);
         });
     }
 }

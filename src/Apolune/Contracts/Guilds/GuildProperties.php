@@ -10,4 +10,11 @@ interface GuildProperties
      * @return string
      */
     public function description();
+
+    /**
+     * Retrieve the guild's creation date.
+     *
+     * @return \Carbon\Carbon
+     */
+    public function createdAt();
 }

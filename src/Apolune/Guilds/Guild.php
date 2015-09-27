@@ -6,11 +6,12 @@ use Illuminate\Support\Str;
 use Apolune\Core\Database\Eloquent\Model;
 use Apolune\Contracts\Guilds\Guild as Contract;
 use Apolune\Guilds\Traits\Scopes\Guild as GuildScopes;
+use Apolune\Guilds\Traits\Mutators\Guild as GuildMutators;
 use Apolune\Guilds\Traits\Relations\Guild as GuildRelations;
 
 class Guild extends Model implements Contract
 {
-    use GuildScopes, GuildRelations;
+    use GuildRelations, GuildScopes, GuildMutators;
 
     /**
      * Indicates if the model should be timestamped.
@@ -86,21 +87,10 @@ class Guild extends Model implements Contract
      */
     public function isForming()
     {
-        return $this->viceLeaders()->count() < 4;
-    }
-
-    /**
-     * Set the guilds world id.
-     *
-     * @param  integer  $value
-     * @return void
-     */
-    public function setWorldIdAttribute($value)
-    {
-        if (! $this->hasColumn('world_id')) {
-            return;
-        }
-
-        $this->attributes['world_id'] = $value;
+        return $this->ranks->filter(function ($rank) {
+            return $rank->level() > 1;
+        })->map(function ($rank) {
+            return $rank->players;
+        })->collapse()->count() < 4;
     }
 }

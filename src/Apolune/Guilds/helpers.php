@@ -1,5 +1,7 @@
 <?php
 
+use Apolune\Contracts\Server\World;
+
 if (! function_exists('guild_by_slug')) {
     /**
      * Get a specific guild by its slug.
@@ -8,7 +10,7 @@ if (! function_exists('guild_by_slug')) {
      * @param  \Apolune\Contracts\Server\World  $world  null
      * @return \Apolune\Contracts\Guilds\Guild
      */
-    function guild_by_slug($slug, $world = null)
+    function guild_by_slug($slug, World $world = null)
     {
         $name = str_replace('-', ' ', $slug);
 

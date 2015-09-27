@@ -2,6 +2,9 @@
 
 namespace Apolune\Contracts\Guilds;
 
+use Apolune\Contracts\Server\World;
+use Illuminate\Database\Eloquent\Builder;
+
 interface Guild
 {
     /**
@@ -40,6 +43,13 @@ interface Guild
     public function motd();
 
     /**
+     * Retrieve a URL friendly slug.
+     *
+     * @return string
+     */
+    public function slug();
+
+    /**
      * Check whether the guild is in a forming state or not.
      *
      * @return boolean
@@ -54,39 +64,18 @@ interface Guild
     public function properties();
 
     /**
-     * Retrieve the guild owner.
-     *
-     * @return \Apolune\Contracts\Account\Player
-     */
-    public function owner();
-
-    /**
-     * Retrieve all of the guild members.
+     * Retrieve the associated guild ranks.
      *
      * @return \Illuminate\Support\Collection
      */
-    public function players();
+    public function ranks();
 
     /**
-     * Retrieve all of the guild leaders.
+     * Retrieve the associated guild memberships.
      *
      * @return \Illuminate\Support\Collection
      */
-    public function leaders();
-
-    /**
-     * Retrieve all of the guild vice-leaders.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function viceLeaders();
-
-    /**
-     * Retrieve all of the guild members.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function members();
+    public function memberships();
 
     /**
      * Scope a query to only include guilds from a specific world.
@@ -95,5 +84,21 @@ interface Guild
      * @param  \Apolune\Contracts\Server\World  $world
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFromWorld($query, $world);
+    public function scopeFromWorld(Builder $query, World $world = null);
+
+    /**
+     * Scope a query to only include guilds which are in their formation stages.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeForming(Builder $query);
+
+    /**
+     * Scope a query to only include guilds that are fully formed.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFormed(Builder $query);
 }

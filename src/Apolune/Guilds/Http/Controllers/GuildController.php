@@ -2,6 +2,7 @@
 
 namespace Apolune\Guilds\Http\Controllers;
 
+use Apolune\Contracts\Server\World;
 use Apolune\Core\Http\Controllers\Controller;
 
 class GuildController extends Controller
@@ -9,45 +10,37 @@ class GuildController extends Controller
     /**
      * Display a specific guild.
      *
-     * @param  string  $world  null
+     * @param  \Apolune\Contracts\Server\World  $world  null
      * @param  string  $guild  null
      * @return \Illuminate\View\View
      */
     public function show($world = null, $guild = null)
     {
-        list($guild, $world) = $this->getGuild($world, $guild);
+        list($guild, $world, $sort, $order) = $this->resolveParameters($world, $guild);
 
         if (! $guild) {
             return redirect(url('/guilds', ($world ? $world->slug() : null)));
         }
 
-        list($sort, $order) = ['rank', 'DESC'];
+        $guild->load('properties', 'ranks.players.playerOnline');
 
         return view('theme::guilds.guild.show', compact('guild', 'world', 'sort', 'order'));
     }
 
     /**
-     * Retrieve the guild & possible world.
+     * Resolve the parameters.
      *
-     * @param  string  $world
-     * @param  string  $guild
+     * @param  \Apolune\Contracts\Server\World  $worldSlug  null
+     * @param  string  $guildSlug  null
      * @return array
      */
-    protected function getGuild($world, $guild)
+    protected function resolveParameters($worldSlug, $guildSlug)
     {
-        if (is_null($guild)) {
-            list($guild, $world) = [$world, null];
-        }
-
-        $world = world_by_slug($world);
-        $guild = guild_by_slug($guild, $world);
-
-        if ($guild) {
-            $guild->load('properties', 'players', 'ranks');
-            $guild->players->load('guild', 'guildrank');
-            $guild->ranks->load('members.playerOnline');
-        }
-
-        return [$guild, $world];
+        return [
+            guild_by_slug($guildSlug ?: $worldSlug), 
+            $guildSlug ? $worldSlug : null,
+            'rank',
+            'DESC',
+        ];
     }
 }

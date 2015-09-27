@@ -17,6 +17,20 @@ interface Player
      * @return \Apolune\Contracts\Account\PlayerProperties
      */
     public function properties();
+
+    /**
+     * Retrieve the associated guild membership.
+     *
+     * @return \Apolune\Contracts\Guilds\GuildMembership
+     */
+    public function guild();
+
+    /**
+     * Retrieve the player online relationship.
+     *
+     * @return \Apolune\Contracts\Account\PlayerOnline
+     */
+    public function playerOnline();
     
      /**
      * Scope a query to only include online players.

@@ -54,12 +54,12 @@ class WorldsController extends Controller
     /**
      * Display a specific world.
      *
-     * @param  string  $slug  null
+     * @param  \Apolune\Contracts\Server\World  $world  null
      * @return \Illuminate\View\View
      */
-    public function show($slug = null)
+    public function show($world = null)
     {
-        $world = world_by_slug($slug) ?: worlds()->first();
+        $world = $world ?: worlds()->first();
 
         list($sort, $order) = $this->getSortable();
 

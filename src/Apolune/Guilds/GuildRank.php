@@ -4,12 +4,11 @@ namespace Apolune\Guilds;
 
 use Apolune\Core\Database\Eloquent\Model;
 use Apolune\Contracts\Guilds\GuildRank as Contract;
-use Apolune\Guilds\Traits\Scopes\GuildRank as GuildRankScopes;
 use Apolune\Guilds\Traits\Relations\GuildRank as GuildRankRelations;
 
 class GuildRank extends Model implements Contract
 {
-    use GuildRankRelations, GuildRankScopes;
+    use GuildRankRelations;
 
     /**
      * The table associated with the model.

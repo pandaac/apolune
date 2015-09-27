@@ -2,7 +2,8 @@
 
 namespace Apolune\Guilds\Http\Controllers;
 
-use Illuminate\Contracts\Auth\Guard;
+use Apolune\Contracts\Server\World;
+use Illuminate\Database\Eloquent\Collection;
 use Apolune\Core\Http\Controllers\Controller;
 use Apolune\Guilds\Http\Requests\Overview\SelectRequest;
 use Apolune\Guilds\Http\Requests\Overview\CreateRequest;
@@ -10,21 +11,15 @@ use Apolune\Guilds\Http\Requests\Overview\CreateRequest;
 class OverviewController extends Controller
 {
     /**
-     * The Guard implementation.
-     *
-     * @var \Illuminate\Contracts\Auth\Guard
-     */
-    protected $auth;
-
-    /**
      * Create a new controller instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth)
+    public function __construct()
     {
-        $this->auth = $auth;
+        $this->middleware('world.exists:/guilds', [
+            'only' => ['show'],
+        ]);
 
         $this->middleware('auth', [
             'only' => ['create', 'store'],
@@ -38,9 +33,7 @@ class OverviewController extends Controller
      */
     public function form()
     {
-        $worlds = worlds();
-
-        if ($worlds->count() <= 1)
+        if ($worlds = worlds() and $worlds->count() <= 1)
         {
             return $this->show();
         }
@@ -62,35 +55,13 @@ class OverviewController extends Controller
     }
 
     /**
-     * Display the guilds for a specific world.
-     *
-     * @param  string  $slug  null
-     * @param  string  $sort  null
-     * @return \Illuminate\View\View
-     */
-    public function show($slug = null, $sort = null)
-    {
-        $world = world_by_slug($slug);
-
-        if (worlds()->count() > 1 and ! $world) {
-            return redirect('/guilds');
-        }
-
-        list($guilds, $forming) = $this->getGuilds($world);
-
-        return view('theme::guilds.overview.show', compact('world', 'guilds', 'forming'));
-    }
-
-    /**
      * Display the create guild form.
      *
-     * @param  string  $slug  null
+     * @param  string  $world  null
      * @return \Illuminate\View\View
      */
-    public function create($slug = null)
-    {   
-        $world = world_by_slug($slug);
-
+    public function create($world = null)
+    {
         if ($worlds = worlds() and $worlds->count() > 1 and ! $world) {
             return redirect('/guilds');
         }
@@ -110,28 +81,58 @@ class OverviewController extends Controller
     }
 
     /**
-     * Get the guilds.
+     * Display all the available guilds.
      *
-     * @param  \Apolune\Contracts\Server\World  $world
+     * @param  \Apolune\Contracts\Server\World  $world  null
+     * @return \Illuminate\View\View
+     */
+    public function show($world = null)
+    {
+        list($guilds, $forming) = $this->getGuildsByFormationState($world);
+
+        return view('theme::guilds.overview.show', compact('world', 'guilds', 'forming'));
+    }
+
+    /**
+     * Retrieve both formed and forming guilds from a specific world.
+     *
+     * @param  \Apolune\Contracts\Server\World  $world  null
      * @return array
      */
-    protected function getGuilds($world)
+    protected function getGuildsByFormationState(World $world = null)
     {
-        $guilds = app('guild')->fromWorld($world)->orderBy('name', 'ASC')->get();
-        $guilds->load('properties', 'players');
+        $guilds = app('guild')->fromWorld($world)->get();
+        $guilds->load('properties', 'ranks.players');
 
-        $guilds->each(function ($guild) {
-            $guild->players->load('guild', 'guildrank');
-        });
+        return [
+            $this->getFormedGuilds($guilds),
+            $this->getFormingGuilds($guilds),
+        ];
+    }
 
-        $found = $guilds->filter(function ($guild) {
+    /**
+     * Retrieve all the formed guilds.
+     *
+     * @param  \Illuminate\Database\Eloquent\Collection  $guilds
+     * @return array
+     */
+    protected function getFormedGuilds(Collection $guilds)
+    {
+        return $guilds->filter(function ($guild) {
             return ! $guild->isForming();
         });
+    }
 
-        $forming = $guilds->filter(function ($guild) {
+    /**
+     * Retrieve all the forming guilds.
+     *
+     * @param  \Illuminate\Database\Eloquent\Collection  $guilds
+     * @return array
+     */
+    protected function getFormingGuilds(Collection $guilds)
+    {
+        return $guilds->filter(function ($guild) {
             return $guild->isForming();
         });
-
-        return [$found, $forming];
     }
 }

@@ -2,25 +2,18 @@
 
 namespace Apolune\Guilds\Traits\Relations;
 
+use Apolune\Contracts\Account\Player as PlayerContract;
+use Apolune\Contracts\Guilds\GuildMembership as GuildMembershipContract;
+
 trait GuildRank
 {
     /**
-     * Retrieve the guild.
+     * Retrieve all the associated players.
      *
-     * @return \Apolune\Contracts\Guilds\Guild
+     * @return \Illuminate\Support\Collection
      */
-    public function guild()
+    public function players()
     {
-        return $this->belongsTo('guild');
-    }
-
-    /**
-     * Retrieve the guild members.
-     *
-     * @return \Apolune\Contracts\Guilds\GuildMember
-     */
-    public function members()
-    {
-        return $this->hasManyThrough('player', 'guild.member', 'rank_id', 'id');
+        return $this->hasManyThrough(PlayerContract::class, GuildMembershipContract::class, 'rank_id', 'id');
     }
 }

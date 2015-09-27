@@ -25,7 +25,7 @@ class GuildsServiceProvider extends AggregateServiceProvider
     protected $bindings = [
         'guild'             => [Contracts\Guild::class              => Guilds\Guild::class],
         'guild.properties'  => [Contracts\GuildProperties::class    => Guilds\GuildProperties::class],
-        'guild.member'      => [Contracts\GuildMember::class        => Guilds\GuildMember::class],
+        'guild.membership'  => [Contracts\GuildMembership::class    => Guilds\GuildMembership::class],
         'guild.rank'        => [Contracts\GuildRank::class          => Guilds\GuildRank::class],
     ];
     
