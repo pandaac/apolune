@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Apolune\News\Http\Requests\SearchRequest;
 use Apolune\Core\Http\Controllers\Controller;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Foundation\Validation\ValidationException;
 
 class ArchiveController extends Controller
 {
@@ -36,7 +36,7 @@ class ArchiveController extends Controller
         list($from, $to) = $this->getDates($request);
 
         if ($to->diffInDays($from, false) > 0) {
-            throw new HttpResponseException($request->response([
+            throw new ValidationException($request->response([
                 'date' => trans('theme::news/archive/results.date'),
             ]));
         }

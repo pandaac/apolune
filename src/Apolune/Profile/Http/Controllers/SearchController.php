@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Apolune\Core\Http\Controllers\Controller;
 use Apolune\Profile\Http\Requests\FormRequest;
 use Apolune\Profile\Http\Requests\SearchRequest;
-use Illuminate\Http\Exception\HttpResponseException;
 
 class SearchController extends Controller
 {
