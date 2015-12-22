@@ -1,6 +1,6 @@
 <?php
 
-$router->group(['namespace' => 'Apolune\Support\Http\Controllers'], function () {
+$router->group(['namespace' => 'Apolune\Support\Http\Controllers'], function ($router) {
 
     /*
     |--------------------------------------------------------------------------
@@ -11,8 +11,8 @@ $router->group(['namespace' => 'Apolune\Support\Http\Controllers'], function () 
     |
     */
    
-    get('/support/faq', 'GenericController@faq');
-    get('/support/tutor', 'GenericController@tutor');
+    $router->get('/support/faq', 'GenericController@faq');
+    $router->get('/support/tutor', 'GenericController@tutor');
 
     /*
     |--------------------------------------------------------------------------
@@ -23,9 +23,9 @@ $router->group(['namespace' => 'Apolune\Support\Http\Controllers'], function () 
     |
     */
    
-    get('/support/legal', 'LegalController@index');
-    get('/support/privacy', 'LegalController@privacy');
-    get('/support/rules', 'LegalController@rules');
-    get('/support/terms', 'LegalController@terms');
+    $router->get('/support/legal', 'LegalController@index');
+    $router->get('/support/privacy', 'LegalController@privacy');
+    $router->get('/support/rules', 'LegalController@rules');
+    $router->get('/support/terms', 'LegalController@terms');
 
 });

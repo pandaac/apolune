@@ -1,6 +1,6 @@
 <?php
 
-$router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () {
+$router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function ($router) {
 
     /*
     |--------------------------------------------------------------------------
@@ -11,7 +11,7 @@ $router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () 
     |
     */
    
-    get('/library/creatures', 'CreatureController@index');
+    $router->get('/library/creatures', 'CreatureController@index');
 
     /*
     |--------------------------------------------------------------------------
@@ -22,10 +22,10 @@ $router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () 
     |
     */
 
-    get('/library/achievements', 'GenericController@achievements');
-    get('/library/experience', 'GenericController@experience');
-    get('/library/genesis/{page?}', 'GenericController@genesis');
-    get('/library/quests', 'GenericController@quests');
+    $router->get('/library/achievements', 'GenericController@achievements');
+    $router->get('/library/experience', 'GenericController@experience');
+    $router->get('/library/genesis/{page?}', 'GenericController@genesis');
+    $router->get('/library/quests', 'GenericController@quests');
 
     /*
     |--------------------------------------------------------------------------
@@ -36,8 +36,8 @@ $router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () 
     |
     */
 
-    get('/library/maps', 'MapController@index');
-    get('/library/maps/{area}', 'MapController@show');
+    $router->get('/library/maps', 'MapController@index');
+    $router->get('/library/maps/{area}', 'MapController@show');
 
     /*
     |--------------------------------------------------------------------------
@@ -48,6 +48,6 @@ $router->group(['namespace' => 'Apolune\Library\Http\Controllers'], function () 
     |
     */
     
-    get('/library/spells', 'SpellController@index');
+    $router->get('/library/spells', 'SpellController@index');
 
 });
