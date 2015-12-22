@@ -1,6 +1,6 @@
 <?php
 
-$router->group(['namespace' => 'Apolune\News\Http\Controllers'], function ($router) {
+$router->group(['middleware' => 'web', 'namespace' => 'Apolune\News\Http\Controllers'], function ($router) {
 
     /*
     |--------------------------------------------------------------------------

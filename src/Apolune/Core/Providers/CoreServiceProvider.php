@@ -43,7 +43,7 @@ class CoreServiceProvider extends AggregateServiceProvider
      */
     public function boot()
     {
-        if (env('APP_HTTPS')) {
+        if (config('app.https')) {
             $this->app['url']->forceSchema('https');
         }
 
@@ -75,7 +75,7 @@ class CoreServiceProvider extends AggregateServiceProvider
             throw new Exception('Theme Service Provider namespace must follow the vendor/package convention (e.g. pandaac/theme-tibia).');
         }
 
-        if (config('app.debug') and env('APP_DEBUGBAR') and class_exists($debugbar = Debugbar::class)) {
+        if (config('app.debug') and config('app.debugbar') and class_exists($debugbar = Debugbar::class)) {
             $this->app->register($debugbar);
         }
 

@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 use Whoops\Handler\PrettyPageHandler;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends ExceptionHandler
+abstract class Handler extends ExceptionHandler
 {
     /**
      * Holds all the exception handlers.
