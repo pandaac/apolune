@@ -2,9 +2,9 @@
 
 namespace Apolune\Library\Http\Requests\Spells;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest as BaseRequest;
 
-class FormRequest extends FormRequest
+class FormRequest extends BaseRequest
 {
     /**
      * The URI to redirect to if validation fails.
