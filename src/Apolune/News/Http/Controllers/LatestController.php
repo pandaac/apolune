@@ -15,7 +15,7 @@ class LatestController extends Controller
     {
         $newsitems = app('news')->tickers(5)->articles(1)->newsitems(5)->orderBy('created_at', 'DESC')->get();
 
-        list($articles, $news, $tickers) = $newsitems->groupBy('type')->sortBy('type')->values();
+        list($tickers, $news, $articles) = $newsitems->groupBy('type')->sortByDesc('type')->values();
 
         return view('theme::news.latest.overview', compact('tickers', 'articles', 'news'));
     }

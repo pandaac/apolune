@@ -110,6 +110,16 @@ class NewsSeeder extends Seeder
                 'image'         => null,
                 'created_at'    => '2015-09-05 22:00:00',
             ],
+            [
+                'slug'          => 'individual-creatures',
+                'type'          => 'ticker',
+                'icon'          => 'technical',
+                'title'         => 'Finally, the creatures have got their own individual pages. However, most of them are currently missing their descriptions.',
+                'content'       => null,
+                'excerpt'       => null,
+                'image'         => null,
+                'created_at'    => '2015-12-27 18:00:00',
+            ],
         ]);
     }
 }
