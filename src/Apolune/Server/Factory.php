@@ -78,7 +78,13 @@ class Factory implements Contract
      */
     public function countries()
     {
-        return collect(static::$data['countries']);
+        static $collection;
+
+        if (is_null($collection)) {
+            $collection = collect(static::$data['countries']);
+        }
+
+        return $collection;
     }
 
     /**
@@ -88,17 +94,23 @@ class Factory implements Contract
      */
     public function creatures()
     {
-        $creatures = static::$data['creatures'];
+        static $collection;
 
-        array_walk($creatures, function (&$creature) {
-            $creature = $this->app->make('server.creature', [(array) $creature]);
-        });
+        if (is_null($collection)) {
+            $creatures = static::$data['creatures'];
 
-        return collect($creatures)->sortBy('name')->sort(function ($a, $b) {
-            return $a->name() > $b->name();
-        })->filter(function ($item) {
-            return ! $item->hidden();
-        });
+            array_walk($creatures, function (&$creature) {
+                $creature = $this->app->make('server.creature', [(array) $creature]);
+            });
+
+            $collection = collect($creatures)->sortBy('name')->sort(function ($a, $b) {
+                return $a->name() > $b->name();
+            })->filter(function ($item) {
+                return ! $item->hidden();
+            });
+        }
+
+        return $collection;
     }
 
     /**
@@ -108,13 +120,52 @@ class Factory implements Contract
      */
     public function genders()
     {
-        $genders = static::$data['genders'];
+        static $collection;
 
-        array_walk($genders, function (&$gender) {
-            $gender = $this->app->make('server.gender', [(array) $gender]);
-        });
+        if (is_null($collection)) {
+            $genders = static::$data['genders'];
 
-        return collect($genders);
+            array_walk($genders, function (&$gender) {
+                $gender = $this->app->make('server.gender', [(array) $gender]);
+            });
+
+            $collection = collect($genders);
+        }
+
+        return $collection;
+    }
+
+    /**
+     * Get all spells.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function spells()
+    {
+        static $collection;
+
+        if (is_null($collection)) {
+            $types = static::$data['spells'];
+
+            foreach ($types as $type => $spells) {
+                array_walk($spells, function (&$spell, $name) use ($type) {
+                    $spell = $this->app->make('server.spell', [$name, $type, (array) $spell]);
+                });
+            }
+
+            $result = [];
+            foreach ($types as $type) {
+                $result = array_merge($result, (array) $type);
+            }
+
+            $collection = collect($result)->sortBy('name')->sort(function ($a, $b) {
+                return $a->name() > $b->name();
+            })->filter(function ($item) {
+                return ! $item->hidden();
+            });
+        }
+
+        return $collection;
     }
 
     /**
@@ -125,17 +176,23 @@ class Factory implements Contract
      */
     public function towns($starter = null)
     {
-        $towns = static::$data['towns'];
+        static $collection;
 
-        array_walk($towns, function (&$town) {
-            $town = $this->app->make('server.town', [(array) $town]);
-        });
+        if (is_null($collection)) {
+            $towns = static::$data['towns'];
 
-        $collection = collect($towns)->reject(function ($town) use ($starter) {
-            return $starter and ! $town->isStarter();
-        });
+            array_walk($towns, function (&$town) {
+                $town = $this->app->make('server.town', [(array) $town]);
+            });
 
-        return $collection->count() > 0 ? $collection : $collection->push(head($towns));
+            $collection = collect($towns)->reject(function ($town) use ($starter) {
+                return $starter and ! $town->isStarter();
+            });
+
+            $collection = $collection->count() > 0 ? $collection : $collection->push(head($towns));
+        }
+
+        return $collection;
     }
 
     /**
@@ -146,17 +203,23 @@ class Factory implements Contract
      */
     public function vocations($starter = null)
     {
-        $vocations = static::$data['vocations'];
+        static $collection;
 
-        array_walk($vocations, function (&$vocation) {
-            $vocation = $this->app->make('server.vocation', [(array) $vocation]);
-        });
+        if (is_null($collection)) {
+            $vocations = static::$data['vocations'];
 
-        $collection = collect($vocations)->reject(function ($vocation) use ($starter) {
-            return $starter and ! $vocation->isStarter();
-        });
+            array_walk($vocations, function (&$vocation) {
+                $vocation = $this->app->make('server.vocation', [(array) $vocation]);
+            });
 
-        return $collection->count() > 0 ? $collection : $collection->push(head($vocations));
+            $collection = collect($vocations)->reject(function ($vocation) use ($starter) {
+                return $starter and ! $vocation->isStarter();
+            });
+
+            $collection = $collection->count() > 0 ? $collection : $collection->push(head($vocations));
+        }
+
+        return $collection;
     }
 
     /**
@@ -166,12 +229,18 @@ class Factory implements Contract
      */
     public function worlds()
     {
-        $worlds = static::$data['worlds'];
+        static $collection;
 
-        array_walk($worlds, function (&$world) {
-            $world = $this->app->make('server.world', [(array) $world]);
-        });
+        if (is_null($collection)) {
+            $worlds = static::$data['worlds'];
 
-        return collect($worlds);
+            array_walk($worlds, function (&$world) {
+                $world = $this->app->make('server.world', [(array) $world]);
+            });
+
+            $collection = collect($worlds);
+        }
+
+        return $collection;
     }
 }

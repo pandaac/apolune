@@ -133,6 +133,18 @@ if (! function_exists('genders')) {
     }
 }
 
+if (! function_exists('spells')) {
+    /**
+     * Get all of the spells.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    function spells()
+    {
+        return server()->spells();
+    }
+}
+
 if (! function_exists('hyphencase')) {
     /**
      * Convert a string to all lowercase with hyphens instead of spaces.

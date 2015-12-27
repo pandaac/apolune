@@ -23,6 +23,7 @@ class ServerServiceProvider extends AggregateServiceProvider
     protected $bindings = [
         'server.creature'  => [Contracts\Creature::class => Server\Creature::class],
         'server.gender'    => [Contracts\Gender::class => Server\Gender::class],
+        'server.spell'     => [Contracts\Spell::class => Server\Spell::class],
         'server.vocation'  => [Contracts\Vocation::class => Server\Vocation::class],
         'server.world'     => [Contracts\World::class => Server\World::class],
         'server.town'      => [Contracts\Town::class => Server\Town::class],

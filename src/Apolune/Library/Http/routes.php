@@ -50,5 +50,6 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
     */
     
     $router->get('/library/spells', 'SpellController@index');
+    $router->post('/library/spells', 'SpellController@form');
 
 });
