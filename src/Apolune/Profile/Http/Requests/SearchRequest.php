@@ -3,6 +3,7 @@
 namespace Apolune\Profile\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class SearchRequest extends FormRequest
 {

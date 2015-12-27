@@ -11,11 +11,11 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Guilds\Http\Contr
     |
     */
 
-    $router->get('/guilds',                 'OverviewController@form');
-    $router->post('/guilds',                'OverviewController@select');
-    $router->get('/guilds/{world}',         'OverviewController@show')->where('world', '[A-Za-z\-]+');
-    $router->get('/guilds/{world}/create',  'OverviewController@create')->where('world', '[A-Za-z\-]+');
-    $router->post('/guilds/create',         'OverviewController@store');
+    $router->get('/guilds', 'OverviewController@form');
+    $router->post('/guilds', 'OverviewController@select');
+    $router->get('/guilds/{world}', 'OverviewController@show')->where('world', '[A-Za-z\-]+');
+    $router->get('/guilds/{world}/create', 'OverviewController@create')->where('world', '[A-Za-z\-]+');
+    $router->post('/guilds/create', 'OverviewController@store');
 
     /*
     |--------------------------------------------------------------------------

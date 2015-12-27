@@ -11,8 +11,8 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Guilds\Http\Contr
     |
     */
 
-    $router->get('/guilds',         'OverviewController@show');
-    $router->get('/guilds/create',  'OverviewController@create');
+    $router->get('/guilds', 'OverviewController@show');
+    $router->get('/guilds/create', 'OverviewController@create');
     $router->post('/guilds/create', 'OverviewController@store');
 
     /*

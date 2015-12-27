@@ -1,9 +1,29 @@
 <?php
 
-$router->group(['prefix' => '/about', 'middleware' => 'web', 'namespace' => 'Apolune\About\Http\Controllers'], function ($router) {
-    $router->get('/server', 'AboutController@server');
-    $router->get('/features', 'AboutController@features');
-    $router->get('/premium', 'AboutController@premium');
+$router->group(['middleware' => 'web', 'namespace' => 'Apolune\About\Http\Controllers'], function ($router) {
 
-    $router->get('/screenshots', 'ScreenshotController@index');
+    /*
+    |--------------------------------------------------------------------------
+    | Server Information
+    |--------------------------------------------------------------------------
+    |
+    | ...
+    |
+    */
+   
+    $router->get('/about/server', 'AboutController@server');
+    $router->get('/about/features', 'AboutController@features');
+    $router->get('/about/premium', 'AboutController@premium');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Gallery
+    |--------------------------------------------------------------------------
+    |
+    | ...
+    |
+    */
+   
+    $router->get('/about/screenshots', 'ScreenshotController@index');
+
 });

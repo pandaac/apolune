@@ -4,10 +4,10 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
 
     /*
     |--------------------------------------------------------------------------
-    | CreatureController
+    | Creatures
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
     |
     */
    
@@ -15,10 +15,10 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
 
     /*
     |--------------------------------------------------------------------------
-    | GenericController
+    | Generic
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
     |
     */
 
@@ -29,10 +29,10 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
 
     /*
     |--------------------------------------------------------------------------
-    | MapController
+    | Maps
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
     |
     */
 
@@ -41,10 +41,10 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
 
     /*
     |--------------------------------------------------------------------------
-    | SpellController
+    | Spells
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
     |
     */
     

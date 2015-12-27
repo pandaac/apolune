@@ -11,8 +11,8 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\News\Http\Control
     |
     */
 
-    $router->get('/',                   'LatestController@overview');
-    $router->get('/featured/{slug}',    'LatestController@show');
+    $router->get('/', 'LatestController@overview');
+    $router->get('/featured/{slug}', 'LatestController@show');
 
     /*
     |--------------------------------------------------------------------------
@@ -23,8 +23,8 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\News\Http\Control
     |
     */
    
-    $router->get('/archive',                            'ArchiveController@form');
-    $router->post('/archive',                           'ArchiveController@results');
-    $router->match(['GET', 'POST'], '/archive/{slug}',  'ArchiveController@show');
+    $router->get('/archive', 'ArchiveController@form');
+    $router->post('/archive', 'ArchiveController@results');
+    $router->match(['GET', 'POST'], '/archive/{slug}', 'ArchiveController@show');
 
 });

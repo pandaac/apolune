@@ -4,10 +4,10 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Support\Http\Cont
 
     /*
     |--------------------------------------------------------------------------
-    | GenericController
+    | Generic
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
     |
     */
    
@@ -16,10 +16,10 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Support\Http\Cont
 
     /*
     |--------------------------------------------------------------------------
-    | LegalController
+    | Legal Documents
     |--------------------------------------------------------------------------
     |
-    | The following routes belong to the aforementioned controller.
+    | ...
     |
     */
    

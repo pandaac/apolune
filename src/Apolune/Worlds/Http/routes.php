@@ -11,8 +11,8 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Worlds\Http\Contr
     |
     */
    
-    $router->get('/worlds',         'WorldsController@overview');
-    $router->post('/worlds',        'WorldsController@select');
+    $router->get('/worlds', 'WorldsController@overview');
+    $router->post('/worlds', 'WorldsController@select');
     $router->get('/worlds/{world}', 'WorldsController@show')->where('world', '[A-Za-z\-]+');
 
 });

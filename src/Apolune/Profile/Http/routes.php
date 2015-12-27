@@ -11,8 +11,8 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Profile\Http\Cont
     |
     */
    
-    $router->get('/characters',     'SearchController@form');
-    $router->post('/characters',    'SearchController@search');
+    $router->get('/characters', 'SearchController@form');
+    $router->post('/characters', 'SearchController@search');
 
     /*
     |--------------------------------------------------------------------------
