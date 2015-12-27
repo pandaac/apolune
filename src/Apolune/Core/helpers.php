@@ -45,6 +45,23 @@ if (! function_exists('country')) {
     }
 }
 
+if (! function_exists('creature_by_slug')) {
+    /**
+     * Get a specific creature by its slug.
+     *
+     * @param  string  $slug
+     * @return \Apolune\Contracts\Server\Creature
+     */
+    function creature_by_slug($slug)
+    {
+        $creatures = creatures();
+
+        return head(array_where($creatures, function ($key, $creature) use ($slug) {
+            return strtolower($creature->slug()) === strtolower($slug);
+        }));
+    }
+}
+
 if (! function_exists('creatures')) {
     /**
      * Get all of the creatures.

@@ -48,7 +48,7 @@ class ServerServiceProvider extends AggregateServiceProvider
         parent::register();
 
         $this->app->singleton(['server' => Contracts\Factory::class], function ($app) {
-            return new Server\Factory($app, base_path('dummydata.json'));
+            return new Server\Factory($app, storage_path('server'));
         });
     }
 }

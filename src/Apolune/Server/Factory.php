@@ -8,11 +8,18 @@ use Apolune\Contracts\Server\Factory as Contract;
 class Factory implements Contract
 {
     /**
+     * Holds the storage path.
+     *
+     * @var string
+     */
+    protected $path;
+
+    /**
      * Holds the server data.
      *
-     * @var \StdClass
+     * @var array
      */
-    protected $data;
+    protected static $data = [];
 
     /**
      * Holds the application instance.
@@ -25,13 +32,33 @@ class Factory implements Contract
      * Create a new Factory instance.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  string  $file
+     * @param  string  $path
      * @return void
      */
-    public function __construct(Application $app, $file)
+    public function __construct(Application $app, $path)
     {
         $this->app = $app;
-        $this->data = json_decode($app['files']->get($file));
+        $this->path = $path;
+
+        $this->load();
+    }
+
+    /**
+     * Load all of the different data files.
+     *
+     * @return void
+     */
+    protected function load()
+    {
+        $files = ['info', 'creatures', 'genders', 'spells', 'towns', 'vocations', 'worlds', '../countries'];
+
+        foreach ($files as $file) {
+            $filepath = sprintf('%s/%s.json', $this->path, $file);
+
+            $identifier = preg_replace('/[^a-z]/i', null, $file);
+
+            static::$data[$identifier] = json_decode($this->app['files']->get($filepath));
+        }
     }
 
     /**
@@ -41,7 +68,7 @@ class Factory implements Contract
      */
     public function name()
     {
-        return $this->data->name;
+        return static::$data['info']->name;
     }
 
     /**
@@ -51,7 +78,7 @@ class Factory implements Contract
      */
     public function countries()
     {
-        return collect($this->data->countries);
+        return collect(static::$data['countries']);
     }
 
     /**
@@ -61,7 +88,7 @@ class Factory implements Contract
      */
     public function creatures()
     {
-        $creatures = $this->data->creatures;
+        $creatures = static::$data['creatures'];
 
         array_walk($creatures, function (&$creature) {
             $creature = $this->app->make('server.creature', [(array) $creature]);
@@ -81,7 +108,7 @@ class Factory implements Contract
      */
     public function genders()
     {
-        $genders = $this->data->genders;
+        $genders = static::$data['genders'];
 
         array_walk($genders, function (&$gender) {
             $gender = $this->app->make('server.gender', [(array) $gender]);
@@ -98,7 +125,7 @@ class Factory implements Contract
      */
     public function towns($starter = null)
     {
-        $towns = $this->data->towns;
+        $towns = static::$data['towns'];
 
         array_walk($towns, function (&$town) {
             $town = $this->app->make('server.town', [(array) $town]);
@@ -119,7 +146,7 @@ class Factory implements Contract
      */
     public function vocations($starter = null)
     {
-        $vocations = $this->data->vocations;
+        $vocations = static::$data['vocations'];
 
         array_walk($vocations, function (&$vocation) {
             $vocation = $this->app->make('server.vocation', [(array) $vocation]);
@@ -139,7 +166,7 @@ class Factory implements Contract
      */
     public function worlds()
     {
-        $worlds = $this->data->worlds;
+        $worlds = static::$data['worlds'];
 
         array_walk($worlds, function (&$world) {
             $world = $this->app->make('server.world', [(array) $world]);

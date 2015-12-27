@@ -11,6 +11,7 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
     |
     */
    
+    $router->get('/library/creatures/{creature}', 'CreatureController@single');
     $router->get('/library/creatures', 'CreatureController@index');
 
     /*

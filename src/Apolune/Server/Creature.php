@@ -35,13 +35,13 @@ class Creature implements Contract
     }
 
     /**
-     * Get the creature image path.
+     * Get the creature slug.
      *
      * @return string
      */
-    public function image()
+    public function slug()
     {
-        return $this->data['image'];
+        return $this->data['slug'];
     }
 
     /**
@@ -52,5 +52,15 @@ class Creature implements Contract
     public function hidden()
     {
         return $this->data['hidden'];
+    }
+
+    /**
+     * Get the creature description.
+     *
+     * @return string
+     */
+    public function description()
+    {
+        return $this->data['description'];
     }
 }

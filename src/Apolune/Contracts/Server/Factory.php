@@ -10,10 +10,10 @@ interface Factory
      * Create a new Factory instance.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  string  $file
+     * @param  string  $path
      * @return void
      */
-    public function __construct(Application $app, $file);
+    public function __construct(Application $app, $path);
 
     /**
      * Get the server name.

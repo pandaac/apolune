@@ -20,11 +20,11 @@ interface Creature
     public function name();
 
     /**
-     * Get the creature image path.
+     * Get the creature slug.
      *
      * @return string
      */
-    public function image();
+    public function slug();
 
     /**
      * Determinate if hidden or not.
@@ -32,4 +32,11 @@ interface Creature
      * @return string
      */
     public function hidden();
+
+    /**
+     * Get the creature description.
+     *
+     * @return string
+     */
+    public function description();
 }
