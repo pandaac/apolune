@@ -71,7 +71,7 @@ class CreatureController extends Controller
     {
         $result = null;
 
-        creatures()->each(function ($creature) use (&$result, $current) {
+        ($creatures = creatures())->each(function ($creature) use (&$result, $current) {
             if (! is_null($result)) {
                 $result = $creature;
 
@@ -83,6 +83,6 @@ class CreatureController extends Controller
             }
         });
 
-        return $current->slug() === creatures()->last()->slug() ? null : $result;
+        return $current->slug() === $creatures->last()->slug() ? null : $result;
     }
 }
