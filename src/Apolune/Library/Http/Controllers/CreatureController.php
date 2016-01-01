@@ -29,6 +29,10 @@ class CreatureController extends Controller
     {
         $creature = creature_by_slug($slug);
 
+        if (! $creature) {
+            return redirect('/library/creatures');
+        }
+
         $previous = $this->previousCreature($creature);
 
         $next = $this->nextCreature($creature);
