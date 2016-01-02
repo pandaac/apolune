@@ -70,8 +70,9 @@ class CreatureController extends Controller
     protected function nextCreature(Creature $current)
     {
         $result = null;
+        $creatures = creatures();
 
-        ($creatures = creatures())->each(function ($creature) use (&$result, $current) {
+        $creatures->each(function ($creature) use (&$result, $current) {
             if (! is_null($result)) {
                 $result = $creature;
 
