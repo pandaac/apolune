@@ -18,9 +18,11 @@ class ArchiveController extends Controller
      */
     public function form(Request $request)
     {
-        $year = $this->getFirstYear();
+        $initialYear = $this->getFirstYear();
 
-        return view('theme::news.archive.form', compact('year'));
+        $fromYear = Carbon::now()->format('n') == 1 ? Carbon::now()->subMonth(1)->format('Y') : date('Y');
+
+        return view('theme::news.archive.form', compact('initialYear', 'fromYear'));
     }
 
     /**
@@ -41,12 +43,14 @@ class ArchiveController extends Controller
             ]));
         }
 
-        list($results, $year) = [
+        list($results, $initialYear) = [
             $this->getResults($request, $from, $to),
             $this->getFirstYear(),
         ];
 
-        return view('theme::news/archive/results', compact('results', 'year'));
+        $fromYear = Carbon::now()->format('n') == 1 ? Carbon::now()->subMonth(1)->format('Y') : date('Y');
+
+        return view('theme::news/archive/results', compact('results', 'initialYear', 'fromYear'));
     }
 
     /**
