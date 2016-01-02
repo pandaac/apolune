@@ -28,6 +28,10 @@ class SpellController extends Controller
      */
     public function form(FormRequest $request)
     {
+        if ($request->has('spell')) {
+            return redirect(url('/library/spells', $request->get('spell')))->withInput();
+        }
+
         extract($this->getCriteria($request));
 
         $spells = spells();
@@ -71,6 +75,23 @@ class SpellController extends Controller
         });
 
         return redirect('/library/spells')->with('spells', $sorted)->withInput();
+    }
+
+    /**
+     * Show the a specific spell.
+     *
+     * @param  string  $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
+    {
+        $spell = spell_by_slug($slug);
+
+        if (! $spell) {
+            return abort(404);
+        }
+
+        return view('theme::library.spells.show', compact('spell'));
     }
 
     /**

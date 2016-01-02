@@ -22,6 +22,20 @@ interface Spell
     public function name();
 
     /**
+     * Get the spell slug.
+     *
+     * @return string
+     */
+    public function slug();
+
+    /**
+     * Get the spell description.
+     *
+     * @return string
+     */
+    public function description();
+
+    /**
      * Get the spell type.
      *
      * @return string

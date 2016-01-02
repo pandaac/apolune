@@ -25,19 +25,19 @@ class CreatureController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function single($slug)
+    public function show($slug)
     {
         $creature = creature_by_slug($slug);
 
         if (! $creature) {
-            return redirect('/library/creatures');
+            return abort(404);
         }
 
         $previous = $this->previousCreature($creature);
 
         $next = $this->nextCreature($creature);
   
-        return view('theme::library.creatures.single', compact('creature', 'previous', 'next'));
+        return view('theme::library.creatures.show', compact('creature', 'previous', 'next'));
     }
 
     /**

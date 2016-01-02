@@ -11,7 +11,7 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
     |
     */
    
-    $router->get('/library/creatures/{creature}', 'CreatureController@single');
+    $router->get('/library/creatures/{creature}', 'CreatureController@show');
     $router->get('/library/creatures', 'CreatureController@index');
 
     /*
@@ -49,6 +49,7 @@ $router->group(['middleware' => 'web', 'namespace' => 'Apolune\Library\Http\Cont
     |
     */
     
+    $router->get('/library/spells/{slug}', 'SpellController@show');
     $router->get('/library/spells', 'SpellController@index');
     $router->post('/library/spells', 'SpellController@form');
 

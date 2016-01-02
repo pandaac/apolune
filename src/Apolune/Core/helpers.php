@@ -133,6 +133,23 @@ if (! function_exists('genders')) {
     }
 }
 
+if (! function_exists('spell_by_slug')) {
+    /**
+     * Get a specific spell by its slug.
+     *
+     * @param  string  $slug
+     * @return \Apolune\Contracts\Server\Spell
+     */
+    function spell_by_slug($slug)
+    {
+        $spells = spells();
+
+        return head(array_where($spells, function ($key, $spell) use ($slug) {
+            return strtolower($spell->slug()) === strtolower($slug);
+        }));
+    }
+}
+
 if (! function_exists('spells')) {
     /**
      * Get all of the spells.

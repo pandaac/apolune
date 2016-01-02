@@ -53,6 +53,26 @@ class Spell implements Contract
     }
 
     /**
+     * Get the spell slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return $this->data['slug'];
+    }
+
+    /**
+     * Get the spell description.
+     *
+     * @return string
+     */
+    public function description()
+    {
+        return isset($this->data['description']) ? $this->data['description'] : null;
+    }
+
+    /**
      * Get the spell type.
      *
      * @return string
