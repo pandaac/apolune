@@ -18,8 +18,9 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "~5.1",
-        "filp/whoops": "~1.0",
+        "laravel/framework": "~5.2",
+        "graham-campbell/exceptions": "^8.1",
+        "filp/whoops": "~2.0",
         "doctrine/dbal": "~2.5",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "michelf/php-markdown": "~1.5"
