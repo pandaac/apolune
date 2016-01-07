@@ -25,7 +25,7 @@
         "apolune/contracts": "self.version"
     },
     "require-dev": {
-        "filp/whoops": "~2.0",
+        "filp/whoops": "~2.0"
     },
     "autoload": {
         "files": [
