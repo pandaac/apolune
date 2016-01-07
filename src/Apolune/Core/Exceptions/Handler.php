@@ -7,7 +7,7 @@ use Exception;
 use Whoops\Run as Whoops;
 use Illuminate\Http\Response;
 use Whoops\Handler\PrettyPageHandler;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use GrahamCampbell\Exceptions\ExceptionHandler;
 
 abstract class Handler extends ExceptionHandler
 {
@@ -43,10 +43,6 @@ abstract class Handler extends ExceptionHandler
             return call_user_func($handler, $e, $this);
         }
 
-        // if (config('app.debug')) {
-        //     return $this->renderExceptionWithWhoops($e);
-        // }
-
         return parent::render($request, $e);
     }
 
@@ -62,22 +58,4 @@ abstract class Handler extends ExceptionHandler
 
         return isset(static::$handlers[$class]) ? static::$handlers[$class] : null;
     }
-
-    /**
-     * Render an exception using Whoops.
-     *
-     * @param  \Exception $e
-     * @return \Illuminate\Http\Response
-     */
-    // protected function renderExceptionWithWhoops(Exception $e)
-    // {
-    //     $whoops = new Whoops;
-    //     $whoops->pushHandler(new PrettyPageHandler());
-
-    //     return new Response(
-    //         $whoops->handleException($e),
-    //         $e->getStatusCode(),
-    //         $e->getHeaders()
-    //     );
-    // }
 }

@@ -6,6 +6,7 @@ use Exception;
 use Apolune\Core\ThemeServiceProvider;
 use Apolune\Core\AggregateServiceProvider;
 use Barryvdh\Debugbar\ServiceProvider as Debugbar;
+use GrahamCampbell\Exceptions\ExceptionsServiceProvider as LaravelExceptionsServiceProvider;
 
 class CoreServiceProvider extends AggregateServiceProvider
 {
@@ -19,6 +20,7 @@ class CoreServiceProvider extends AggregateServiceProvider
         RouteServiceProvider::class,
         MigrationServiceProvider::class,
         SeedServiceProvider::class,
+        LaravelExceptionsServiceProvider::class,
     ];
 
     /**
