@@ -24,9 +24,6 @@
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "michelf/php-markdown": "~1.5"
     },
-    "require-dev": {
-        "filp/whoops": "~2.0"
-    },
     "replace": {
         "apolune/about": "self.version",
         "apolune/account": "self.version",

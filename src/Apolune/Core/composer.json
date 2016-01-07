@@ -24,9 +24,6 @@
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "apolune/contracts": "self.version"
     },
-    "require-dev": {
-        "filp/whoops": "~2.0"
-    },
     "autoload": {
         "files": [
             "helpers.php"
