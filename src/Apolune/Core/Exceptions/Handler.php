@@ -43,9 +43,9 @@ abstract class Handler extends ExceptionHandler
             return call_user_func($handler, $e, $this);
         }
 
-        if (config('app.debug')) {
-            return $this->renderExceptionWithWhoops($e);
-        }
+        // if (config('app.debug')) {
+        //     return $this->renderExceptionWithWhoops($e);
+        // }
 
         return parent::render($request, $e);
     }
@@ -69,15 +69,15 @@ abstract class Handler extends ExceptionHandler
      * @param  \Exception $e
      * @return \Illuminate\Http\Response
      */
-    protected function renderExceptionWithWhoops(Exception $e)
-    {
-        $whoops = new Whoops;
-        $whoops->pushHandler(new PrettyPageHandler());
+    // protected function renderExceptionWithWhoops(Exception $e)
+    // {
+    //     $whoops = new Whoops;
+    //     $whoops->pushHandler(new PrettyPageHandler());
 
-        return new Response(
-            $whoops->handleException($e),
-            $e->getStatusCode(),
-            $e->getHeaders()
-        );
-    }
+    //     return new Response(
+    //         $whoops->handleException($e),
+    //         $e->getStatusCode(),
+    //         $e->getHeaders()
+    //     );
+    // }
 }
