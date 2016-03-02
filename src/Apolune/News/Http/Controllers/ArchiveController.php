@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Apolune\News\Http\Requests\SearchRequest;
 use Apolune\Core\Http\Controllers\Controller;
-use Illuminate\Foundation\Validation\ValidationException;
 
 class ArchiveController extends Controller
 {
@@ -22,7 +21,7 @@ class ArchiveController extends Controller
 
         $fromYear = Carbon::now()->format('n') == 1 ? Carbon::now()->subMonth(1)->format('Y') : date('Y');
 
-        return view('theme::news.archive.form', compact('initialYear', 'fromYear'));
+        return view('theme::news.archive.search', compact('initialYear', 'fromYear'));
     }
 
     /**
@@ -38,9 +37,9 @@ class ArchiveController extends Controller
         list($from, $to) = $this->getDates($request);
 
         if ($to->diffInDays($from, false) > 0) {
-            throw new ValidationException($request->response([
+            return redirect()->back()->withErrors([
                 'date' => trans('theme::news/archive/results.date'),
-            ]));
+            ]);
         }
 
         list($results, $initialYear) = [
@@ -103,10 +102,10 @@ class ArchiveController extends Controller
             $history = $history->whereIn('type', $request->get('type'));
         }
 
-        if ($request->has('icon')) {
-            $history = $history->whereIn('icon', $request->get('icon'));
+        if ($request->has('category')) {
+            $history = $history->whereIn('icon', $request->get('category'));
         }
-        
+
         return $history->orderBy('created_at', 'DESC')->get();
     }
 

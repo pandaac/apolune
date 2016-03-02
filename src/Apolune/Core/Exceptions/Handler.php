@@ -47,7 +47,7 @@ abstract class Handler extends ExceptionHandler
     }
 
     /**
-     * [hasHandler description]
+     * Retrieve a custom handler based on the exception definition.
      *
      * @param  \Exception  $exception
      * @return \Closure|null
