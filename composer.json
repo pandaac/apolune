@@ -19,7 +19,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "~5.2",
-        "graham-campbell/exceptions": "^8.1",
+        "graham-campbell/exceptions": "~8.3",
         "doctrine/dbal": "~2.5",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "michelf/php-markdown": "~1.5"
